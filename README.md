@@ -164,8 +164,7 @@ spinnerView.apply {
   setSpinnerAdapter(IconSpinnerAdapter(this))
   setItems(
     arrayListOf(
-        IconSpinnerItem(ContextCompat.getDrawable(context, R.drawable.ic_dashboard_white_24dp),
-          "Item0")))
+        IconSpinnerItem(contextDrawable(R.drawable.unitedstates), "Item1")))
   getSpinnerRecyclerView().layoutManager = GridLayoutManager(context, 2)
   selectItemByIndex(0) // select an item initially.
   lifecycleOwner = this@MainActivity
@@ -174,7 +173,7 @@ spinnerView.apply {
 Here is the java way.
 ```java
 List<IconSpinnerItem> iconSpinnerItems = new ArrayList<>();
-iconSpinnerItems.add(IconSpinnerItem(contextDrawable(R.drawable.unitedstates), "item1");
+iconSpinnerItems.add(new IconSpinnerItem(contextDrawable(R.drawable.unitedstates), "item1"));
 
 IconSpinnerAdapter iconSpinnerAdapter = new IconSpinnerAdapter(spinnerView);
 spinnerView.setSpinnerAdapter(iconSpinnerAdapter);
