@@ -38,8 +38,8 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 ```
 
 ### PowerSpinnerView
-Here is a basic example of implementing `PowerSpinnerView`.
-Basically the `PowerSpinnerView` extends `TextView`, so we can use it like a `TextView`.
+Here is a basic example of implementing `PowerSpinnerView`. </br>
+Basically the `PowerSpinnerView` extends `TextView`, so we can use it like a `TextView`.</br>
 You can set the unselected text using `hint` and `textColorHint` attributes.
 
 ```gradle
@@ -84,7 +84,8 @@ val mySpinnerView = createPowerSpinnerView(this) {
 ```
 
 ### Show and dismiss
-Basically, when the `PowerSpinnerView` is clicked, the spinner popup will be showed and when an item is selected, the spinner popup will be dismissed.
+Basically, when the `PowerSpinnerView` is clicked, the spinner popup will be showed and </br>
+when an item is selected, the spinner popup will be dismissed.</br>
 But you can show and dismiss manually using methods.
 
 ```kotlin
@@ -130,7 +131,7 @@ SpinnerAnimation.BOUNCE
 ```
 
 ### Customized adapter
-We can use our customized adapter and binds to the `PowerSpinnerView`.
+We can use our customized adapter and binds to the `PowerSpinnerView`.</br>
 The `PowerSpinnerView` provides the spinner popup's recyclerview via `getSpinnerRecyclerView` method.
 
 Here is a sample of the customized adapter.
@@ -140,7 +141,7 @@ spinnerView.getSpinnerRecyclerView().adapter = adapter
 ```
 
 #### IconSpinnerAdapter
-Basically, this library provides a customized adapter.
+Basically, this library provides a customized adapter.</br>
 We should create an instance of the `IconSpinnerAdapter` and call `setItems` using a list of `IconSpinnerItem`.
 
 ```kotlin
@@ -169,7 +170,7 @@ class MySpinnerAdapter(
     private var onSpinnerItemSelectedListener: OnSpinnerItemSelectedListener<IconSpinnerItem>? = null
 
 ```
-On the customized adapter, you must call `spinnerView.notifyItemSelected` method 
+On the customized adapter, you must call `spinnerView.notifyItemSelected` method </br>
 when your item is clicked or the spinner item should be changed.
 
 ```kotlin
