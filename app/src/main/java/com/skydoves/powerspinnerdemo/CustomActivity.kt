@@ -1,0 +1,74 @@
+/*
+ * Designed and developed by 2019 skydoves (Jaewoong Eum)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.skydoves.powerspinnerdemo
+
+import android.graphics.drawable.Drawable
+import android.os.Bundle
+import android.widget.Toast
+import androidx.annotation.DrawableRes
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.GridLayoutManager
+import com.skydoves.powerspinner.IconSpinnerAdapter
+import com.skydoves.powerspinner.IconSpinnerItem
+import com.skydoves.powerspinner.OnSpinnerItemSelectedListener
+import kotlinx.android.synthetic.main.activity_custom.spinnerView
+import kotlinx.android.synthetic.main.activity_custom.spinnerView1
+import kotlinx.android.synthetic.main.activity_main.spinnerView2
+
+class CustomActivity : AppCompatActivity() {
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContentView(R.layout.activity_custom)
+
+    val adapter = IconSpinnerAdapter(spinnerView)
+    adapter.setOnSpinnerItemSelectedListener(object : OnSpinnerItemSelectedListener<IconSpinnerItem> {
+      override fun onItemSelected(position: Int, item: IconSpinnerItem) {
+        Toast.makeText(applicationContext, item.text, Toast.LENGTH_SHORT).show()
+      }
+    })
+    adapter.setItems(
+      arrayListOf(
+        IconSpinnerItem(contextDrawable(R.drawable.unitedstates), "USA"),
+        IconSpinnerItem(contextDrawable(R.drawable.unitedkingdom), "UK"),
+        IconSpinnerItem(contextDrawable(R.drawable.france), "France"),
+        IconSpinnerItem(contextDrawable(R.drawable.canada), "Canada"),
+        IconSpinnerItem(contextDrawable(R.drawable.southkorea), "South Korea"),
+        IconSpinnerItem(contextDrawable(R.drawable.germany), "Germany"),
+        IconSpinnerItem(contextDrawable(R.drawable.spain), "Spain"),
+        IconSpinnerItem(contextDrawable(R.drawable.china), "China")
+      ))
+    spinnerView.apply {
+      lifecycleOwner = this@CustomActivity
+      getSpinnerRecyclerView().layoutManager = GridLayoutManager(baseContext, 2)
+      getSpinnerRecyclerView().adapter = adapter
+    }
+
+    spinnerView1.apply {
+      lifecycleOwner = this@CustomActivity
+      setOnSpinnerItemSelectedListener { position, item ->
+        spinnerView2.hint = item
+        Toast.makeText(applicationContext, item, Toast.LENGTH_SHORT).show()
+      }
+    }
+  }
+
+  private fun contextDrawable(@DrawableRes resource: Int): Drawable? {
+    return ContextCompat.getDrawable(this@CustomActivity, resource)
+  }
+}

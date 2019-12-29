@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@color/background"
+  android:padding="32dp">
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:layout_marginTop="32dp"
+      android:text="@string/start_a_new_account"
+      android:textColor="@color/white_93"
+      android:textSize="18sp" />
+
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="32dp"
+      android:text="@string/country"
+      android:textColor="@color/white_87" />
+
+    <com.skydoves.powerspinner.PowerSpinnerView
+      android:id="@+id/spinnerView"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="12dp"
+      android:background="@drawable/rectangle"
+      android:foreground="?attr/selectableItemBackground"
+      android:hint="Select your country"
+      android:padding="10dp"
+      android:textColor="@color/white_93"
+      android:textColorHint="@color/white_70"
+      android:textSize="14.5sp"
+      app:spinner_arrow_gravity="end"
+      app:spinner_arrow_padding="8dp"
+      app:spinner_divider_color="@color/white_70"
+      app:spinner_divider_show="true"
+      app:spinner_divider_size="0.4dp"
+      app:spinner_item_array="@array/questions1"
+      app:spinner_popup_animation="dropdown"
+      app:spinner_popup_background="@color/background900"
+      app:spinner_popup_elevation="14dp"
+      tools:ignore="HardcodedText,UnusedAttribute" />
+
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="16dp"
+      android:text="@string/question_1"
+      android:textColor="@color/white_87" />
+
+    <com.skydoves.powerspinner.PowerSpinnerView
+      android:id="@+id/spinnerView1"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="12dp"
+      android:background="@drawable/rectangle"
+      android:foreground="?attr/selectableItemBackground"
+      android:hint="Select a question"
+      android:padding="10dp"
+      android:textColor="@color/white_93"
+      android:textColorHint="@color/white_70"
+      android:textSize="14.5sp"
+      app:spinner_arrow_gravity="end"
+      app:spinner_arrow_padding="8dp"
+      app:spinner_divider_color="@color/white_70"
+      app:spinner_divider_show="true"
+      app:spinner_divider_size="0.4dp"
+      app:spinner_item_array="@array/questions1"
+      app:spinner_popup_animation="dropdown"
+      app:spinner_popup_background="@color/background900"
+      app:spinner_popup_elevation="14dp"
+      tools:ignore="HardcodedText,UnusedAttribute" />
+
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="16dp"
+      android:text="@string/question_2"
+      android:textColor="@color/white_87" />
+
+    <com.skydoves.powerspinner.PowerSpinnerView
+      android:id="@+id/spinnerView2"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="12dp"
+      android:background="@drawable/rectangle"
+      android:foreground="?attr/selectableItemBackground"
+      android:hint="Select a question"
+      android:padding="10dp"
+      android:textColor="@color/white_93"
+      android:textColorHint="@color/white_70"
+      android:textSize="14.5sp"
+      app:spinner_arrow_gravity="end"
+      app:spinner_arrow_padding="8dp"
+      app:spinner_divider_color="@color/white_70"
+      app:spinner_divider_show="true"
+      app:spinner_divider_size="0.4dp"
+      app:spinner_item_array="@array/coffee"
+      app:spinner_popup_animation="bounce"
+      app:spinner_popup_background="@color/background900"
+      app:spinner_popup_elevation="14dp"
+      tools:ignore="HardcodedText,UnusedAttribute" />
+
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="16dp"
+      android:text="@string/birth"
+      android:textColor="@color/white_87" />
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      android:weightSum="10">
+
+      <com.skydoves.powerspinner.PowerSpinnerView
+        android:id="@+id/spinnerView3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_weight="3.5"
+        android:background="@drawable/rectangle"
+        android:foreground="?attr/selectableItemBackground"
+        android:gravity="center"
+        android:hint="Year"
+        android:padding="10dp"
+        android:textColor="@color/white_93"
+        android:textColorHint="@color/white_70"
+        android:textSize="14.5sp"
+        app:spinner_arrow_gravity="end"
+        app:spinner_arrow_padding="8dp"
+        app:spinner_divider_color="@color/white_56"
+        app:spinner_divider_show="true"
+        app:spinner_divider_size="0.2dp"
+        app:spinner_item_array="@array/year"
+        app:spinner_popup_animation="dropdown"
+        app:spinner_popup_background="@color/background900"
+        app:spinner_popup_elevation="14dp"
+        tools:ignore="HardcodedText,UnusedAttribute" />
+
+      <com.skydoves.powerspinner.PowerSpinnerView
+        android:id="@+id/spinnerView4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="12dp"
+        android:layout_weight="3"
+        android:background="@drawable/rectangle"
+        android:foreground="?attr/selectableItemBackground"
+        android:gravity="center"
+        android:hint="Month"
+        android:padding="10dp"
+        android:textColor="@color/white_93"
+        android:textColorHint="@color/white_70"
+        android:textSize="14.5sp"
+        app:spinner_arrow_gravity="end"
+        app:spinner_arrow_padding="8dp"
+        app:spinner_divider_color="@color/white_70"
+        app:spinner_divider_show="true"
+        app:spinner_divider_size="0.4dp"
+        app:spinner_item_array="@array/month"
+        app:spinner_popup_animation="dropdown"
+        app:spinner_popup_background="@color/background900"
+        app:spinner_popup_elevation="14dp"
+        tools:ignore="HardcodedText,UnusedAttribute" />
+
+      <com.skydoves.powerspinner.PowerSpinnerView
+        android:id="@+id/spinnerView5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="12dp"
+        android:layout_weight="3"
+        android:background="@drawable/rectangle"
+        android:foreground="?attr/selectableItemBackground"
+        android:gravity="center"
+        android:hint="Day"
+        android:padding="10dp"
+        android:textColor="@color/white_93"
+        android:textColorHint="@color/white_70"
+        android:textSize="14.5sp"
+        app:spinner_arrow_gravity="end"
+        app:spinner_arrow_padding="8dp"
+        app:spinner_divider_color="@color/white_70"
+        app:spinner_divider_show="true"
+        app:spinner_divider_size="0.4dp"
+        app:spinner_item_array="@array/month"
+        app:spinner_popup_animation="dropdown"
+        app:spinner_popup_background="@color/background900"
+        app:spinner_popup_elevation="14dp"
+        tools:ignore="HardcodedText,UnusedAttribute" />
+    </LinearLayout>
+  </LinearLayout>
+
+
+  <Button
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_marginBottom="26dp"
+    android:background="@color/colorPrimary"
+    android:text="@string/next"
+    android:textColor="@color/white" />
+</RelativeLayout>
