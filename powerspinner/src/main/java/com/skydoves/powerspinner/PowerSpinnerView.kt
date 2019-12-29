@@ -54,7 +54,7 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
 
   private val spinnerBody: View
   private val spinnerWindow: PopupWindow
-  private val adapter: DefaultSpinnerAdapter = DefaultSpinnerAdapter(this)
+  private var adapter: PowerSpinnerInterface<*> = DefaultSpinnerAdapter(this)
   var isShowing: Boolean = false
     private set
   var selectedIndex: Int = -1
@@ -132,7 +132,9 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
     val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
     this.spinnerBody = inflater.inflate(R.layout.layout_body, null).apply {
       recyclerView.layoutManager = LinearLayoutManager(context)
-      recyclerView.adapter = this@PowerSpinnerView.adapter
+      if (this@PowerSpinnerView.adapter is RecyclerView.Adapter<*>) {
+        recyclerView.adapter = this@PowerSpinnerView.adapter as RecyclerView.Adapter<*>
+      }
     }
     this.spinnerWindow = PopupWindow(this.spinnerBody,
       WindowManager.LayoutParams.MATCH_PARENT,
@@ -324,24 +326,46 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   fun getSpinnerRecyclerView(): RecyclerView = this.spinnerBody.recyclerView
 
   /** sets a string list for setting items of the adapter. */
-  fun setItemList(itemList: List<String>) = this.adapter.setItems(itemList)
+  fun setItemList(itemList: List<Nothing>) {
+    this.adapter.setItems(itemList)
+  }
 
-  /** sets a string array resource for setting items of the adapter. */
-  fun setItemList(@ArrayRes resource: Int) =
-    this.adapter.setItems(context.resources.getStringArray(resource).toList())
+  /**
+   * sets a string array resource for setting items of the adapter.
+   * This function only works for the [DefaultSpinnerAdapter].
+   */
+  fun setItemList(@ArrayRes resource: Int) {
+    if (this.adapter is DefaultSpinnerAdapter) {
+      (this.adapter as DefaultSpinnerAdapter).setItems(
+        context.resources.getStringArray(resource).toList())
+    }
+  }
+
+  fun <T> setSpinnerAdapter(powerSpinnerInterface: PowerSpinnerInterface<T>) {
+    this.adapter = powerSpinnerInterface
+  }
+
+  @Suppress("UNCHECKED_CAST")
+  fun <T> getSpinnerAdapter(): PowerSpinnerInterface<T> {
+    return this.adapter as PowerSpinnerInterface<T>
+  }
 
   /** sets a [OnSpinnerItemSelectedListener] to the default adapter. */
-  fun setOnSpinnerItemSelectedListener(onSpinnerItemSelectedListener: OnSpinnerItemSelectedListener<String>) {
-    this.adapter.setOnSpinnerItemSelectedListener(onSpinnerItemSelectedListener)
+  @Suppress("UNCHECKED_CAST")
+  fun <T> setOnSpinnerItemSelectedListener(onSpinnerItemSelectedListener: OnSpinnerItemSelectedListener<T>) {
+    val adapter = this.adapter as PowerSpinnerInterface<T>
+    adapter.onSpinnerItemSelectedListener = onSpinnerItemSelectedListener
   }
 
   /** sets a [OnSpinnerItemSelectedListener] to the popup using lambda. */
-  fun setOnSpinnerItemSelectedListener(block: (position: Int, item: String) -> Unit) {
-    this.adapter.setOnSpinnerItemSelectedListener(object : OnSpinnerItemSelectedListener<String> {
-      override fun onItemSelected(position: Int, item: String) {
+  @Suppress("UNCHECKED_CAST")
+  fun <T> setOnSpinnerItemSelectedListener(block: (position: Int, item: T) -> Unit) {
+    val adapter = this.adapter as PowerSpinnerInterface<T>
+    adapter.onSpinnerItemSelectedListener = object : OnSpinnerItemSelectedListener<T> {
+      override fun onItemSelected(position: Int, item: T) {
         block(position, item)
       }
-    })
+    }
   }
 
   /** sets a [OnSpinnerOutsideTouchListener] to the popup using lambda. */
@@ -388,6 +412,11 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   }
 
   /** notifies to [PowerSpinnerView] of changed information. */
+  fun selectItemByIndex(index: Int) {
+    this.adapter.notifyItemSelected(index)
+  }
+
+  /** notifies to [PowerSpinnerView] of changed information from [PowerSpinnerInterface]. */
   fun notifyItemSelected(index: Int, changedText: String) {
     this.selectedIndex = index
     this.text = changedText
@@ -446,17 +475,20 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
       this.powerSpinnerView.dismissWhenNotifiedItemSelected = value
     }
 
-    fun setOnSpinnerItemSelectedListener(onSpinnerItemSelectedListener: OnSpinnerItemSelectedListener<String>) {
-      this.powerSpinnerView.adapter.setOnSpinnerItemSelectedListener(onSpinnerItemSelectedListener)
+    @Suppress("UNCHECKED_CAST")
+    fun <T> setOnSpinnerItemSelectedListener(onSpinnerItemSelectedListener: OnSpinnerItemSelectedListener<T>) {
+      val adapter = this.powerSpinnerView.adapter as PowerSpinnerInterface<T>
+      adapter.onSpinnerItemSelectedListener = onSpinnerItemSelectedListener
     }
 
-    fun setOnSpinnerItemSelectedListener(block: (position: Int, item: String) -> Unit) {
-      this.powerSpinnerView.adapter.setOnSpinnerItemSelectedListener(object :
-        OnSpinnerItemSelectedListener<String> {
-        override fun onItemSelected(position: Int, item: String) {
+    @Suppress("UNCHECKED_CAST")
+    fun <T> setOnSpinnerItemSelectedListener(block: (position: Int, item: T) -> Unit) {
+      val adapter = this.powerSpinnerView.adapter as PowerSpinnerInterface<T>
+      adapter.onSpinnerItemSelectedListener = object : OnSpinnerItemSelectedListener<T> {
+        override fun onItemSelected(position: Int, item: T) {
           block(position, item)
         }
-      })
+      }
     }
 
     fun setOnSpinnerOutsideTouchListener(value: OnSpinnerOutsideTouchListener) = apply {

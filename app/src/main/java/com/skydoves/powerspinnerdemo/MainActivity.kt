@@ -36,13 +36,14 @@ class MainActivity : AppCompatActivity() {
 
     spinnerView.apply {
       lifecycleOwner = this@MainActivity
-      setOnSpinnerItemSelectedListener { index, text ->
+      setOnSpinnerItemSelectedListener<String> { index, text ->
         Toast.makeText(applicationContext, text, Toast.LENGTH_SHORT).show()
       }
     }
+    spinnerView.selectItemByIndex(3)
     spinnerView1.apply {
       lifecycleOwner = this@MainActivity
-      setOnSpinnerItemSelectedListener { index, text ->
+      setOnSpinnerItemSelectedListener<String> { index, text ->
         when (index) {
           0 -> setBackgroundColor(getContextColor(R.color.colorPrimary))
           1 -> setBackgroundColor(getContextColor(R.color.md_orange_200))
@@ -55,7 +56,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     val adapter = IconSpinnerAdapter(spinnerView2)
-    adapter.setOnSpinnerItemSelectedListener(object : OnSpinnerItemSelectedListener<IconSpinnerItem> {
+    spinnerView2.setOnSpinnerItemSelectedListener(object : OnSpinnerItemSelectedListener<IconSpinnerItem> {
       override fun onItemSelected(position: Int, item: IconSpinnerItem) {
         Toast.makeText(applicationContext, item.text, Toast.LENGTH_SHORT).show()
       }

@@ -25,10 +25,13 @@ import kotlinx.android.synthetic.main.item_default.view.item_default_text
 
 /** DefaultSpinnerAdapter is a default adapter composed of string items. */
 class DefaultSpinnerAdapter(
-  private val spinnerView: PowerSpinnerView
-) : RecyclerView.Adapter<DefaultSpinnerAdapter.DefaultSpinnerViewHolder>() {
+  powerSpinnerView: PowerSpinnerView
+) : RecyclerView.Adapter<DefaultSpinnerAdapter.DefaultSpinnerViewHolder>(),
+  PowerSpinnerInterface<String> {
 
-  private var onSpinnerItemSelectedListener: OnSpinnerItemSelectedListener<String>? = null
+  override val spinnerView: PowerSpinnerView = powerSpinnerView
+  override var onSpinnerItemSelectedListener: OnSpinnerItemSelectedListener<String>? = null
+
   private val spinnerItems: MutableList<String> = arrayListOf()
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DefaultSpinnerViewHolder {
@@ -48,21 +51,19 @@ class DefaultSpinnerAdapter(
       }
       setPadding(spinnerView.paddingLeft, spinnerView.paddingTop, spinnerView.paddingRight,
         spinnerView.paddingBottom)
-      setOnClickListener {
-        onSpinnerItemSelectedListener?.onItemSelected(position, item)
-        spinnerView.notifyItemSelected(position, item)
-      }
+      setOnClickListener { notifyItemSelected(position) }
     }
   }
 
-  fun setItems(itemList: List<String>) {
+  override fun setItems(itemList: List<String>) {
     this.spinnerItems.clear()
     this.spinnerItems.addAll(itemList)
     notifyDataSetChanged()
   }
 
-  fun setOnSpinnerItemSelectedListener(onSpinnerItemSelectedListener: OnSpinnerItemSelectedListener<String>) {
-    this.onSpinnerItemSelectedListener = onSpinnerItemSelectedListener
+  override fun notifyItemSelected(index: Int) {
+    this.spinnerView.notifyItemSelected(index, this.spinnerItems[index])
+    this.onSpinnerItemSelectedListener?.onItemSelected(index, this.spinnerItems[index])
   }
 
   override fun getItemCount() = this.spinnerItems.size

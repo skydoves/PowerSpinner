@@ -37,7 +37,8 @@ class CustomActivity : AppCompatActivity() {
     setContentView(R.layout.activity_custom)
 
     val adapter = IconSpinnerAdapter(spinnerView)
-    adapter.setOnSpinnerItemSelectedListener(object : OnSpinnerItemSelectedListener<IconSpinnerItem> {
+    spinnerView.setSpinnerAdapter(adapter)
+    spinnerView.setOnSpinnerItemSelectedListener(object : OnSpinnerItemSelectedListener<IconSpinnerItem> {
       override fun onItemSelected(position: Int, item: IconSpinnerItem) {
         Toast.makeText(applicationContext, item.text, Toast.LENGTH_SHORT).show()
       }
@@ -56,12 +57,12 @@ class CustomActivity : AppCompatActivity() {
     spinnerView.apply {
       lifecycleOwner = this@CustomActivity
       getSpinnerRecyclerView().layoutManager = GridLayoutManager(baseContext, 2)
-      getSpinnerRecyclerView().adapter = adapter
+      selectItemByIndex(4)
     }
 
     spinnerView1.apply {
       lifecycleOwner = this@CustomActivity
-      setOnSpinnerItemSelectedListener { position, item ->
+      setOnSpinnerItemSelectedListener<String> { position, item ->
         spinnerView2.hint = item
         Toast.makeText(applicationContext, item, Toast.LENGTH_SHORT).show()
       }

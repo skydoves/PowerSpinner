@@ -27,11 +27,14 @@ import kotlinx.android.synthetic.main.item_default.view.item_default_text
 
 /** IconSpinnerAdapter is a custom adapter composed of [IconSpinnerItem] items. */
 class IconSpinnerAdapter(
-  private val spinnerView: PowerSpinnerView
-) : RecyclerView.Adapter<IconSpinnerAdapter.IconSpinnerViewHolder>() {
+  powerSpinnerView: PowerSpinnerView
+) : RecyclerView.Adapter<IconSpinnerAdapter.IconSpinnerViewHolder>(),
+  PowerSpinnerInterface<IconSpinnerItem> {
+
+  override val spinnerView: PowerSpinnerView = powerSpinnerView
+  override var onSpinnerItemSelectedListener: OnSpinnerItemSelectedListener<IconSpinnerItem>? = null
 
   private val compoundPadding: Int = 12
-  private var onSpinnerItemSelectedListener: OnSpinnerItemSelectedListener<IconSpinnerItem>? = null
   private val spinnerItems: MutableList<IconSpinnerItem> = arrayListOf()
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IconSpinnerViewHolder {
@@ -58,22 +61,22 @@ class IconSpinnerAdapter(
       setPadding(spinnerView.paddingLeft, spinnerView.paddingTop, spinnerView.paddingRight,
         spinnerView.paddingBottom)
       setOnClickListener {
-        onSpinnerItemSelectedListener?.onItemSelected(position, item)
-        spinnerView.setCompoundDrawablesWithIntrinsicBounds(item.icon, null,
-          spinnerView.arrowDrawable, null)
-        spinnerView.notifyItemSelected(position, item.text)
+        notifyItemSelected(position)
       }
     }
   }
 
-  fun setItems(itemList: List<IconSpinnerItem>) {
+  override fun setItems(itemList: List<IconSpinnerItem>) {
     this.spinnerItems.clear()
     this.spinnerItems.addAll(itemList)
     notifyDataSetChanged()
   }
 
-  fun setOnSpinnerItemSelectedListener(onSpinnerItemSelectedListener: OnSpinnerItemSelectedListener<IconSpinnerItem>) {
-    this.onSpinnerItemSelectedListener = onSpinnerItemSelectedListener
+  override fun notifyItemSelected(index: Int) {
+    this.spinnerView.setCompoundDrawablesWithIntrinsicBounds(this.spinnerItems[index].icon, null,
+      spinnerView.arrowDrawable, null)
+    this.spinnerView.notifyItemSelected(index, this.spinnerItems[index].text)
+    this.onSpinnerItemSelectedListener?.onItemSelected(index, this.spinnerItems[index])
   }
 
   override fun getItemCount() = this.spinnerItems.size
