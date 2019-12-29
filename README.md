@@ -31,7 +31,7 @@ allprojects {
 And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:powerspinner:1.0.0"
+    implementation "com.github.skydoves:powerspinner:1.0.1"
 }
 ```
 
@@ -114,7 +114,7 @@ powerSpinnerView.dismissWhenNotifiedItemSelected = false
 ### OnSpinnerItemSelectedListener
 Interface definition for a callback to be invoked when selected item on the spinner popup.
 ```kotlin
-setOnSpinnerItemSelectedListener { index, text ->
+setOnSpinnerItemSelectedListener<String> { index, text ->
    toast("$text selected!")
 }
 ```
@@ -125,6 +125,12 @@ powerSpinnerView.setOnSpinnerItemSelectedListener(new OnSpinnerItemSelectedListe
     toast(item + " selected!")
   }
 });
+```
+
+### selectItemByIndex
+We can select an item manually or initially using the below method.
+```kotlin
+spinnerView.selectItemByIndex(4)
 ```
 
 ### SpinnerAnimation
@@ -146,7 +152,8 @@ The `PowerSpinnerView` provides the spinner popup's recyclerview via `getSpinner
 Here is a sample of the customized adapter.
 ```kotlin
 val adapter = IconSpinnerAdapter(spinnerView)
-spinnerView.getSpinnerRecyclerView().adapter = adapter
+spinnerView.setSpinnerAdapter(adapter)
+spinnerView.getSpinnerRecyclerView().layoutManager = GridLayoutManager(context, 2)
 ```
 
 #### IconSpinnerAdapter
@@ -160,35 +167,49 @@ adapter.setItems(
         IconSpinnerItem(ContextCompat.getDrawable(this, R.drawable.ic_dashboard_white_24dp),
           "Item0")))
 spinnerView.apply {
+  setSpinnerAdapter(adapter)
+  selectItemByIndex(0) // select an item initially.
   lifecycleOwner = this@MainActivity
-  getSpinnerRecyclerView().adapter = adapter
 }
 ```
 
 #### Customized adapter
-Here is a way to customize your adapter for binding the `PowerSpinnerView`.
-Firstly, create a new adapter and viewHolder extending `RecyclerView.Adapter`.
-If you create a new adapter, `OnSpinnerItemSelectedListener` will not work anymore. 
-So you should create a field, and invoke it manually.
+Here is a way to customize your adapter for binding the `PowerSpinnerView`.<br>
+Firstly, create a new adapter and viewHolder extending `RecyclerView.Adapter` and `PowerSpinnerInterface<T>`.<br>
+You shoud override `spinnerView`, `onSpinnerItemSelectedListener` fields and `setItems`, `notifyItemSelected` methods.
 
 ```kotlin
 class MySpinnerAdapter(
-  private val spinnerView: PowerSpinnerView
-) : RecyclerView.Adapter<MySpinnerAdapter.MySpinnerViewHolder>() {
+  powerSpinnerView: PowerSpinnerView
+) : RecyclerView.Adapter<MySpinnerAdapter.MySpinnerViewHolder>(),
+  PowerSpinnerInterface<MySpinnerItem> {
 
-    private var onSpinnerItemSelectedListener: OnSpinnerItemSelectedListener<IconSpinnerItem>? = null
-
+  override val spinnerView: PowerSpinnerView = powerSpinnerView
+  override var onSpinnerItemSelectedListener: OnSpinnerItemSelectedListener<MySpinnerItem>? = null
 ```
-On the customized adapter, you must call `spinnerView.notifyItemSelected` method </br>
+On the customized adapter, you must call `notifyItemSelected` method </br>
 when your item is clicked or the spinner item should be changed.
 
 ```kotlin
 override fun onBindViewHolder(holder: MySpinnerViewHolder, position: Int) {
   holder.itemView.setOnClickListener {
-    spinnerView.notifyItemSelected(position, text)
+    notifyItemSelected(position)
   }
 }
+
+// we must call the spinnerView.notifyItemSelected method to let PowerSpinnerView know about changed information.
+override fun notifyItemSelected(index: Int) {
+  this.spinnerView.notifyItemSelected(index, this.spinnerItems[index].text)
+  this.onSpinnerItemSelectedListener?.onItemSelected(index, this.spinnerItems[index])
+}
 ```
+
+And we can linsten about selected information.
+
+```kotlin
+spinnerView.setOnSpinnerItemSelectedListener<MySpinnerItem> { index, item ->  toast(item.text) }
+```
+
 
 ### Avoid Memory leak
 Dialog, PopupWindow and etc.. have memory leak issue if not dismissed before activity or fragment are destroyed.<br>

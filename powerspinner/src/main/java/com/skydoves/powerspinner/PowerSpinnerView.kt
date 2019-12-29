@@ -411,7 +411,7 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
     }
   }
 
-  /** notifies to [PowerSpinnerView] of changed information. */
+  /** select an item by index. */
   fun selectItemByIndex(index: Int) {
     this.adapter.notifyItemSelected(index)
   }

@@ -60,9 +60,7 @@ class IconSpinnerAdapter(
       }
       setPadding(spinnerView.paddingLeft, spinnerView.paddingTop, spinnerView.paddingRight,
         spinnerView.paddingBottom)
-      setOnClickListener {
-        notifyItemSelected(position)
-      }
+      setOnClickListener { notifyItemSelected(position) }
     }
   }
 

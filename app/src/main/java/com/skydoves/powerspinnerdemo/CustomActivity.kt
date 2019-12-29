@@ -25,7 +25,6 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import com.skydoves.powerspinner.IconSpinnerAdapter
 import com.skydoves.powerspinner.IconSpinnerItem
-import com.skydoves.powerspinner.OnSpinnerItemSelectedListener
 import kotlinx.android.synthetic.main.activity_custom.spinnerView
 import kotlinx.android.synthetic.main.activity_custom.spinnerView1
 import kotlinx.android.synthetic.main.activity_main.spinnerView2
@@ -38,11 +37,6 @@ class CustomActivity : AppCompatActivity() {
 
     val adapter = IconSpinnerAdapter(spinnerView)
     spinnerView.setSpinnerAdapter(adapter)
-    spinnerView.setOnSpinnerItemSelectedListener(object : OnSpinnerItemSelectedListener<IconSpinnerItem> {
-      override fun onItemSelected(position: Int, item: IconSpinnerItem) {
-        Toast.makeText(applicationContext, item.text, Toast.LENGTH_SHORT).show()
-      }
-    })
     adapter.setItems(
       arrayListOf(
         IconSpinnerItem(contextDrawable(R.drawable.unitedstates), "USA"),
@@ -58,6 +52,9 @@ class CustomActivity : AppCompatActivity() {
       lifecycleOwner = this@CustomActivity
       getSpinnerRecyclerView().layoutManager = GridLayoutManager(baseContext, 2)
       selectItemByIndex(4)
+      setOnSpinnerItemSelectedListener<IconSpinnerItem> { index, item ->
+        Toast.makeText(applicationContext, item.text, Toast.LENGTH_SHORT).show()
+      }
     }
 
     spinnerView1.apply {
