@@ -183,6 +183,16 @@ override fun onBindViewHolder(holder: MySpinnerViewHolder, position: Int) {
 }
 ```
 
+### Avoid Memory leak
+Dialog, PopupWindow and etc.. have memory leak issue if not dismissed before activity or fragment are destroyed.<br>
+But Lifecycles are now integrated with the Support Library since Architecture Components 1.0 Stable released.<br>
+So we can solve the memory leak issue so easily.<br>
+
+Just use `setLifecycleOwner` method. Then `dismiss` method will be called automatically before activity or fragment would be destroyed.
+```java
+.setLifecycleOwner(lifecycleOwner)
+```
+
 ## PowerSpinnerView Attributes
 Attributes | Type | Default | Description
 --- | --- | --- | ---
