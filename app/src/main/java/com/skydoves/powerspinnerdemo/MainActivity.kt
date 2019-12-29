@@ -23,7 +23,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.skydoves.powerspinner.IconSpinnerAdapter
 import com.skydoves.powerspinner.IconSpinnerItem
-import kotlinx.android.synthetic.main.activity_main.*
+import com.skydoves.powerspinner.OnSpinnerItemSelectedListener
+import kotlinx.android.synthetic.main.activity_main.spinnerView
+import kotlinx.android.synthetic.main.activity_main.spinnerView1
+import kotlinx.android.synthetic.main.activity_main.spinnerView2
 
 class MainActivity : AppCompatActivity() {
 
@@ -52,6 +55,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     val adapter = IconSpinnerAdapter(spinnerView2)
+    adapter.setOnSpinnerItemSelectedListener(object : OnSpinnerItemSelectedListener<IconSpinnerItem> {
+      override fun onItemSelected(position: Int, item: IconSpinnerItem) {
+        Toast.makeText(applicationContext, item.text, Toast.LENGTH_SHORT).show()
+      }
+    })
     adapter.setItems(
       arrayListOf(
         IconSpinnerItem(ContextCompat.getDrawable(this, R.drawable.ic_dashboard_white_24dp),
