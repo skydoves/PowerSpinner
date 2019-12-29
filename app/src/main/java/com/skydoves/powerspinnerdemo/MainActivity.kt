@@ -61,11 +61,11 @@ class MainActivity : AppCompatActivity() {
         IconSpinnerItem(ContextCompat.getDrawable(this, R.drawable.ic_dashboard_white_24dp),
           "Item2"),
         IconSpinnerItem(ContextCompat.getDrawable(this, R.drawable.ic_dashboard_white_24dp),
+          "Item3"),
+        IconSpinnerItem(ContextCompat.getDrawable(this, R.drawable.ic_dashboard_white_24dp),
           "Item4"),
         IconSpinnerItem(ContextCompat.getDrawable(this, R.drawable.ic_dashboard_white_24dp),
-          "Item5"),
-        IconSpinnerItem(ContextCompat.getDrawable(this, R.drawable.ic_dashboard_white_24dp),
-          "Item6")))
+          "Item5")))
     spinnerView2.apply {
       lifecycleOwner = this@MainActivity
       getSpinnerRecyclerView().adapter = adapter
