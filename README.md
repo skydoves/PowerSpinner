@@ -132,6 +132,10 @@ SpinnerAnimation.FADE
 SpinnerAnimation.BOUNCE
 ```
 
+Dropdown | Fade | Bounce
+| :---------------: | :---------------: | :---------------: |
+| <img src="https://user-images.githubusercontent.com/24237865/71556493-b9d0c680-2a7c-11ea-9843-338451cc855a.gif" align="center" width="100%"/> | <img src="https://user-images.githubusercontent.com/24237865/71556494-ba695d00-2a7c-11ea-840d-dc3a0aa0babc.gif" align="center" width="100%"/> | <img src="https://user-images.githubusercontent.com/24237865/71556492-b9d0c680-2a7c-11ea-8b59-c9a29a0387ba.gif" align="center" width="100%"/>
+
 ### Customized adapter
 We can use our customized adapter and binds to the `PowerSpinnerView`.</br>
 The `PowerSpinnerView` provides the spinner popup's recyclerview via `getSpinnerRecyclerView` method.
