@@ -31,12 +31,12 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.WindowManager
 import android.widget.PopupWindow
-import android.widget.TextView
 import androidx.annotation.ArrayRes
 import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
 import androidx.annotation.MainThread
 import androidx.annotation.StyleRes
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
@@ -50,7 +50,7 @@ import kotlinx.android.synthetic.main.layout_body.view.recyclerView
 /** A lightweight dropdown spinner, fully customizable with arrow and animations. */
 @Suppress("MemberVisibilityCanBePrivate", "unused")
 @SuppressLint("InflateParams")
-class PowerSpinnerView : TextView, LifecycleObserver {
+class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
 
   private val spinnerBody: View
   private val spinnerWindow: PopupWindow
