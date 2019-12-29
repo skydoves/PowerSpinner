@@ -17,6 +17,7 @@
 
 
 ## Including in your project
+[![Download](https://api.bintray.com/packages/devmagician/maven/powerspinner/images/download.svg) ](https://bintray.com/devmagician/maven/powerspinner/_latestVersion)
 [![JitPack](https://jitpack.io/v/skydoves/PowerSpinner.svg)](https://jitpack.io/#skydoves/PowerSpinner) <br>
 
 ### Gradle 
