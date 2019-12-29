@@ -187,8 +187,7 @@ class MySpinnerAdapter(
   override val spinnerView: PowerSpinnerView = powerSpinnerView
   override var onSpinnerItemSelectedListener: OnSpinnerItemSelectedListener<MySpinnerItem>? = null
 ```
-On the customized adapter, you must call `notifyItemSelected` method </br>
-when your item is clicked or the spinner item should be changed.
+On the customized adapter, you must call `spinnerView.notifyItemSelected` method when your item is clicked or the spinner item should be changed.
 
 ```kotlin
 override fun onBindViewHolder(holder: MySpinnerViewHolder, position: Int) {
@@ -204,7 +203,7 @@ override fun notifyItemSelected(index: Int) {
 }
 ```
 
-And we can linsten about selected information.
+And we can listen to the selected item's information.
 
 ```kotlin
 spinnerView.setOnSpinnerItemSelectedListener<MySpinnerItem> { index, item ->  toast(item.text) }
