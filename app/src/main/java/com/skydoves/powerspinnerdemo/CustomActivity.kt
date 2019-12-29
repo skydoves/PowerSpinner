@@ -35,26 +35,25 @@ class CustomActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_custom)
 
-    val adapter = IconSpinnerAdapter(spinnerView)
-    spinnerView.setSpinnerAdapter(adapter)
-    adapter.setItems(
-      arrayListOf(
-        IconSpinnerItem(contextDrawable(R.drawable.unitedstates), "USA"),
-        IconSpinnerItem(contextDrawable(R.drawable.unitedkingdom), "UK"),
-        IconSpinnerItem(contextDrawable(R.drawable.france), "France"),
-        IconSpinnerItem(contextDrawable(R.drawable.canada), "Canada"),
-        IconSpinnerItem(contextDrawable(R.drawable.southkorea), "South Korea"),
-        IconSpinnerItem(contextDrawable(R.drawable.germany), "Germany"),
-        IconSpinnerItem(contextDrawable(R.drawable.spain), "Spain"),
-        IconSpinnerItem(contextDrawable(R.drawable.china), "China")
-      ))
     spinnerView.apply {
-      lifecycleOwner = this@CustomActivity
-      getSpinnerRecyclerView().layoutManager = GridLayoutManager(baseContext, 2)
-      selectItemByIndex(4)
+      setSpinnerAdapter(IconSpinnerAdapter(this))
+      setItems(
+        arrayListOf(
+          IconSpinnerItem(contextDrawable(R.drawable.unitedstates), "USA"),
+          IconSpinnerItem(contextDrawable(R.drawable.unitedkingdom), "UK"),
+          IconSpinnerItem(contextDrawable(R.drawable.france), "France"),
+          IconSpinnerItem(contextDrawable(R.drawable.canada), "Canada"),
+          IconSpinnerItem(contextDrawable(R.drawable.southkorea), "South Korea"),
+          IconSpinnerItem(contextDrawable(R.drawable.germany), "Germany"),
+          IconSpinnerItem(contextDrawable(R.drawable.spain), "Spain"),
+          IconSpinnerItem(contextDrawable(R.drawable.china), "China")
+        ))
       setOnSpinnerItemSelectedListener<IconSpinnerItem> { index, item ->
         Toast.makeText(applicationContext, item.text, Toast.LENGTH_SHORT).show()
       }
+      getSpinnerRecyclerView().layoutManager = GridLayoutManager(baseContext, 2)
+      selectItemByIndex(4)
+      lifecycleOwner = this@CustomActivity
     }
 
     spinnerView1.apply {

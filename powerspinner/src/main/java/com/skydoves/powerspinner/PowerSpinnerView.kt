@@ -229,7 +229,7 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
         this.spinnerPopupElevation)
     val itemArray = a.getResourceId(R.styleable.PowerSpinnerView_spinner_item_array, -1)
     if (itemArray != -1) {
-      setItemList(itemArray)
+      setItems(itemArray)
     }
     this.dismissWhenNotifiedItemSelected =
       a.getBoolean(R.styleable.PowerSpinnerView_spinner_dismiss_notified_select,
@@ -325,26 +325,33 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   /** gets the spinner popup's recyclerView. */
   fun getSpinnerRecyclerView(): RecyclerView = this.spinnerBody.recyclerView
 
-  /** sets a string list for setting items of the adapter. */
-  fun setItemList(itemList: List<Nothing>) {
-    this.adapter.setItems(itemList)
+  /** sets an item list for setting items of the adapter. */
+  @Suppress("UNCHECKED_CAST")
+  fun <T> setItems(itemList: List<T>) {
+    val adapter = this.adapter as PowerSpinnerInterface<T>
+    adapter.setItems(itemList)
   }
 
   /**
    * sets a string array resource for setting items of the adapter.
    * This function only works for the [DefaultSpinnerAdapter].
    */
-  fun setItemList(@ArrayRes resource: Int) {
+  fun setItems(@ArrayRes resource: Int) {
     if (this.adapter is DefaultSpinnerAdapter) {
       (this.adapter as DefaultSpinnerAdapter).setItems(
         context.resources.getStringArray(resource).toList())
     }
   }
 
+  /** sets an adapter of the [PowerSpinnerView]. */
   fun <T> setSpinnerAdapter(powerSpinnerInterface: PowerSpinnerInterface<T>) {
     this.adapter = powerSpinnerInterface
+    if (this.adapter is RecyclerView.Adapter<*>) {
+      this.spinnerBody.recyclerView.adapter = this.adapter as RecyclerView.Adapter<*>
+    }
   }
 
+  /** gets an adapter of the [PowerSpinnerView]. */
   @Suppress("UNCHECKED_CAST")
   fun <T> getSpinnerAdapter(): PowerSpinnerInterface<T> {
     return this.adapter as PowerSpinnerInterface<T>
