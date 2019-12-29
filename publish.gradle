@@ -1,0 +1,13 @@
+apply plugin: 'com.novoda.bintray-release'
+apply from: '../dependencies.gradle'
+
+publish {
+    userOrg = 'devmagician'
+    groupId = 'com.github.skydoves'
+    artifactId = 'powerspinner'
+    publishVersion = versions.versionName
+    desc = 'A lightweight dropdown popup spinner with an arrow and animations.'
+    website = 'https://github.com/skydoves/PowerSpinner'
+    issueTracker = "${website}/issues"
+    repository = "${website}.git"
+}

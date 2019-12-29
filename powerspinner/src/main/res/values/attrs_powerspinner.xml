@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <declare-styleable name="PowerSpinnerView">
+    <attr name="spinner_arrow_drawable" format="reference" />
+    <attr name="spinner_arrow_show" format="boolean" />
+    <attr name="spinner_arrow_gravity" format="enum">
+      <enum name="start" value="0" />
+      <enum name="top" value="1" />
+      <enum name="end" value="2" />
+      <enum name="bottom" value="3" />
+    </attr>
+    <attr name="spinner_arrow_padding" format="dimension" />
+    <attr name="spinner_arrow_animate" format="boolean" />
+    <attr name="spinner_arrow_animate_duration" format="integer" />
+    <attr name="spinner_divider_show" format="boolean" />
+    <attr name="spinner_divider_size" format="dimension" />
+    <attr name="spinner_divider_color" format="color" />
+    <attr name="spinner_popup_background" format="color" />
+    <attr name="spinner_popup_animation" format="enum">
+      <enum name="dropdown" value="0" />
+      <enum name="fade" value="1" />
+      <enum name="bounce" value="2" />
+    </attr>
+    <attr name="spinner_popup_animation_style" format="reference" />
+    <attr name="spinner_popup_width" format="dimension" />
+    <attr name="spinner_popup_height" format="dimension" />
+    <attr name="spinner_popup_elevation" format="dimension" />
+    <attr name="spinner_item_array" format="reference" />
+    <attr name="spinner_dismiss_notified_select" format="boolean" />
+  </declare-styleable>
+</resources>

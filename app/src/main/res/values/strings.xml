@@ -1,0 +1,29 @@
+<resources>
+  <string name="app_name">PowerSpinnerDemo</string>
+
+  <string-array name="questions1">
+    <item>What is your favourite color?</item>
+    <item>What is the name of the first street you lived on?</item>
+    <item>What is your favourite pet`s name?</item>
+    <item>What is your favourite coffee?</item>
+    <item>Why Kotlin?</item>
+  </string-array>
+
+  <string-array name="colors">
+    <item>red</item>
+    <item>orange</item>
+    <item>yellow</item>
+    <item>green</item>
+    <item>blue</item>
+    <item>purple</item>
+  </string-array>
+
+  <string-array name="items">
+    <item>Item0</item>
+    <item>Item1</item>
+    <item>Item2</item>
+    <item>Item3</item>
+    <item>Item4</item>
+    <item>Item5</item>
+  </string-array>
+</resources>

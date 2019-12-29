@@ -1,0 +1,2 @@
+include ':app', ':powerspinner'
+rootProject.name='PowerSpinnerDemo'
