@@ -159,18 +159,28 @@ spinnerView.getSpinnerRecyclerView().layoutManager = GridLayoutManager(context, 
 #### IconSpinnerAdapter
 Basically, this library provides a customized adapter.</br>
 We should create an instance of the `IconSpinnerAdapter` and call `setItems` using a list of `IconSpinnerItem`.
-
 ```kotlin
-val adapter = IconSpinnerAdapter(spinnerView)
-adapter.setItems(
-    arrayListOf(
-        IconSpinnerItem(ContextCompat.getDrawable(this, R.drawable.ic_dashboard_white_24dp),
-          "Item0")))
 spinnerView.apply {
-  setSpinnerAdapter(adapter)
+  setSpinnerAdapter(IconSpinnerAdapter(this))
+  setItems(
+    arrayListOf(
+        IconSpinnerItem(ContextCompat.getDrawable(context, R.drawable.ic_dashboard_white_24dp),
+          "Item0")))
+  getSpinnerRecyclerView().layoutManager = GridLayoutManager(context, 2)
   selectItemByIndex(0) // select an item initially.
   lifecycleOwner = this@MainActivity
 }
+```
+Here is the java way.
+```java
+List<IconSpinnerItem> iconSpinnerItems = new ArrayList<>();
+iconSpinnerItems.add(IconSpinnerItem(contextDrawable(R.drawable.unitedstates), "item1");
+
+IconSpinnerAdapter iconSpinnerAdapter = new IconSpinnerAdapter(spinnerView);
+spinnerView.setSpinnerAdapter(iconSpinnerAdapter);
+spinnerView.setItems(iconSpinnerItems);
+spinnerView.selectItemByIndex(0);
+spinnerView.setLifecycleOwner(this);
 ```
 
 #### Customized adapter
