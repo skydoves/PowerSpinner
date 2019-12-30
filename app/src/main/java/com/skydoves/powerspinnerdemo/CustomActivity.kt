@@ -25,8 +25,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import com.skydoves.powerspinner.IconSpinnerAdapter
 import com.skydoves.powerspinner.IconSpinnerItem
-import kotlinx.android.synthetic.main.activity_custom.spinnerView
-import kotlinx.android.synthetic.main.activity_custom.spinnerView1
+import kotlinx.android.synthetic.main.activity_custom.*
 import kotlinx.android.synthetic.main.activity_main.spinnerView2
 
 class CustomActivity : AppCompatActivity() {
@@ -53,15 +52,37 @@ class CustomActivity : AppCompatActivity() {
       }
       getSpinnerRecyclerView().layoutManager = GridLayoutManager(baseContext, 2)
       selectItemByIndex(4)
+      preferenceName = "country"
       lifecycleOwner = this@CustomActivity
     }
 
     spinnerView1.apply {
-      lifecycleOwner = this@CustomActivity
       setOnSpinnerItemSelectedListener<String> { position, item ->
         spinnerView2.hint = item
         Toast.makeText(applicationContext, item, Toast.LENGTH_SHORT).show()
       }
+      lifecycleOwner = this@CustomActivity
+      preferenceName = "question1"
+    }
+
+    spinnerView2.apply {
+      lifecycleOwner = this@CustomActivity
+      preferenceName = "question2"
+    }
+
+    spinnerView3.apply {
+      lifecycleOwner = this@CustomActivity
+      preferenceName = "year"
+    }
+
+    spinnerView4.apply {
+      lifecycleOwner = this@CustomActivity
+      preferenceName = "month"
+    }
+
+    spinnerView5.apply {
+      lifecycleOwner = this@CustomActivity
+      preferenceName = "day"
     }
   }
 

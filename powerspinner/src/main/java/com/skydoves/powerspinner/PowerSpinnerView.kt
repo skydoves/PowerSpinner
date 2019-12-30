@@ -45,7 +45,7 @@ import androidx.lifecycle.OnLifecycleEvent
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.layout_body.view.recyclerView
+import kotlinx.android.synthetic.main.layout_body.view.*
 
 /** A lightweight dropdown spinner, fully customizable with arrow and animations. */
 @Suppress("MemberVisibilityCanBePrivate", "unused")
@@ -122,6 +122,11 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   var spinnerPopupAnimationStyle: Int = -1
   var spinnerPopupWidth: Int = -1
   var spinnerPopupHeight: Int = -1
+  var preferenceName: String? = null
+    set(value) {
+      field = value
+      updateSpinnerPersistence()
+    }
   var lifecycleOwner: LifecycleOwner? = null
     set(value) {
       field = value
@@ -234,12 +239,15 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
     this.dismissWhenNotifiedItemSelected =
       a.getBoolean(R.styleable.PowerSpinnerView_spinner_dismiss_notified_select,
         this.dismissWhenNotifiedItemSelected)
+    this.preferenceName =
+      a.getString(R.styleable.PowerSpinnerView_spinner_preference_name)
   }
 
   override fun onFinishInflate() {
     super.onFinishInflate()
     updateSpinnerWindow()
     updateSpinnerArrow()
+    updateSpinnerPersistence()
   }
 
   private fun updateSpinnerWindow() {
@@ -307,6 +315,14 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
       }
     } else {
       setCompoundDrawablesWithIntrinsicBounds(null, null, null, null)
+    }
+  }
+
+  private fun updateSpinnerPersistence() {
+    this.preferenceName.whatIfNotNullOrEmpty {
+      if (PowerSpinnerPreferences.getInstance(context).getSelectedIndex(it) != -1) {
+        this.adapter.notifyItemSelected(PowerSpinnerPreferences.getInstance(context).getSelectedIndex(it))
+      }
     }
   }
 
@@ -430,6 +446,9 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
     if (this.dismissWhenNotifiedItemSelected) {
       dismiss()
     }
+    this.preferenceName.whatIfNotNullOrEmpty {
+      PowerSpinnerPreferences.getInstance(context).persistSelectedIndex(it, this.selectedIndex)
+    }
   }
 
   /** animates the arrow rotation. */
@@ -521,6 +540,10 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
     fun setSpinnerPopupWidth(value: Int) = apply { this.powerSpinnerView.spinnerPopupWidth = value }
     fun setSpinnerPopupHeight(value: Int) = apply {
       this.powerSpinnerView.spinnerPopupHeight = value
+    }
+
+    fun setPreferenceName(value: String) = apply {
+      this.powerSpinnerView.preferenceName = value
     }
 
     fun setLifecycleOwner(value: LifecycleOwner) = apply {

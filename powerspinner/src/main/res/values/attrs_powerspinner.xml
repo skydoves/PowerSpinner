@@ -27,5 +27,6 @@
     <attr name="spinner_popup_elevation" format="dimension" />
     <attr name="spinner_item_array" format="reference" />
     <attr name="spinner_dismiss_notified_select" format="boolean" />
+    <attr name="spinner_preference_name" format="string" />
   </declare-styleable>
 </resources>
