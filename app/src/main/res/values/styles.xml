@@ -7,6 +7,6 @@
     <item name="colorControlHighlight">@color/white_87</item>
     <item name="android:colorBackground">@color/background</item>
     <item name="android:textColor">@color/white_93</item>
-    <item name="android:textColorPrimary">@color/colorPrimary</item>
+    <item name="android:textColorPrimary">@color/md_amber_700</item>
   </style>
 </resources>

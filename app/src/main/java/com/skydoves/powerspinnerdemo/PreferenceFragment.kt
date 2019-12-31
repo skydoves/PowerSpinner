@@ -48,11 +48,10 @@ class PreferenceFragment : PreferenceFragmentCompat() {
             IconSpinnerItem(contextDrawable(R.drawable.spain), "Spain"),
             IconSpinnerItem(contextDrawable(R.drawable.china), "China")
           ))
-        setOnSpinnerItemSelectedListener<IconSpinnerItem> { index, item ->
-          Toast.makeText(requireContext(), item.text, Toast.LENGTH_SHORT).show()
-        }
         getSpinnerRecyclerView().layoutManager = GridLayoutManager(requireContext(), 2)
-        lifecycleOwner = activity
+      }
+      it.setOnSpinnerItemSelectedListener<IconSpinnerItem> { index, item ->
+        Toast.makeText(requireContext(), item.text, Toast.LENGTH_SHORT).show()
       }
     }
   }

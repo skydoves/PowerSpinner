@@ -3,12 +3,12 @@
   xmlns:app="http://schemas.android.com/apk/res-auto">
 
   <androidx.preference.Preference
-    android:title="Section"
+    android:title="Account preferences"
     app:iconSpaceReserved="false" />
 
   <com.skydoves.powerspinner.PowerSpinnerPreference
     android:key="question1"
-    android:title="Select your country"
+    android:title="Question1"
     app:spinner_arrow_gravity="end"
     app:spinner_arrow_padding="8dp"
     app:spinner_divider_color="@color/white_70"
@@ -21,7 +21,7 @@
 
   <com.skydoves.powerspinner.PowerSpinnerPreference
     android:key="coffee"
-    android:title="Select your coffee"
+    android:title="Select your favourite coffee"
     app:spinner_arrow_gravity="end"
     app:spinner_arrow_padding="8dp"
     app:spinner_divider_color="@color/white_70"
@@ -34,14 +34,14 @@
 
   <com.skydoves.powerspinner.PowerSpinnerPreference
     android:key="country"
-    android:title="Select your favourite coffee"
+    android:title="Select your country"
     app:spinner_arrow_gravity="end"
     app:spinner_arrow_padding="8dp"
     app:spinner_divider_color="@color/white_70"
     app:spinner_divider_show="true"
     app:spinner_divider_size="0.2dp"
     app:spinner_item_array="@array/coffee"
-    app:spinner_popup_animation="dropdown"
+    app:spinner_popup_animation="bounce"
     app:spinner_popup_background="@color/background900"
     app:spinner_popup_elevation="14dp" />
 

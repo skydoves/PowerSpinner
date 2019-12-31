@@ -32,7 +32,7 @@ allprojects {
 And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:powerspinner:1.0.1"
+    implementation "com.github.skydoves:powerspinner:1.0.2"
 }
 ```
 
@@ -134,6 +134,27 @@ We can select an item manually or initially using the below method.
 spinnerView.selectItemByIndex(4)
 ```
 
+### Persist a selected position
+We can save and restore the selected postion automatically.<br>
+If you select an item, the same position will be selected automatically on the next inflation.<br>
+Just use the below method or attribute.
+
+```kotlin
+spinnerView.preferenceName = "country"
+```
+
+Or you can set it on xml.
+
+```gradle
+app:spinner_preference_name="country"
+```
+You can remove the persisted position data on an item or clear all of the data on your application.
+
+```kotlin
+spinnerView.removePersistedData("country")
+spinnerView.clearAllPersistedData()
+```
+
 ### SpinnerAnimation
 We can customize the showing and dimsmiss animation.
 ```kotlin
@@ -219,6 +240,50 @@ And we can listen to the selected item's information.
 spinnerView.setOnSpinnerItemSelectedListener<MySpinnerItem> { index, item ->  toast(item.text) }
 ```
 
+### PowerSpinnerPreference
+We can use PowerSpinner on the `PreferenceScreen` xml for implementing setting screens.
+
+And add a dependency code to your **module**'s `build.gradle` file.
+```gradle
+dependencies {
+    implementation "androidx.preference:preference:1.1.0"
+}
+```
+
+<img src="https://user-images.githubusercontent.com/24237865/71612552-87da7400-2be4-11ea-961b-a86151ae7976.gif" align="right" width="30%">
+
+And create your preference xml file like below.
+
+```gradle
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto">
+
+  <androidx.preference.Preference
+    android:title="Account preferences"
+    app:iconSpaceReserved="false" />
+
+  <com.skydoves.powerspinner.PowerSpinnerPreference
+    android:key="question1"
+    android:title="Question1"
+    app:spinner_arrow_gravity="end"
+    app:spinner_arrow_padding="8dp"
+    app:spinner_divider_color="@color/white_70"
+    app:spinner_divider_show="true"
+    app:spinner_divider_size="0.2dp"
+    app:spinner_item_array="@array/questions1"
+    app:spinner_popup_animation="dropdown"
+    app:spinner_popup_background="@color/background900"
+    app:spinner_popup_elevation="14dp" />
+```
+You don't need to set `preferenceName` attribute, and `OnSpinnerItemSelectedListener` should be set on `PowerSpinnerPreference`. You can reference [this sample codes](https://github.com/skydoves/PowerSpinner/tree/master/app/src/main/java/com/skydoves/powerspinnerdemo/PreferenceFragment.kt).
+
+```kotlin
+val countySpinnerPreference = findPreference<PowerSpinnerPreference>("country")
+countySpinnerPreference?.setOnSpinnerItemSelectedListener<IconSpinnerItem> { index, item ->
+  Toast.makeText(requireContext(), item.text, Toast.LENGTH_SHORT).show()
+}
+```
 
 ### Avoid Memory leak
 Dialog, PopupWindow and etc.. have memory leak issue if not dismissed before activity or fragment are destroyed.<br>
@@ -250,6 +315,7 @@ spinner_popup_animation_style | Style Resource | -1 | sets the customized animat
 spinner_popup_elevation | Dimension | 4dp | the elevation size of the popup.
 spinner_item_array | String Array Resource | null | sets the items of the popup.
 spinner_dismiss_notified_select | Boolean | true | sets dismiss when the popup item is selected.
+spinner_preference_name | String | null | save and restore automatically the selected position.
 
 ## Find this library useful? :heart:
 Support it by joining __[stargazers](https://github.com/skydoves/PowerSpinner/stargazers)__ for this repository. :star:<br>
