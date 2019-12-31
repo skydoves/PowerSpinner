@@ -250,7 +250,7 @@ dependencies {
 }
 ```
 
-<img src="https://user-images.githubusercontent.com/24237865/71612552-87da7400-2be4-11ea-961b-a86151ae7976.gif" align="right" width="30%">
+<img src="https://user-images.githubusercontent.com/24237865/71612824-274c3680-2be6-11ea-9b02-f2543aec7584.gif" align="right" width="30%">
 
 And create your preference xml file like below.
 
@@ -315,7 +315,7 @@ spinner_popup_animation_style | Style Resource | -1 | sets the customized animat
 spinner_popup_elevation | Dimension | 4dp | the elevation size of the popup.
 spinner_item_array | String Array Resource | null | sets the items of the popup.
 spinner_dismiss_notified_select | Boolean | true | sets dismiss when the popup item is selected.
-spinner_preference_name | String | null | save and restore automatically the selected position.
+spinner_preference_name | String | null | saves and restores automatically the selected position.
 
 ## Find this library useful? :heart:
 Support it by joining __[stargazers](https://github.com/skydoves/PowerSpinner/stargazers)__ for this repository. :star:<br>
