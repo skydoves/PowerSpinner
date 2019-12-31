@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto">
+
+  <androidx.preference.Preference
+    android:title="Section"
+    app:iconSpaceReserved="false" />
+
+  <com.skydoves.powerspinner.PowerSpinnerPreference
+    android:key="question1"
+    android:title="Select your country"
+    app:spinner_arrow_gravity="end"
+    app:spinner_arrow_padding="8dp"
+    app:spinner_divider_color="@color/white_70"
+    app:spinner_divider_show="true"
+    app:spinner_divider_size="0.2dp"
+    app:spinner_item_array="@array/questions1"
+    app:spinner_popup_animation="dropdown"
+    app:spinner_popup_background="@color/background900"
+    app:spinner_popup_elevation="14dp" />
+
+  <com.skydoves.powerspinner.PowerSpinnerPreference
+    android:key="coffee"
+    android:title="Select your coffee"
+    app:spinner_arrow_gravity="end"
+    app:spinner_arrow_padding="8dp"
+    app:spinner_divider_color="@color/white_70"
+    app:spinner_divider_show="true"
+    app:spinner_divider_size="0.2dp"
+    app:spinner_item_array="@array/coffee"
+    app:spinner_popup_animation="dropdown"
+    app:spinner_popup_background="@color/background900"
+    app:spinner_popup_elevation="14dp" />
+
+  <com.skydoves.powerspinner.PowerSpinnerPreference
+    android:key="country"
+    android:title="Select your favourite coffee"
+    app:spinner_arrow_gravity="end"
+    app:spinner_arrow_padding="8dp"
+    app:spinner_divider_color="@color/white_70"
+    app:spinner_divider_show="true"
+    app:spinner_divider_size="0.2dp"
+    app:spinner_item_array="@array/coffee"
+    app:spinner_popup_animation="dropdown"
+    app:spinner_popup_background="@color/background900"
+    app:spinner_popup_elevation="14dp" />
+
+</androidx.preference.PreferenceScreen>

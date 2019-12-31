@@ -22,7 +22,7 @@ import android.content.Context
 import android.content.SharedPreferences
 
 /** PowerSpinnerPreferences helps to persist selected item status. */
-internal class PowerSpinnerPreferences private constructor() {
+internal class PowerSpinnerPersistence private constructor() {
 
   /** gets selected index from the preference. */
   fun getSelectedIndex(name: String): Int = sharedPreferenceManager.getInt(INDEX + name, -1)
@@ -40,14 +40,14 @@ internal class PowerSpinnerPreferences private constructor() {
 
   companion object {
     @Volatile
-    private var instance: PowerSpinnerPreferences? = null
+    private var instance: PowerSpinnerPersistence? = null
     private lateinit var sharedPreferenceManager: SharedPreferences
     private const val INDEX = "INDEX"
 
     @JvmStatic
-    fun getInstance(context: Context): PowerSpinnerPreferences =
+    fun getInstance(context: Context): PowerSpinnerPersistence =
       instance ?: synchronized(this) {
-        instance ?: PowerSpinnerPreferences().also {
+        instance ?: PowerSpinnerPersistence().also {
           instance = it
           sharedPreferenceManager =
             context.getSharedPreferences("com.skydoves.powerspinenr", Context.MODE_PRIVATE)

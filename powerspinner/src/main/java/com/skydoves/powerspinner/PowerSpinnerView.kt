@@ -320,8 +320,8 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
 
   private fun updateSpinnerPersistence() {
     this.preferenceName.whatIfNotNullOrEmpty {
-      if (PowerSpinnerPreferences.getInstance(context).getSelectedIndex(it) != -1) {
-        this.adapter.notifyItemSelected(PowerSpinnerPreferences.getInstance(context).getSelectedIndex(it))
+      if (PowerSpinnerPersistence.getInstance(context).getSelectedIndex(it) != -1) {
+        this.adapter.notifyItemSelected(PowerSpinnerPersistence.getInstance(context).getSelectedIndex(it))
       }
     }
   }
@@ -447,7 +447,7 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
       dismiss()
     }
     this.preferenceName.whatIfNotNullOrEmpty {
-      PowerSpinnerPreferences.getInstance(context).persistSelectedIndex(it, this.selectedIndex)
+      PowerSpinnerPersistence.getInstance(context).persistSelectedIndex(it, this.selectedIndex)
     }
   }
 

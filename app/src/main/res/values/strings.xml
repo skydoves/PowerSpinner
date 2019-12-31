@@ -1,94 +1,94 @@
 <resources>
-  <string name="app_name">PowerSpinnerDemo</string>
-  <string name="start_a_new_account">Start a new account</string>
-  <string name="country">Country</string>
-  <string name="question_1">Question 1</string>
-  <string name="question_2">Question 2</string>
-  <string name="birth">Birth</string>
-  <string name="next">next</string>
+    <string name="app_name">PowerSpinnerDemo</string>
+    <string name="start_a_new_account">Start a new account</string>
+    <string name="country">Country</string>
+    <string name="question_1">Question 1</string>
+    <string name="question_2">Question 2</string>
+    <string name="birth">Birth</string>
+    <string name="next">next</string>
 
-  <string-array name="questions1">
-    <item>What is your favourite color?</item>
-    <item>What is the name of the first street you lived on?</item>
-    <item>What is your favourite pet`s name?</item>
-    <item>What is your favourite coffee?</item>
-    <item>Why Kotlin?</item>
-  </string-array>
+    <string-array name="questions1">
+        <item>What is your favourite color?</item>
+        <item>What is the name of the first street you lived on?</item>
+        <item>What is your favourite pet`s name?</item>
+        <item>What is your favourite coffee?</item>
+        <item>Why Kotlin?</item>
+    </string-array>
 
-  <string-array name="coffee">
-    <item>Americano</item>
-    <item>Cold Brew</item>
-    <item>Espresso</item>
-    <item>Latte</item>
-    <item>Cappuccino</item>
-    <item>Mocha</item>
-    <item>Affogato</item>
-    <item>Hot Chocolate</item>
-  </string-array>
+    <string-array name="coffee">
+        <item>Americano</item>
+        <item>Cold Brew</item>
+        <item>Espresso</item>
+        <item>Latte</item>
+        <item>Cappuccino</item>
+        <item>Mocha</item>
+        <item>Affogato</item>
+        <item>Hot Chocolate</item>
+    </string-array>
 
-  <string-array name="colors">
-    <item>red</item>
-    <item>orange</item>
-    <item>yellow</item>
-    <item>green</item>
-    <item>blue</item>
-    <item>purple</item>
-  </string-array>
+    <string-array name="colors">
+        <item>red</item>
+        <item>orange</item>
+        <item>yellow</item>
+        <item>green</item>
+        <item>blue</item>
+        <item>purple</item>
+    </string-array>
 
-  <string-array name="items">
-    <item>Item0</item>
-    <item>Item1</item>
-    <item>Item2</item>
-    <item>Item3</item>
-    <item>Item4</item>
-    <item>Item5</item>
-  </string-array>
+    <string-array name="items">
+        <item>Item0</item>
+        <item>Item1</item>
+        <item>Item2</item>
+        <item>Item3</item>
+        <item>Item4</item>
+        <item>Item5</item>
+    </string-array>
 
-  <string-array name="year">
-    <item>2020</item>
-    <item>2019</item>
-    <item>2018</item>
-    <item>2017</item>
-    <item>2016</item>
-    <item>2015</item>
-    <item>2014</item>
-    <item>2013</item>
-    <item>2012</item>
-    <item>2011</item>
-    <item>2010</item>
-    <item>2009</item>
-    <item>2008</item>
-    <item>2007</item>
-    <item>2006</item>
-    <item>2005</item>
-    <item>2004</item>
-    <item>2003</item>
-    <item>2002</item>
-    <item>2001</item>
-    <item>2000</item>
-    <item>1999</item>
-    <item>1998</item>
-    <item>1997</item>
-    <item>1996</item>
-    <item>1995</item>
-    <item>1994</item>
-    <item>1993</item>
-    <item>1992</item>
-    <item>1991</item>
-  </string-array>
+    <string-array name="year">
+        <item>2020</item>
+        <item>2019</item>
+        <item>2018</item>
+        <item>2017</item>
+        <item>2016</item>
+        <item>2015</item>
+        <item>2014</item>
+        <item>2013</item>
+        <item>2012</item>
+        <item>2011</item>
+        <item>2010</item>
+        <item>2009</item>
+        <item>2008</item>
+        <item>2007</item>
+        <item>2006</item>
+        <item>2005</item>
+        <item>2004</item>
+        <item>2003</item>
+        <item>2002</item>
+        <item>2001</item>
+        <item>2000</item>
+        <item>1999</item>
+        <item>1998</item>
+        <item>1997</item>
+        <item>1996</item>
+        <item>1995</item>
+        <item>1994</item>
+        <item>1993</item>
+        <item>1992</item>
+        <item>1991</item>
+    </string-array>
 
-  <string-array name="month">
-    <item>01</item>
-    <item>02</item>
-    <item>03</item>
-    <item>04</item>
-    <item>05</item>
-    <item>06</item>
-    <item>07</item>
-    <item>08</item>
-    <item>09</item>
-    <item>10</item>
-    <item>11</item>
-    <item>12</item>
-  </string-array>
+    <string-array name="month">
+        <item>01</item>
+        <item>02</item>
+        <item>03</item>
+        <item>04</item>
+        <item>05</item>
+        <item>06</item>
+        <item>07</item>
+        <item>08</item>
+        <item>09</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
 </resources>
