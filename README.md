@@ -13,6 +13,7 @@
 <p align="center">
 <img src="https://user-images.githubusercontent.com/24237865/71557629-fa840c00-2a8b-11ea-86ac-310ae2e3a5b8.gif" width="32%"/>
 <img src="https://user-images.githubusercontent.com/24237865/71558150-3cfd1700-2a93-11ea-9809-ce33309ebc96.gif" width="32%"/>
+<img src="https://user-images.githubusercontent.com/24237865/71613264-b8241180-2be8-11ea-8e0a-85b5b250cc75.gif" width="32%"/>
 </p>
 
 
@@ -250,7 +251,7 @@ dependencies {
 }
 ```
 
-<img src="https://user-images.githubusercontent.com/24237865/71612824-274c3680-2be6-11ea-9b02-f2543aec7584.gif" align="right" width="30%">
+<img src="https://user-images.githubusercontent.com/24237865/71613264-b8241180-2be8-11ea-8e0a-85b5b250cc75.gif" align="right" width="30%">
 
 And create your preference xml file like below.
 
