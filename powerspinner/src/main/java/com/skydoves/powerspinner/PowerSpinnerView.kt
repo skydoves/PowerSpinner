@@ -61,7 +61,7 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
     private set
   var arrowAnimate: Boolean = true
   var arrowAnimationDuration: Long = 250L
-  var arrowDrawable: Drawable? = context.contextDrawable(R.drawable.arrow)
+  var arrowDrawable: Drawable? = context.contextDrawable(R.drawable.arrow)?.mutate()
   var arrowResource: Int = -1
     set(value) {
       field = value
@@ -298,7 +298,7 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
 
   private fun updateSpinnerArrow() {
     if (this.arrowResource != -1) {
-      this.arrowDrawable = context.contextDrawable(this.arrowResource)
+      this.arrowDrawable = context.contextDrawable(this.arrowResource)?.mutate()
     }
     this.compoundDrawablePadding = this.arrowPadding
     updateCompoundDrawable(this.arrowDrawable)

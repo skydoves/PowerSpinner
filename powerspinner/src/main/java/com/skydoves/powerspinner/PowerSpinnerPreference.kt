@@ -166,7 +166,6 @@ class PowerSpinnerPreference : Preference {
 
   override fun onBindViewHolder(holder: PreferenceViewHolder?) {
     this.powerSpinnerView.apply {
-      arrowResource = R.drawable.arrow_vector
       selectItemByIndex(getPersistedInt(defaultValue))
       if (getSpinnerAdapter<Any>().onSpinnerItemSelectedListener == null) {
         setOnSpinnerItemSelectedListener<Any> { position, _ ->
