@@ -35,6 +35,7 @@ import androidx.annotation.ArrayRes
 import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
 import androidx.annotation.MainThread
+import androidx.annotation.Px
 import androidx.annotation.StyleRes
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.graphics.drawable.DrawableCompat
@@ -45,7 +46,7 @@ import androidx.lifecycle.OnLifecycleEvent
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.layout_body.view.*
+import kotlinx.android.synthetic.main.layout_body.view.recyclerView
 
 /** A lightweight dropdown spinner, fully customizable with arrow and animations. */
 @Suppress("MemberVisibilityCanBePrivate", "unused")
@@ -62,7 +63,7 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   var arrowAnimate: Boolean = true
   var arrowAnimationDuration: Long = 250L
   var arrowDrawable: Drawable? = context.contextDrawable(R.drawable.arrow)?.mutate()
-  var arrowResource: Int = -1
+  @DrawableRes var arrowResource: Int = -1
     set(value) {
       field = value
       updateSpinnerArrow()
@@ -77,13 +78,12 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
       field = value
       updateSpinnerArrow()
     }
-  var arrowPadding: Int = context.dp2Px(2)
+  @Px var arrowPadding: Int = context.dp2Px(2)
     set(value) {
       field = value
       updateSpinnerArrow()
     }
-  @ColorInt
-  var arrowTint: Int = -1
+  @ColorInt var arrowTint: Int = -1
     set(value) {
       field = value
       updateSpinnerArrow()
@@ -93,24 +93,22 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
       field = value
       updateSpinnerWindow()
     }
-  var dividerSize: Int = context.dp2Px(0.5f).toInt()
+  @Px var dividerSize: Int = context.dp2Px(0.5f).toInt()
     set(value) {
       field = value
       updateSpinnerWindow()
     }
-  @ColorInt
-  var dividerColor: Int = Color.WHITE
+  @ColorInt var dividerColor: Int = Color.WHITE
     set(value) {
       field = value
       updateSpinnerWindow()
     }
-  @ColorInt
-  var spinnerPopupBackgroundColor: Int = -1
+  @ColorInt var spinnerPopupBackgroundColor: Int = -1
     set(value) {
       field = value
       updateSpinnerWindow()
     }
-  var spinnerPopupElevation: Int = context.dp2Px(4)
+  @Px var spinnerPopupElevation: Int = context.dp2Px(4)
     set(value) {
       field = value
       updateSpinnerWindow()
@@ -118,8 +116,7 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   var dismissWhenNotifiedItemSelected: Boolean = true
   var spinnerOutsideTouchListener: OnSpinnerOutsideTouchListener? = null
   var spinnerPopupAnimation: SpinnerAnimation = SpinnerAnimation.DROPDOWN
-  @StyleRes
-  var spinnerPopupAnimationStyle: Int = -1
+  @StyleRes var spinnerPopupAnimationStyle: Int = -1
   var spinnerPopupWidth: Int = -1
   var spinnerPopupHeight: Int = -1
   var preferenceName: String? = null
@@ -321,7 +318,8 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   private fun updateSpinnerPersistence() {
     this.preferenceName.whatIfNotNullOrEmpty {
       if (PowerSpinnerPersistence.getInstance(context).getSelectedIndex(it) != -1) {
-        this.adapter.notifyItemSelected(PowerSpinnerPersistence.getInstance(context).getSelectedIndex(it))
+        this.adapter.notifyItemSelected(
+          PowerSpinnerPersistence.getInstance(context).getSelectedIndex(it))
       }
     }
   }
@@ -488,10 +486,10 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
       this.powerSpinnerView.arrowGravity = value
     }
 
-    fun setArrowPadding(value: Int) = apply { this.powerSpinnerView.arrowPadding = value }
+    fun setArrowPadding(@Px value: Int) = apply { this.powerSpinnerView.arrowPadding = value }
     fun setArrowTint(@ColorInt value: Int) = apply { this.powerSpinnerView.arrowTint = value }
     fun setShowDivider(value: Boolean) = apply { this.powerSpinnerView.showDivider = value }
-    fun setDividerSize(value: Int) = apply { this.powerSpinnerView.dividerSize = value }
+    fun setDividerSize(@Px value: Int) = apply { this.powerSpinnerView.dividerSize = value }
     fun setDividerColor(@ColorInt value: Int) = apply { this.powerSpinnerView.dividerColor = value }
     fun setSpinnerPopupBackgroundColor(@ColorInt value: Int) = apply {
       this.powerSpinnerView.spinnerPopupBackgroundColor = value
@@ -537,8 +535,11 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
       this.powerSpinnerView.spinnerPopupAnimationStyle = value
     }
 
-    fun setSpinnerPopupWidth(value: Int) = apply { this.powerSpinnerView.spinnerPopupWidth = value }
-    fun setSpinnerPopupHeight(value: Int) = apply {
+    fun setSpinnerPopupWidth(@Px value: Int) = apply {
+      this.powerSpinnerView.spinnerPopupWidth = value
+    }
+
+    fun setSpinnerPopupHeight(@Px value: Int) = apply {
       this.powerSpinnerView.spinnerPopupHeight = value
     }
 
