@@ -25,11 +25,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import com.skydoves.powerspinner.IconSpinnerAdapter
 import com.skydoves.powerspinner.IconSpinnerItem
-import kotlinx.android.synthetic.main.activity_custom.spinnerView
-import kotlinx.android.synthetic.main.activity_custom.spinnerView1
-import kotlinx.android.synthetic.main.activity_custom.spinnerView3
-import kotlinx.android.synthetic.main.activity_custom.spinnerView4
-import kotlinx.android.synthetic.main.activity_custom.spinnerView5
+import kotlinx.android.synthetic.main.activity_custom.*
 import kotlinx.android.synthetic.main.activity_main.spinnerView2
 
 class CustomActivity : AppCompatActivity() {
@@ -62,6 +58,7 @@ class CustomActivity : AppCompatActivity() {
 
     spinnerView1.apply {
       setOnSpinnerItemSelectedListener<String> { position, item ->
+        spinnerView2.hint = item
         Toast.makeText(applicationContext, item, Toast.LENGTH_SHORT).show()
       }
       lifecycleOwner = this@CustomActivity

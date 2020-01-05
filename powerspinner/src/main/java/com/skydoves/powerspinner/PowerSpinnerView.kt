@@ -63,7 +63,8 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   var arrowAnimate: Boolean = true
   var arrowAnimationDuration: Long = 250L
   var arrowDrawable: Drawable? = context.contextDrawable(R.drawable.arrow)?.mutate()
-  @DrawableRes var arrowResource: Int = -1
+  @DrawableRes
+  var arrowResource: Int = -1
     set(value) {
       field = value
       updateSpinnerArrow()
@@ -78,12 +79,14 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
       field = value
       updateSpinnerArrow()
     }
-  @Px var arrowPadding: Int = context.dp2Px(2)
+  @Px
+  var arrowPadding: Int = context.dp2Px(2)
     set(value) {
       field = value
       updateSpinnerArrow()
     }
-  @ColorInt var arrowTint: Int = -1
+  @ColorInt
+  var arrowTint: Int = -1
     set(value) {
       field = value
       updateSpinnerArrow()
@@ -93,22 +96,26 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
       field = value
       updateSpinnerWindow()
     }
-  @Px var dividerSize: Int = context.dp2Px(0.5f).toInt()
+  @Px
+  var dividerSize: Int = context.dp2Px(0.5f).toInt()
     set(value) {
       field = value
       updateSpinnerWindow()
     }
-  @ColorInt var dividerColor: Int = Color.WHITE
+  @ColorInt
+  var dividerColor: Int = Color.WHITE
     set(value) {
       field = value
       updateSpinnerWindow()
     }
-  @ColorInt var spinnerPopupBackgroundColor: Int = -1
+  @ColorInt
+  var spinnerPopupBackgroundColor: Int = -1
     set(value) {
       field = value
       updateSpinnerWindow()
     }
-  @Px var spinnerPopupElevation: Int = context.dp2Px(4)
+  @Px
+  var spinnerPopupElevation: Int = context.dp2Px(4)
     set(value) {
       field = value
       updateSpinnerWindow()
@@ -116,7 +123,8 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   var dismissWhenNotifiedItemSelected: Boolean = true
   var spinnerOutsideTouchListener: OnSpinnerOutsideTouchListener? = null
   var spinnerPopupAnimation: SpinnerAnimation = SpinnerAnimation.DROPDOWN
-  @StyleRes var spinnerPopupAnimationStyle: Int = -1
+  @StyleRes
+  var spinnerPopupAnimationStyle: Int = -1
   var spinnerPopupWidth: Int = -1
   var spinnerPopupHeight: Int = -1
   var preferenceName: String? = null
