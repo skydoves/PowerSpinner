@@ -35,7 +35,7 @@ allprojects {
 And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:powerspinner:1.0.2"
+    implementation "com.github.skydoves:powerspinner:1.0.3"
 }
 ```
 
@@ -161,14 +161,15 @@ spinnerView.clearAllPersistedData()
 ### SpinnerAnimation
 We can customize the showing and dimsmiss animation.
 ```kotlin
+SpinnerAnimation.NORMAL
 SpinnerAnimation.DROPDOWN
 SpinnerAnimation.FADE
 SpinnerAnimation.BOUNCE
 ```
 
-Dropdown | Fade | Bounce
-| :---------------: | :---------------: | :---------------: |
-| <img src="https://user-images.githubusercontent.com/24237865/71556493-b9d0c680-2a7c-11ea-9843-338451cc855a.gif" align="center" width="100%"/> | <img src="https://user-images.githubusercontent.com/24237865/71556494-ba695d00-2a7c-11ea-840d-dc3a0aa0babc.gif" align="center" width="100%"/> | <img src="https://user-images.githubusercontent.com/24237865/71556492-b9d0c680-2a7c-11ea-8b59-c9a29a0387ba.gif" align="center" width="100%"/>
+| NORMAL | Dropdown | Fade | Bounce |
+| :---------------: | :---------------: | :---------------: | :---------------: |
+| <img src="https://user-images.githubusercontent.com/24237865/71888721-14a4a500-3184-11ea-9d47-a744229577f2.gif" align="center" width="100%"/> | <img src="https://user-images.githubusercontent.com/24237865/71888722-14a4a500-3184-11ea-9142-e5a594fc6909.gif" align="center" width="100%"/> | <img src="https://user-images.githubusercontent.com/24237865/71888724-153d3b80-3184-11ea-9f02-4da4c8482302.gif" align="center" width="100%"/> | <img src="https://user-images.githubusercontent.com/24237865/71888720-14a4a500-3184-11ea-8c31-949da8517e7f.gif" align="center" width="100%"/> |
 
 ### Customized adapter
 We can use our customized adapter and binds to the `PowerSpinnerView`.</br>
@@ -313,7 +314,7 @@ spinner_divider_color | Color | White | sets the color of the divider.
 spinner_popup_width | Dimension | spinnerView's width | the width of the popup.
 spinner_popup_height | Dimension | WRAP_CONTENT | the height of the popup.
 spinner_popup_background | Color | spinnerView's background | the background color of the popup.
-spinner_popup_animation | SpinnerAnimation | Dropdown | the spinner animation when showing.
+spinner_popup_animation | SpinnerAnimation | NORMAL | the spinner animation when showing.
 spinner_popup_animation_style | Style Resource | -1 | sets the customized animation style.
 spinner_popup_elevation | Dimension | 4dp | the elevation size of the popup.
 spinner_item_array | String Array Resource | null | sets the items of the popup.
