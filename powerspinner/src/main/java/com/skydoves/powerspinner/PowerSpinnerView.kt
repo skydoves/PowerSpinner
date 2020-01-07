@@ -122,7 +122,7 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
     }
   var dismissWhenNotifiedItemSelected: Boolean = true
   var spinnerOutsideTouchListener: OnSpinnerOutsideTouchListener? = null
-  var spinnerPopupAnimation: SpinnerAnimation = SpinnerAnimation.DROPDOWN
+  var spinnerPopupAnimation: SpinnerAnimation = SpinnerAnimation.NORMAL
   @StyleRes
   var spinnerPopupAnimationStyle: Int = -1
   var spinnerPopupWidth: Int = -1
@@ -338,6 +338,7 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
         SpinnerAnimation.DROPDOWN -> this.spinnerWindow.animationStyle = R.style.DropDown
         SpinnerAnimation.FADE -> this.spinnerWindow.animationStyle = R.style.Fade
         SpinnerAnimation.BOUNCE -> this.spinnerWindow.animationStyle = R.style.Elastic
+        else -> Unit
       }
     } else {
       this.spinnerWindow.animationStyle = this.spinnerPopupAnimationStyle
