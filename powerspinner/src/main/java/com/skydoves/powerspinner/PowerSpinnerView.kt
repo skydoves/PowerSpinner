@@ -86,7 +86,7 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
       updateSpinnerArrow()
     }
   @ColorInt
-  var arrowTint: Int = -1
+  var arrowTint: Int = outRangeColor
     set(value) {
       field = value
       updateSpinnerArrow()
@@ -109,7 +109,7 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
       updateSpinnerWindow()
     }
   @ColorInt
-  var spinnerPopupBackgroundColor: Int = -1
+  var spinnerPopupBackgroundColor: Int = outRangeColor
     set(value) {
       field = value
       updateSpinnerWindow()
@@ -274,7 +274,7 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
         }
       }
       this.spinnerBody.apply {
-        if (this@PowerSpinnerView.spinnerPopupBackgroundColor == -1) {
+        if (this@PowerSpinnerView.spinnerPopupBackgroundColor == outRangeColor) {
           background = this@PowerSpinnerView.background
         } else {
           setBackgroundColor(this@PowerSpinnerView.spinnerPopupBackgroundColor)
@@ -311,7 +311,7 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
 
   private fun updateCompoundDrawable(drawable: Drawable?) {
     if (this.showArrow) {
-      drawable?.let { if (this.arrowTint != -1) DrawableCompat.setTint(it, this.arrowTint) }
+      drawable?.let { if (this.arrowTint != outRangeColor) DrawableCompat.setTint(it, this.arrowTint) }
       when (this.arrowGravity) {
         SpinnerGravity.START -> setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null)
         SpinnerGravity.TOP -> setCompoundDrawablesWithIntrinsicBounds(null, drawable, null, null)

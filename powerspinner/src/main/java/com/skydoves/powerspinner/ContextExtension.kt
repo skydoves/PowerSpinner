@@ -20,6 +20,8 @@ import android.content.Context
 import android.graphics.drawable.Drawable
 import androidx.core.content.ContextCompat
 
+internal const val outRangeColor = 65555
+
 /** dp size to px size. */
 internal fun Context.dp2Px(dp: Int): Int {
   val scale = resources.displayMetrics.density
