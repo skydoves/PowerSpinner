@@ -1,33 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <declare-styleable name="PowerSpinnerView">
+    <!-- Sets an arrow drawable. -->
     <attr name="spinner_arrow_drawable" format="reference" />
+    <!-- Sets the visibility of the arrow. -->
     <attr name="spinner_arrow_show" format="boolean" />
+    <!-- The gravity of the arrow. -->
     <attr name="spinner_arrow_gravity" format="enum">
       <enum name="start" value="0" />
       <enum name="top" value="1" />
       <enum name="end" value="2" />
       <enum name="bottom" value="3" />
     </attr>
+    <!-- The padding of the arrow. -->
     <attr name="spinner_arrow_padding" format="dimension" />
+    <!-- Shows arrow rotation animation when showing. -->
     <attr name="spinner_arrow_animate" format="boolean" />
+    <!-- The duration of the arrow animation. -->
     <attr name="spinner_arrow_animate_duration" format="integer" />
+    <!-- Shows the divider of the popup items. -->
     <attr name="spinner_divider_show" format="boolean" />
+    <!-- Sets the height of the divider. -->
     <attr name="spinner_divider_size" format="dimension" />
+    <!-- Sets the color of the divider. -->
     <attr name="spinner_divider_color" format="color" />
+    <!-- Sets the background color of the popup. -->
     <attr name="spinner_popup_background" format="color" />
+    <!-- Sets the spinner animation when showing. -->
     <attr name="spinner_popup_animation" format="enum">
       <enum name="dropdown" value="0" />
       <enum name="fade" value="1" />
       <enum name="bounce" value="2" />
       <enum name="normal" value="3" />
     </attr>
+    <!-- 	Sets the customized animation style. -->
     <attr name="spinner_popup_animation_style" format="reference" />
+    <!-- Sets the width of the popup. -->
     <attr name="spinner_popup_width" format="dimension" />
+    <!-- Sets the height of the popup. -->
     <attr name="spinner_popup_height" format="dimension" />
+    <!-- Sets the elevation size of the popup. -->
     <attr name="spinner_popup_elevation" format="dimension" />
+    <!-- 	Sets the items of the popup. -->
     <attr name="spinner_item_array" format="reference" />
+    <!-- 	Sets dismiss when the popup item is selected. -->
     <attr name="spinner_dismiss_notified_select" format="boolean" />
+    <!--  Saves and restores automatically the selected position. -->
     <attr name="spinner_preference_name" format="string" />
   </declare-styleable>
 </resources>
