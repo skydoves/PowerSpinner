@@ -22,6 +22,7 @@
     android:textSize="14.5sp"
     app:spinner_arrow_gravity="end"
     app:spinner_arrow_padding="8dp"
+    app:spinner_arrow_tint="@color/yellow"
     app:spinner_divider_color="@color/white_70"
     app:spinner_divider_show="true"
     app:spinner_divider_size="0.4dp"

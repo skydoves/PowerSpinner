@@ -14,6 +14,8 @@
     </attr>
     <!-- The padding of the arrow. -->
     <attr name="spinner_arrow_padding" format="dimension" />
+    <!-- Sets a tint color of the arrow. -->
+    <attr name="spinner_arrow_tint" format="color|reference" />
     <!-- Shows arrow rotation animation when showing. -->
     <attr name="spinner_arrow_animate" format="boolean" />
     <!-- The duration of the arrow animation. -->
@@ -23,9 +25,9 @@
     <!-- Sets the height of the divider. -->
     <attr name="spinner_divider_size" format="dimension" />
     <!-- Sets the color of the divider. -->
-    <attr name="spinner_divider_color" format="color" />
+    <attr name="spinner_divider_color" format="color|reference" />
     <!-- Sets the background color of the popup. -->
-    <attr name="spinner_popup_background" format="color" />
+    <attr name="spinner_popup_background" format="color|reference" />
     <!-- Sets the spinner animation when showing. -->
     <attr name="spinner_popup_animation" format="enum">
       <enum name="dropdown" value="0" />

@@ -53,85 +53,140 @@ import kotlinx.android.synthetic.main.layout_body.view.recyclerView
 @SuppressLint("InflateParams")
 class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
 
+  /** Main body view for composing the Spinner popup.  */
   private val spinnerBody: View
+
+  /** PopupWindow for creating the spinner. */
   private val spinnerWindow: PopupWindow
+
+  /** An adapter for composing items of the spinner. */
   private var adapter: PowerSpinnerInterface<*> = DefaultSpinnerAdapter(this)
+
+  /** Spinner is showing or not. */
   var isShowing: Boolean = false
     private set
+
+  /** An index of the selected item. */
   var selectedIndex: Int = -1
     private set
+
+  /** The arrow will  be animated or not when show and dismiss the spinner. */
   var arrowAnimate: Boolean = true
+
+  /** A duration of the arrow animation when show and dismiss. */
   var arrowAnimationDuration: Long = 250L
+
+  /** A drawable of the arrow. */
   var arrowDrawable: Drawable? = context.contextDrawable(R.drawable.arrow)?.mutate()
+
+  /** A drawable resource of the arrow. */
   @DrawableRes
   var arrowResource: Int = -1
     set(value) {
       field = value
       updateSpinnerArrow()
     }
+
+  /** The arrow will be shown or not on the popup. */
   var showArrow: Boolean = true
     set(value) {
       field = value
       updateSpinnerArrow()
     }
+
+  /** A gravity of the arrow. */
   var arrowGravity: SpinnerGravity = SpinnerGravity.END
     set(value) {
       field = value
       updateSpinnerArrow()
     }
+
+  /** A padding of the arrow. */
   @Px
-  var arrowPadding: Int = context.dp2Px(2)
+  var arrowPadding: Int = dp2Px(2)
     set(value) {
       field = value
       updateSpinnerArrow()
     }
+
+  /** A tint color of the arrow. */
   @ColorInt
   var arrowTint: Int = outRangeColor
     set(value) {
       field = value
       updateSpinnerArrow()
     }
+
+  /** A divider between items will be shown or not. */
   var showDivider: Boolean = false
     set(value) {
       field = value
       updateSpinnerWindow()
     }
+
+  /** A width size of the divider. */
   @Px
-  var dividerSize: Int = context.dp2Px(0.5f).toInt()
+  var dividerSize: Int = dp2Px(0.5f)
     set(value) {
       field = value
       updateSpinnerWindow()
     }
+
+  /** A color of the divider. */
   @ColorInt
   var dividerColor: Int = Color.WHITE
     set(value) {
       field = value
       updateSpinnerWindow()
     }
+
+  /** A background color of the spinner popup. */
   @ColorInt
   var spinnerPopupBackgroundColor: Int = outRangeColor
     set(value) {
       field = value
       updateSpinnerWindow()
     }
+
+  /** A elevation of the spinner popup. */
   @Px
-  var spinnerPopupElevation: Int = context.dp2Px(4)
+  var spinnerPopupElevation: Int = dp2Px(4)
     set(value) {
       field = value
       updateSpinnerWindow()
     }
+
+  /** The spinner popup will be dismissed when got notified an item is selected. */
   var dismissWhenNotifiedItemSelected: Boolean = true
+
+  /** Interface definition for a callback to be invoked when touched on outside of the spinner popup. */
   var spinnerOutsideTouchListener: OnSpinnerOutsideTouchListener? = null
+
+  /** A collection of the spinner popup animation when show and dismiss. */
   var spinnerPopupAnimation: SpinnerAnimation = SpinnerAnimation.NORMAL
+
+  /** A style resource for the popup animation when show and dismiss. */
   @StyleRes
   var spinnerPopupAnimationStyle: Int = -1
+
+  /** A width size of the spinner popup. */
   var spinnerPopupWidth: Int = -1
+
+  /** A height size of the spinner popup. */
   var spinnerPopupHeight: Int = -1
+
+  /** A preferences name of the spinner. */
   var preferenceName: String? = null
     set(value) {
       field = value
       updateSpinnerPersistence()
     }
+
+  /**
+   * A lifecycle owner for observing the lifecycle owner's lifecycle.
+   * It is recommended that this field be should be set for avoiding memory leak of the popup window.
+   * [Avoid Memory leak](https://github.com/skydoves/powerspinner#avoid-memory-leak)
+   */
   var lifecycleOwner: LifecycleOwner? = null
     set(value) {
       field = value
@@ -205,6 +260,8 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
     }
     this.arrowPadding =
       a.getDimensionPixelSize(R.styleable.PowerSpinnerView_spinner_arrow_padding, this.arrowPadding)
+    this.arrowTint =
+      a.getColor(R.styleable.PowerSpinnerView_spinner_arrow_tint, this.arrowTint)
     this.arrowAnimate =
       a.getBoolean(R.styleable.PowerSpinnerView_spinner_arrow_animate, this.arrowAnimate)
     this.arrowAnimationDuration =
@@ -311,7 +368,9 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
 
   private fun updateCompoundDrawable(drawable: Drawable?) {
     if (this.showArrow) {
-      drawable?.let { if (this.arrowTint != outRangeColor) DrawableCompat.setTint(it, this.arrowTint) }
+      drawable?.let {
+        if (this.arrowTint != outRangeColor) DrawableCompat.setTint(it, this.arrowTint)
+      }
       when (this.arrowGravity) {
         SpinnerGravity.START -> setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null)
         SpinnerGravity.TOP -> setCompoundDrawablesWithIntrinsicBounds(null, drawable, null, null)

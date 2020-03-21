@@ -18,8 +18,10 @@ package com.skydoves.powerspinner
 
 import android.content.Context
 import android.graphics.drawable.Drawable
+import android.view.View
 import androidx.core.content.ContextCompat
 
+/** A definition of the out-ranged color. */
 internal const val outRangeColor = 65555
 
 /** dp size to px size. */
@@ -29,9 +31,19 @@ internal fun Context.dp2Px(dp: Int): Int {
 }
 
 /** dp size to px size. */
-internal fun Context.dp2Px(dp: Float): Float {
+internal fun View.dp2Px(dp: Int): Int {
+  return context.dp2Px(dp)
+}
+
+/** dp size to px size. */
+internal fun Context.dp2Px(dp: Float): Int {
   val scale = resources.displayMetrics.density
-  return (dp * scale)
+  return (dp * scale).toInt()
+}
+
+/** dp size to px size. */
+internal fun View.dp2Px(dp: Float): Int {
+  return context.dp2Px(dp)
 }
 
 /** gets a drawable from the resource. */
