@@ -1,16 +1,17 @@
-# PowerSpinner <a href="https://github.com/skydoves"><img alt="License" src="https://img.shields.io/static/v1?label=GitHub&message=skydoves&color=C51162"/></a>
+<h1 align="center">PowerSpinner</h1></br>
+
+<p align="center">
+🌀 A lightweight dropdown popup spinner with fully customizable arrow and animations.
+</p> <br>
 
 <p align="center">
   <a href="https://opensource.org/licenses/Apache-2.0"><img alt="License" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"/></a>
   <a href="https://android-arsenal.com/api?level=17"><img alt="API" src="https://img.shields.io/badge/API-17%2B-brightgreen.svg?style=flat"/></a>
-  <a href="https://travis-ci.com/skydoves/PowerSpinner"><img alt="Build Status" src="https://travis-ci.com/skydoves/PowerSpinner.svg?branch=master"/></a>
-    <a href="https://androidweekly.net/issues/issue-395"><img alt="Android Weekly" src="https://img.shields.io/badge/Android%20Weekly-%23395-orange"/></a>
-  <a href="https://skydoves.github.io/libraries/powerspinner/javadoc/powerspinner/com.skydoves.powerspinner/index.html"><img alt="Javadoc" src="https://img.shields.io/badge/Javadoc-PowerSpinner-yellow"/></a>
-</p>
-
-<p align="center">
-🌀 A lightweight dropdown popup spinner with an arrow and animations.
-</p>
+  <a href="https://github.com/skydoves/PowerSpinner/actions"><img alt="Build Status" src="https://github.com/skydoves/PowerSpinner/workflows/Android%20CI/badge.svg"/></a>
+    <a href="https://androidweekly.net/issues/issue-395"><img alt="Android Weekly" src="https://skydoves.github.io/badges/android-weekly.svg"/></a>
+    <a href="https://github.com/skydoves"><img alt="Profile" src="https://skydoves.github.io/badges/skydoves.svg"/></a>
+  <a href="https://skydoves.github.io/libraries/powerspinner/javadoc/powerspinner/com.skydoves.powerspinner/index.html"><img alt="Javadoc" src="https://skydoves.github.io/badges/javadoc-powerspinner.svg"/></a>
+</p> <br>
 
 <p align="center">
 <img src="https://user-images.githubusercontent.com/24237865/71962685-534a6600-323d-11ea-9e1e-df1f68cb2181.gif" width="32%"/>
@@ -35,7 +36,7 @@ allprojects {
 And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:powerspinner:1.0.4"
+    implementation "com.github.skydoves:powerspinner:1.0.5"
 }
 ```
 
@@ -47,9 +48,9 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 ```
 
 ### PowerSpinnerView
-Here is a basic example of implementing `PowerSpinnerView`. </br>
-Basically the `PowerSpinnerView` extends `TextView`, so we can use it like a `TextView`.</br>
-You can set the unselected text using `hint` and `textColorHint` attributes.
+Here is a basic example of implementing `PowerSpinnerView` in XML layout. </br>
+Basically We can use `PowerSpinnerView` like a `TextView`.</br>
+We can set the text using the `hint` and `textColorHint` attributes when the item is not selected.
 
 ```gradle
 <com.skydoves.powerspinner.PowerSpinnerView
@@ -93,9 +94,7 @@ val mySpinnerView = createPowerSpinnerView(this) {
 ```
 
 ### Show and dismiss
-Basically, when the `PowerSpinnerView` is clicked, the spinner popup will be showed and </br>
-when an item is selected, the spinner popup will be dismissed.</br>
-But you can show and dismiss manually using methods.
+If the `PowerSpinnerView` is clicked, the spinner popup will be shown and when an item is selected, </br>the spinner popup will be dismissed. We can also show and dismiss manually using below methods.
 
 ```kotlin
 powerSpinnerView.show() // show the spinner popup
@@ -106,7 +105,7 @@ powerSpinnerView.dismiss() // dismiss the spinner popup
 powerSpinnerView.showOrDismiss()
 ```
 
-And you can set the show and dismiss actions using some listener and attributes.
+And we can customize the basic actions of the spinner popup using the following ways.
 ```kotlin
 // the spinner popup will not be shown when clicked.
 powerSpinnerView.setOnClickListener { }
@@ -122,36 +121,36 @@ setOnSpinnerItemSelectedListener<String> { index, text ->
    toast("$text selected!")
 }
 ```
-Here is the java way.
+Here is the Java way.
 ```java
 powerSpinnerView.setOnSpinnerItemSelectedListener(new OnSpinnerItemSelectedListener<String>() {
   @Override public void onItemSelected(int position, String item) {
-    toast(item + " selected!")
+    toast(item + " selected!");
   }
 });
 ```
 
-### selectItemByIndex
+### Select an item by an index
 We can select an item manually or initially using the below method.
 ```kotlin
-spinnerView.selectItemByIndex(4)
+powerSpinnerView.selectItemByIndex(4)
 ```
 
-### Persist a selected position
-We can save and restore the selected postion automatically.<br>
-If you select an item, the same position will be selected automatically on the next inflation.<br>
+### Store and restore a selected position
+We can store and restore the selected position in the past automatically.<br>
+If we select an item, the position that we selected will be selected again automatically on the next inflation.<br>
 Just use the below method or attribute.
 
 ```kotlin
-spinnerView.preferenceName = "country"
+powerSpinnerView.preferenceName = "country"
 ```
 
-Or you can set it on xml.
+Or we can set it using attribute in XML layout.
 
 ```gradle
 app:spinner_preference_name="country"
 ```
-You can remove the persisted position data on an item or clear all of the data on your application.
+We can remove the stored position data on an item or clear all of the data on your application.
 
 ```kotlin
 spinnerView.removePersistedData("country")
@@ -167,7 +166,7 @@ SpinnerAnimation.FADE
 SpinnerAnimation.BOUNCE
 ```
 
-| NORMAL | Dropdown | Fade | Bounce |
+| NORMAL | DROPDOWN | FADE | BOUNCE |
 | :---------------: | :---------------: | :---------------: | :---------------: |
 | <img src="https://user-images.githubusercontent.com/24237865/71888721-14a4a500-3184-11ea-9d47-a744229577f2.gif" align="center" width="100%"/> | <img src="https://user-images.githubusercontent.com/24237865/71888722-14a4a500-3184-11ea-9142-e5a594fc6909.gif" align="center" width="100%"/> | <img src="https://user-images.githubusercontent.com/24237865/71888724-153d3b80-3184-11ea-9f02-4da4c8482302.gif" align="center" width="100%"/> | <img src="https://user-images.githubusercontent.com/24237865/71888720-14a4a500-3184-11ea-8c31-949da8517e7f.gif" align="center" width="100%"/> |
 
@@ -289,7 +288,7 @@ countySpinnerPreference?.setOnSpinnerItemSelectedListener<IconSpinnerItem> { ind
 }
 ```
 
-### Avoid Memory leak
+### Avoid Memory Leak
 Dialog, PopupWindow and etc.. have memory leak issue if not dismissed before activity or fragment are destroyed.<br>
 But Lifecycles are now integrated with the Support Library since Architecture Components 1.0 Stable released.<br>
 So we can solve the memory leak issue so easily.<br>
@@ -306,6 +305,7 @@ spinner_arrow_drawable | Drawable | arrow | arrow drawable.
 spinner_arrow_show | Boolean | true | sets the visibility of the arrow.
 spinner_arrow_gravity | SpinnerGravity | end | the gravity of the arrow.
 spinner_arrow_padding | Dimension | 2dp | padding of the arrow.
+spinner_arrow_tint | Color | None | tint color of the arrow.
 spinner_arrow_animate | Boolean | true | show arrow rotation animation when showing.
 spinner_arrow_animate_duration | integer | 250 | the duration of the arrow animation.
 spinner_divider_show | Boolean | true | show the divider of the popup items.
