@@ -517,6 +517,11 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
     }
   }
 
+  /** clears a selected item. */
+  fun clearSelectedItem() {
+    notifyItemSelected(-1, "")
+  }
+
   /** animates the arrow rotation. */
   private fun animateArrow(shouldRotateUp: Boolean) {
     if (this.arrowAnimate) {
