@@ -316,6 +316,7 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
     post {
       this.spinnerWindow.apply {
         width = this@PowerSpinnerView.width
+        isOutsideTouchable = true
         setTouchInterceptor(object : OnTouchListener {
           @SuppressLint("ClickableViewAccessibility")
           override fun onTouch(view: View, event: MotionEvent): Boolean {
