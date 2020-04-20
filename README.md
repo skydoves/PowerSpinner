@@ -24,7 +24,7 @@
 [![Download](https://api.bintray.com/packages/devmagician/maven/powerspinner/images/download.svg) ](https://bintray.com/devmagician/maven/powerspinner/_latestVersion)
 [![JitPack](https://jitpack.io/v/skydoves/PowerSpinner.svg)](https://jitpack.io/#skydoves/PowerSpinner) <br>
 
-### Gradle 
+### Gradle
 Add below codes to your **root** `build.gradle` file (not your module build.gradle file).
 ```gradle
 allprojects {
@@ -39,6 +39,15 @@ dependencies {
     implementation "com.github.skydoves:powerspinner:1.0.6"
 }
 ```
+
+Add Kotlin Support for Java to your module's build.gradle file.
+```gradle
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+```
+
+[kotlin_version](https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib-jdk7)
 
 ## Usage
 Add following XML namespace inside your XML layout file.
