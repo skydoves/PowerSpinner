@@ -39,15 +39,13 @@ dependencies {
     implementation "com.github.skydoves:powerspinner:1.0.6"
 }
 ```
-
-Add Kotlin Support for Java to your module's build.gradle file.
+If your project using Java, add a below dependency code. <br><br>
+<a href="https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib-jdk7"><img alt="Kotlin" src="https://img.shields.io/badge/Kotlin-Official-orange"/></a>
 ```gradle
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 ```
-
-[kotlin_version](https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib-jdk7)
 
 ## Usage
 Add following XML namespace inside your XML layout file.
