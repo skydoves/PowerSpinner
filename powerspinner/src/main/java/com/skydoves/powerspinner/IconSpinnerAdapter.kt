@@ -39,7 +39,7 @@ class IconSpinnerAdapter(
   private lateinit var binding: ItemDefaultBinding
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IconSpinnerViewHolder {
-    binding = ItemDefaultBinding.inflate(LayoutInflater.from(parent.context), null, false)
+    binding = ItemDefaultBinding.inflate(LayoutInflater.from(parent.context), parent, false)
     return IconSpinnerViewHolder(binding)
   }
 

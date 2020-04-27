@@ -36,7 +36,7 @@ class DefaultSpinnerAdapter(
   private lateinit var binding: ItemDefaultBinding
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DefaultSpinnerViewHolder {
-    binding = ItemDefaultBinding.inflate(LayoutInflater.from(parent.context), null, false)
+    binding = ItemDefaultBinding.inflate(LayoutInflater.from(parent.context), parent, false)
     return DefaultSpinnerViewHolder(binding)
   }
 
