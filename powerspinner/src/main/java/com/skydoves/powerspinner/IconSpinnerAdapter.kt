@@ -20,10 +20,9 @@ package com.skydoves.powerspinner
 
 import android.util.TypedValue
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.item_default.view.item_default_text
+import com.skydoves.powerspinner.databinding.ItemDefaultBinding
 
 /** IconSpinnerAdapter is a custom adapter composed of [IconSpinnerItem] items. */
 class IconSpinnerAdapter(
@@ -37,9 +36,11 @@ class IconSpinnerAdapter(
   private val compoundPadding: Int = 12
   private val spinnerItems: MutableList<IconSpinnerItem> = arrayListOf()
 
+  private lateinit var binding: ItemDefaultBinding
+
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IconSpinnerViewHolder {
-    val layoutInflater = LayoutInflater.from(parent.context)
-    return IconSpinnerViewHolder(layoutInflater.inflate(R.layout.item_default, parent, false))
+    binding = ItemDefaultBinding.inflate(LayoutInflater.from(parent.context), null, false)
+    return IconSpinnerViewHolder(binding)
   }
 
   init {
@@ -49,7 +50,7 @@ class IconSpinnerAdapter(
   override fun onBindViewHolder(holder: IconSpinnerViewHolder, position: Int) {
     val item = this.spinnerItems[position]
     holder.itemView.apply {
-      item_default_text.apply {
+      binding.itemDefaultText.apply {
         text = item.text
         typeface = spinnerView.typeface
         gravity = spinnerView.gravity
@@ -79,5 +80,6 @@ class IconSpinnerAdapter(
 
   override fun getItemCount() = this.spinnerItems.size
 
-  class IconSpinnerViewHolder(view: View) : RecyclerView.ViewHolder(view)
+  class IconSpinnerViewHolder(itemDefaultBinding: ItemDefaultBinding) :
+    RecyclerView.ViewHolder(itemDefaultBinding.root)
 }

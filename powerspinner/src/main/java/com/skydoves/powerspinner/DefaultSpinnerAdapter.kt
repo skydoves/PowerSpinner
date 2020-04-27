@@ -18,10 +18,9 @@ package com.skydoves.powerspinner
 
 import android.util.TypedValue
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.item_default.view.item_default_text
+import com.skydoves.powerspinner.databinding.ItemDefaultBinding
 
 /** DefaultSpinnerAdapter is a default adapter composed of string items. */
 class DefaultSpinnerAdapter(
@@ -34,15 +33,17 @@ class DefaultSpinnerAdapter(
 
   private val spinnerItems: MutableList<String> = arrayListOf()
 
+  private lateinit var binding: ItemDefaultBinding
+
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DefaultSpinnerViewHolder {
-    val layoutInflater = LayoutInflater.from(parent.context)
-    return DefaultSpinnerViewHolder(layoutInflater.inflate(R.layout.item_default, parent, false))
+    binding = ItemDefaultBinding.inflate(LayoutInflater.from(parent.context), null, false)
+    return DefaultSpinnerViewHolder(binding)
   }
 
   override fun onBindViewHolder(holder: DefaultSpinnerViewHolder, position: Int) {
     val item = this.spinnerItems[position]
     holder.itemView.apply {
-      item_default_text.apply {
+      binding.itemDefaultText.apply {
         text = item
         typeface = spinnerView.typeface
         gravity = spinnerView.gravity
@@ -68,5 +69,6 @@ class DefaultSpinnerAdapter(
 
   override fun getItemCount() = this.spinnerItems.size
 
-  class DefaultSpinnerViewHolder(view: View) : RecyclerView.ViewHolder(view)
+  class DefaultSpinnerViewHolder(itemDefaultBinding: ItemDefaultBinding) :
+    RecyclerView.ViewHolder(itemDefaultBinding.root)
 }
