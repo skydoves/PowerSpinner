@@ -45,15 +45,16 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.layout_body.view.recyclerView
+import com.skydoves.powerspinner.databinding.LayoutBodyBinding
 
 /** A lightweight dropdown spinner, fully customizable with arrow and animations. */
 @Suppress("MemberVisibilityCanBePrivate", "unused")
 @SuppressLint("InflateParams")
 class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
 
-  /** Main body view for composing the Spinner popup.  */
-  private val spinnerBody: View
+  /** Main body view for composing the Spinner popup. */
+  private val binding: LayoutBodyBinding =
+    LayoutBodyBinding.inflate(LayoutInflater.from(context), null, false)
 
   /** PopupWindow for creating the spinner. */
   private val spinnerWindow: PopupWindow
@@ -193,13 +194,10 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
     }
 
   init {
-    val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-    this.spinnerBody = inflater.inflate(R.layout.layout_body, null).apply {
-      if (this@PowerSpinnerView.adapter is RecyclerView.Adapter<*>) {
-        recyclerView.adapter = this@PowerSpinnerView.adapter as RecyclerView.Adapter<*>
-      }
+    if (adapter is RecyclerView.Adapter<*>) {
+      this.binding.recyclerView.adapter = adapter as RecyclerView.Adapter<*>
     }
-    this.spinnerWindow = PopupWindow(this.spinnerBody,
+    this.spinnerWindow = PopupWindow(this.binding.body,
       WindowManager.LayoutParams.MATCH_PARENT,
       WindowManager.LayoutParams.WRAP_CONTENT
     )
@@ -329,7 +327,7 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
           elevation = spinnerPopupElevation.toFloat()
         }
       }
-      this.spinnerBody.apply {
+      binding.body.apply {
         if (this@PowerSpinnerView.spinnerPopupBackgroundColor == outRangeColor) {
           background = this@PowerSpinnerView.background
         } else {
@@ -345,7 +343,7 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
             setColor(dividerColor)
           }
           decoration.setDrawable(shape)
-          recyclerView.addItemDecoration(decoration)
+          binding.recyclerView.addItemDecoration(decoration)
         }
       }
       if (this.spinnerPopupWidth != -1) {
@@ -404,7 +402,7 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   }
 
   /** gets the spinner popup's recyclerView. */
-  fun getSpinnerRecyclerView(): RecyclerView = this.spinnerBody.recyclerView
+  fun getSpinnerRecyclerView(): RecyclerView = binding.recyclerView
 
   /** sets an item list for setting items of the adapter. */
   @Suppress("UNCHECKED_CAST")
@@ -428,7 +426,7 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   fun <T> setSpinnerAdapter(powerSpinnerInterface: PowerSpinnerInterface<T>) {
     this.adapter = powerSpinnerInterface
     if (this.adapter is RecyclerView.Adapter<*>) {
-      this.spinnerBody.recyclerView.adapter = this.adapter as RecyclerView.Adapter<*>
+      binding.recyclerView.adapter = this.adapter as RecyclerView.Adapter<*>
     }
   }
 
