@@ -44,7 +44,6 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.layout_body.view.recyclerView
 
@@ -196,7 +195,6 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   init {
     val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
     this.spinnerBody = inflater.inflate(R.layout.layout_body, null).apply {
-      recyclerView.layoutManager = LinearLayoutManager(context)
       if (this@PowerSpinnerView.adapter is RecyclerView.Adapter<*>) {
         recyclerView.adapter = this@PowerSpinnerView.adapter as RecyclerView.Adapter<*>
       }
