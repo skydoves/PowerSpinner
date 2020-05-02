@@ -21,4 +21,5 @@ interface PowerSpinnerInterface<T> {
   var onSpinnerItemSelectedListener: OnSpinnerItemSelectedListener<T>?
   fun notifyItemSelected(index: Int)
   fun setItems(itemList: List<T>)
+  fun getItemCount(): Int
 }

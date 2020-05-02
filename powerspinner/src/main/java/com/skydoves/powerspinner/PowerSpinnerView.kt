@@ -490,7 +490,8 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
    */
   @MainThread
   fun showOrDismiss() {
-    if (!this.isShowing) {
+    val adapter = getSpinnerRecyclerView().adapter ?: return
+    if (!isShowing && adapter.itemCount > 0) {
       show()
     } else {
       dismiss()
