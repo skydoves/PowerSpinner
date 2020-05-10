@@ -36,7 +36,7 @@ allprojects {
 And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:powerspinner:1.0.7"
+    implementation "com.github.skydoves:powerspinner:1.0.8"
 }
 ```
 If your project using Java, add a below dependency code. <br><br>
@@ -314,7 +314,7 @@ spinner_arrow_gravity | SpinnerGravity | end | the gravity of the arrow.
 spinner_arrow_padding | Dimension | 2dp | padding of the arrow.
 spinner_arrow_tint | Color | None | tint color of the arrow.
 spinner_arrow_animate | Boolean | true | show arrow rotation animation when showing.
-spinner_arrow_animate_duration | integer | 250 | the duration of the arrow animation.
+spinner_arrow_animate_duration | Integer | 250 | the duration of the arrow animation.
 spinner_divider_show | Boolean | true | show the divider of the popup items.
 spinner_divider_size | Dimension | 0.5dp | sets the height of the divider.
 spinner_divider_color | Color | White | sets the color of the divider.
@@ -326,6 +326,7 @@ spinner_popup_animation_style | Style Resource | -1 | sets the customized animat
 spinner_popup_elevation | Dimension | 4dp | the elevation size of the popup.
 spinner_item_array | String Array Resource | null | sets the items of the popup.
 spinner_dismiss_notified_select | Boolean | true | sets dismiss when the popup item is selected.
+spinner_debounce_duration | Integer | 150 | A duration of the debounce for showOrDismiss.
 spinner_preference_name | String | null | saves and restores automatically the selected position.
 
 ## Find this library useful? :heart:
