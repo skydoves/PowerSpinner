@@ -79,6 +79,13 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   /** A drawable of the arrow. */
   var arrowDrawable: Drawable? = context.contextDrawable(R.drawable.arrow)?.mutate()
 
+  /** A duration of the debounce for showOrDismiss. */
+  var debounceDuration: Long = 150L
+    private set
+
+  /** A backing field of the previously debounce local time. */
+  private var previousDebounceTime: Long = 0
+
   /** A drawable resource of the arrow. */
   @DrawableRes
   var arrowResource: Int = -1
@@ -297,6 +304,9 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
     this.dismissWhenNotifiedItemSelected =
       a.getBoolean(R.styleable.PowerSpinnerView_spinner_dismiss_notified_select,
         this.dismissWhenNotifiedItemSelected)
+    this.debounceDuration =
+      a.getInteger(R.styleable.PowerSpinnerView_spinner_debounce_duration, debounceDuration.toInt())
+        .toLong()
     this.preferenceName =
       a.getString(R.styleable.PowerSpinnerView_spinner_preference_name)
   }
@@ -466,21 +476,25 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   /** shows the spinner popup menu to the center. */
   @MainThread
   fun show() {
-    if (!this.isShowing) {
-      this.isShowing = true
-      animateArrow(true)
-      applyWindowAnimation()
-      this.spinnerWindow.showAsDropDown(this)
+    debounceShowOrDismiss {
+      if (!this.isShowing) {
+        this.isShowing = true
+        animateArrow(true)
+        applyWindowAnimation()
+        this.spinnerWindow.showAsDropDown(this)
+      }
     }
   }
 
   /** dismiss the spinner popup menu. */
   @MainThread
   fun dismiss() {
-    if (this.isShowing) {
-      animateArrow(false)
-      this.spinnerWindow.dismiss()
-      this.isShowing = false
+    debounceShowOrDismiss {
+      if (this.isShowing) {
+        animateArrow(false)
+        this.spinnerWindow.dismiss()
+        this.isShowing = false
+      }
     }
   }
 
@@ -495,6 +509,15 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
       show()
     } else {
       dismiss()
+    }
+  }
+
+  /** debounce for showing or dismissing spinner popup. */
+  private fun debounceShowOrDismiss(action: () -> Unit) {
+    val currentTime = System.currentTimeMillis()
+    if (currentTime - previousDebounceTime > debounceDuration) {
+      this.previousDebounceTime = currentTime
+      action()
     }
   }
 

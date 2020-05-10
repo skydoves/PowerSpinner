@@ -47,6 +47,8 @@
     <attr name="spinner_item_array" format="reference" />
     <!-- 	Sets dismiss when the popup item is selected. -->
     <attr name="spinner_dismiss_notified_select" format="boolean" />
+    <!--  A duration of the debounce for showOrDismiss.-->
+    <attr name="spinner_debounce_duration" format="integer" />
     <!--  Saves and restores automatically the selected position. -->
     <attr name="spinner_preference_name" format="string" />
   </declare-styleable>
