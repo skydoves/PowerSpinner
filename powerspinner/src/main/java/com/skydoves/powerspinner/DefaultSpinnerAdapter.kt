@@ -33,27 +33,16 @@ class DefaultSpinnerAdapter(
 
   private val spinnerItems: MutableList<String> = arrayListOf()
 
-  private lateinit var binding: ItemDefaultBinding
-
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DefaultSpinnerViewHolder {
-    binding = ItemDefaultBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+    val binding =
+      ItemDefaultBinding.inflate(LayoutInflater.from(parent.context), parent, false)
     return DefaultSpinnerViewHolder(binding)
   }
 
   override fun onBindViewHolder(holder: DefaultSpinnerViewHolder, position: Int) {
     val item = this.spinnerItems[position]
-    holder.itemView.apply {
-      binding.itemDefaultText.apply {
-        text = item
-        typeface = spinnerView.typeface
-        gravity = spinnerView.gravity
-        setTextSize(TypedValue.COMPLEX_UNIT_PX, spinnerView.textSize)
-        setTextColor(spinnerView.currentTextColor)
-      }
-      setPadding(spinnerView.paddingLeft, spinnerView.paddingTop, spinnerView.paddingRight,
-        spinnerView.paddingBottom)
-      setOnClickListener { notifyItemSelected(position) }
-    }
+    holder.bind(item, spinnerView)
+    holder.itemView.setOnClickListener { notifyItemSelected(position) }
   }
 
   override fun setItems(itemList: List<String>) {
@@ -69,6 +58,21 @@ class DefaultSpinnerAdapter(
 
   override fun getItemCount() = this.spinnerItems.size
 
-  class DefaultSpinnerViewHolder(itemDefaultBinding: ItemDefaultBinding) :
-    RecyclerView.ViewHolder(itemDefaultBinding.root)
+  class DefaultSpinnerViewHolder(private val binding: ItemDefaultBinding) :
+    RecyclerView.ViewHolder(binding.root) {
+
+    fun bind(item: String, spinnerView: PowerSpinnerView) {
+      itemView.apply {
+        binding.itemDefaultText.apply {
+          text = item
+          typeface = spinnerView.typeface
+          gravity = spinnerView.gravity
+          setTextSize(TypedValue.COMPLEX_UNIT_PX, spinnerView.textSize)
+          setTextColor(spinnerView.currentTextColor)
+        }
+        setPadding(spinnerView.paddingLeft, spinnerView.paddingTop, spinnerView.paddingRight,
+          spinnerView.paddingBottom)
+      }
+    }
+  }
 }
