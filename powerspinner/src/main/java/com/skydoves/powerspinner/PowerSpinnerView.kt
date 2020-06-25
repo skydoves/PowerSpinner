@@ -527,7 +527,7 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   }
 
   /** notifies to [PowerSpinnerView] of changed information from [PowerSpinnerInterface]. */
-  fun notifyItemSelected(index: Int, changedText: String) {
+  fun notifyItemSelected(index: Int, changedText: CharSequence) {
     this.selectedIndex = index
     this.text = changedText
     if (this.dismissWhenNotifiedItemSelected) {

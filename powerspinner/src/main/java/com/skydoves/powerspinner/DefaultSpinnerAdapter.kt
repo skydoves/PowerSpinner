@@ -26,12 +26,12 @@ import com.skydoves.powerspinner.databinding.ItemDefaultBinding
 class DefaultSpinnerAdapter(
   powerSpinnerView: PowerSpinnerView
 ) : RecyclerView.Adapter<DefaultSpinnerAdapter.DefaultSpinnerViewHolder>(),
-  PowerSpinnerInterface<String> {
+  PowerSpinnerInterface<CharSequence> {
 
   override val spinnerView: PowerSpinnerView = powerSpinnerView
-  override var onSpinnerItemSelectedListener: OnSpinnerItemSelectedListener<String>? = null
+  override var onSpinnerItemSelectedListener: OnSpinnerItemSelectedListener<CharSequence>? = null
 
-  private val spinnerItems: MutableList<String> = arrayListOf()
+  private val spinnerItems: MutableList<CharSequence> = arrayListOf()
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DefaultSpinnerViewHolder {
     val binding =
@@ -45,7 +45,7 @@ class DefaultSpinnerAdapter(
     holder.itemView.setOnClickListener { notifyItemSelected(position) }
   }
 
-  override fun setItems(itemList: List<String>) {
+  override fun setItems(itemList: List<CharSequence>) {
     this.spinnerItems.clear()
     this.spinnerItems.addAll(itemList)
     notifyDataSetChanged()
@@ -61,7 +61,7 @@ class DefaultSpinnerAdapter(
   class DefaultSpinnerViewHolder(private val binding: ItemDefaultBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(item: String, spinnerView: PowerSpinnerView) {
+    fun bind(item: CharSequence, spinnerView: PowerSpinnerView) {
       itemView.apply {
         binding.itemDefaultText.apply {
           text = item

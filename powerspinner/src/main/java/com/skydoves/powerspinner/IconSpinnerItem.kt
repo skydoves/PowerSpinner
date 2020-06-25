@@ -21,5 +21,5 @@ import android.graphics.drawable.Drawable
 /** IconSpinnerItem is an item class for constructing [IconSpinnerAdapter]. */
 data class IconSpinnerItem(
   val icon: Drawable?,
-  val text: String
+  val text: CharSequence
 )
