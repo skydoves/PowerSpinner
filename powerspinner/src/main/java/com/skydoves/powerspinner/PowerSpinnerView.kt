@@ -67,7 +67,7 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
     private set
 
   /** An index of the selected item. */
-  var selectedIndex: Int = -1
+  var selectedIndex: Int = NO_SELECTED_INDEX
     private set
 
   /** The arrow will  be animated or not when show and dismiss the spinner. */
@@ -88,7 +88,7 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
 
   /** A drawable resource of the arrow. */
   @DrawableRes
-  var arrowResource: Int = -1
+  var arrowResource: Int = NO_INT_VALUE
     set(value) {
       field = value
       updateSpinnerArrow()
@@ -174,13 +174,13 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
 
   /** A style resource for the popup animation when show and dismiss. */
   @StyleRes
-  var spinnerPopupAnimationStyle: Int = -1
+  var spinnerPopupAnimationStyle: Int = NO_INT_VALUE
 
   /** A width size of the spinner popup. */
-  var spinnerPopupWidth: Int = -1
+  var spinnerPopupWidth: Int = NO_INT_VALUE
 
   /** A height size of the spinner popup. */
-  var spinnerPopupHeight: Int = -1
+  var spinnerPopupHeight: Int = NO_INT_VALUE
 
   /** A preferences name of the spinner. */
   var preferenceName: String? = null
@@ -252,7 +252,8 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   }
 
   private fun setTypeArray(a: TypedArray) {
-    this.arrowResource = a.getResourceId(R.styleable.PowerSpinnerView_spinner_arrow_drawable, -1)
+    this.arrowResource =
+      a.getResourceId(R.styleable.PowerSpinnerView_spinner_arrow_drawable, NO_INT_VALUE)
     this.showArrow = a.getBoolean(R.styleable.PowerSpinnerView_spinner_arrow_show, this.showArrow)
     when (a.getInteger(R.styleable.PowerSpinnerView_spinner_arrow_gravity,
       this.arrowGravity.value)) {
@@ -297,8 +298,8 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
     this.spinnerPopupElevation =
       a.getDimensionPixelSize(R.styleable.PowerSpinnerView_spinner_popup_elevation,
         this.spinnerPopupElevation)
-    val itemArray = a.getResourceId(R.styleable.PowerSpinnerView_spinner_item_array, -1)
-    if (itemArray != -1) {
+    val itemArray = a.getResourceId(R.styleable.PowerSpinnerView_spinner_item_array, NO_INT_VALUE)
+    if (itemArray != NO_INT_VALUE) {
       setItems(itemArray)
     }
     this.dismissWhenNotifiedItemSelected =
@@ -356,17 +357,17 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
           binding.recyclerView.addItemDecoration(decoration)
         }
       }
-      if (this.spinnerPopupWidth != -1) {
+      if (this.spinnerPopupWidth != NO_INT_VALUE) {
         this.spinnerWindow.width = this.spinnerPopupWidth
       }
-      if (this.spinnerPopupHeight != -1) {
+      if (this.spinnerPopupHeight != NO_INT_VALUE) {
         this.spinnerWindow.height = this.spinnerPopupHeight
       }
     }
   }
 
   private fun updateSpinnerArrow() {
-    if (this.arrowResource != -1) {
+    if (this.arrowResource != NO_INT_VALUE) {
       this.arrowDrawable = context.contextDrawable(this.arrowResource)?.mutate()
     }
     this.compoundDrawablePadding = this.arrowPadding
@@ -399,7 +400,7 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   }
 
   private fun applyWindowAnimation() {
-    if (this.spinnerPopupAnimationStyle == -1) {
+    if (this.spinnerPopupAnimationStyle == NO_INT_VALUE) {
       when (this.spinnerPopupAnimation) {
         SpinnerAnimation.DROPDOWN -> this.spinnerWindow.animationStyle = R.style.DropDown
         SpinnerAnimation.FADE -> this.spinnerWindow.animationStyle = R.style.Fade
@@ -483,12 +484,12 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
         applyWindowAnimation()
         this.spinnerWindow.showAsDropDown(this)
         post {
-          val spinnerWidth = if (spinnerPopupWidth != -1) {
+          val spinnerWidth = if (spinnerPopupWidth != NO_INT_VALUE) {
             spinnerPopupWidth
           } else {
             width
           }
-          val spinnerHeight = if (spinnerPopupHeight != -1) {
+          val spinnerHeight = if (spinnerPopupHeight != NO_INT_VALUE) {
             spinnerPopupHeight
           } else {
             this.binding.body.height
@@ -553,7 +554,7 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
 
   /** clears a selected item. */
   fun clearSelectedItem() {
-    notifyItemSelected(-1, "")
+    notifyItemSelected(NO_SELECTED_INDEX, "")
   }
 
   /** animates the arrow rotation. */
@@ -608,13 +609,15 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
 
     @Suppress("UNCHECKED_CAST")
     fun <T> setOnSpinnerItemSelectedListener(onSpinnerItemSelectedListener: OnSpinnerItemSelectedListener<T>) {
-      val adapter = this.powerSpinnerView.adapter as PowerSpinnerInterface<T>
+      val adapter: PowerSpinnerInterface<T> =
+        this.powerSpinnerView.adapter as PowerSpinnerInterface<T>
       adapter.onSpinnerItemSelectedListener = onSpinnerItemSelectedListener
     }
 
     @Suppress("UNCHECKED_CAST")
     fun <T> setOnSpinnerItemSelectedListener(block: (position: Int, item: T) -> Unit) {
-      val adapter = this.powerSpinnerView.adapter as PowerSpinnerInterface<T>
+      val adapter: PowerSpinnerInterface<T> =
+        this.powerSpinnerView.adapter as PowerSpinnerInterface<T>
       adapter.onSpinnerItemSelectedListener = object : OnSpinnerItemSelectedListener<T> {
         override fun onItemSelected(position: Int, item: T) {
           block(position, item)
