@@ -482,6 +482,19 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
         animateArrow(true)
         applyWindowAnimation()
         this.spinnerWindow.showAsDropDown(this)
+        post {
+          val spinnerWidth = if (spinnerPopupWidth != -1) {
+            spinnerPopupWidth
+          } else {
+            width
+          }
+          val spinnerHeight = if (spinnerPopupHeight != -1) {
+            spinnerPopupHeight
+          } else {
+            this.binding.body.height
+          }
+          this.spinnerWindow.update(spinnerWidth, spinnerHeight)
+        }
       }
     }
   }
