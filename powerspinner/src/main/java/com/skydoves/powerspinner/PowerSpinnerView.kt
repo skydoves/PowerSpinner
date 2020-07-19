@@ -118,7 +118,7 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
 
   /** A tint color of the arrow. */
   @ColorInt
-  var arrowTint: Int = outRangeColor
+  var arrowTint: Int = Color.WHITE
     set(value) {
       field = value
       updateSpinnerArrow()
@@ -377,11 +377,9 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   private fun updateCompoundDrawable(drawable: Drawable?) {
     if (this.showArrow) {
       drawable?.let {
-        if (this.arrowTint != outRangeColor) {
-          val wrappedDrawable = DrawableCompat.wrap(it).mutate()
-          DrawableCompat.setTint(wrappedDrawable, this.arrowTint)
-          wrappedDrawable.invalidateSelf()
-        }
+        val wrappedDrawable = DrawableCompat.wrap(it).mutate()
+        DrawableCompat.setTint(wrappedDrawable, this.arrowTint)
+        wrappedDrawable.invalidateSelf()
       }
       when (this.arrowGravity) {
         SpinnerGravity.START -> setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null)
