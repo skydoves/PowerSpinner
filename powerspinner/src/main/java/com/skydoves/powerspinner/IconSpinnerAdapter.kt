@@ -41,14 +41,14 @@ class IconSpinnerAdapter(
   }
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IconSpinnerViewHolder {
-    val binding = ItemDefaultBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+    val binding =
+      ItemDefaultBinding.inflate(LayoutInflater.from(parent.context), parent, false)
     return IconSpinnerViewHolder(binding)
   }
 
   override fun onBindViewHolder(holder: IconSpinnerViewHolder, position: Int) {
-    val item = this.spinnerItems[position]
-    holder.bind(item, spinnerView)
-    holder.itemView.setOnClickListener { notifyItemSelected(position) }
+    holder.bind(spinnerItems[position], spinnerView)
+    holder.binding.root.setOnClickListener { notifyItemSelected(position) }
   }
 
   override fun setItems(itemList: List<IconSpinnerItem>) {
@@ -58,31 +58,32 @@ class IconSpinnerAdapter(
   }
 
   override fun notifyItemSelected(index: Int) {
-    this.spinnerView.setCompoundDrawablesWithIntrinsicBounds(this.spinnerItems[index].icon, null,
+    this.spinnerView.setCompoundDrawablesWithIntrinsicBounds(spinnerItems[index].icon, null,
       spinnerView.arrowDrawable, null)
-    this.spinnerView.notifyItemSelected(index, this.spinnerItems[index].text)
-    this.onSpinnerItemSelectedListener?.onItemSelected(index, this.spinnerItems[index])
+    this.spinnerView.notifyItemSelected(index, spinnerItems[index].text)
+    this.onSpinnerItemSelectedListener?.onItemSelected(index, spinnerItems[index])
   }
 
   override fun getItemCount() = this.spinnerItems.size
 
-  class IconSpinnerViewHolder(private val binding: ItemDefaultBinding) :
+  class IconSpinnerViewHolder(val binding: ItemDefaultBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(item: IconSpinnerItem, spinnerView: PowerSpinnerView) {
-      itemView.apply {
-        binding.itemDefaultText.apply {
-          text = item.text
-          typeface = spinnerView.typeface
-          gravity = spinnerView.gravity
-          setTextSize(TypedValue.COMPLEX_UNIT_PX, spinnerView.textSize)
-          setTextColor(spinnerView.currentTextColor)
-          compoundDrawablePadding = spinnerView.compoundDrawablePadding
-          setCompoundDrawablesWithIntrinsicBounds(item.icon, null, null, null)
-        }
-        setPadding(spinnerView.paddingLeft, spinnerView.paddingTop, spinnerView.paddingRight,
-          spinnerView.paddingBottom)
+      binding.itemDefaultText.apply {
+        text = item.text
+        typeface = spinnerView.typeface
+        gravity = spinnerView.gravity
+        setTextSize(TypedValue.COMPLEX_UNIT_PX, spinnerView.textSize)
+        setTextColor(spinnerView.currentTextColor)
+        compoundDrawablePadding = spinnerView.compoundDrawablePadding
+        setCompoundDrawablesWithIntrinsicBounds(item.icon, null, null, null)
       }
+      binding.root.setPadding(
+        spinnerView.paddingLeft,
+        spinnerView.paddingTop,
+        spinnerView.paddingRight,
+        spinnerView.paddingBottom)
     }
   }
 }

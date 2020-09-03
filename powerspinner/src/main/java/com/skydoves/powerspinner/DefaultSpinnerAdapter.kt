@@ -40,9 +40,8 @@ class DefaultSpinnerAdapter(
   }
 
   override fun onBindViewHolder(holder: DefaultSpinnerViewHolder, position: Int) {
-    val item = this.spinnerItems[position]
-    holder.bind(item, spinnerView)
-    holder.itemView.setOnClickListener { notifyItemSelected(position) }
+    holder.bind(spinnerItems[position], spinnerView)
+    holder.binding.root.setOnClickListener { notifyItemSelected(position) }
   }
 
   override fun setItems(itemList: List<CharSequence>) {
@@ -52,27 +51,28 @@ class DefaultSpinnerAdapter(
   }
 
   override fun notifyItemSelected(index: Int) {
-    this.spinnerView.notifyItemSelected(index, this.spinnerItems[index])
-    this.onSpinnerItemSelectedListener?.onItemSelected(index, this.spinnerItems[index])
+    this.spinnerView.notifyItemSelected(index, spinnerItems[index])
+    this.onSpinnerItemSelectedListener?.onItemSelected(index, spinnerItems[index])
   }
 
-  override fun getItemCount() = this.spinnerItems.size
+  override fun getItemCount() = spinnerItems.size
 
-  class DefaultSpinnerViewHolder(private val binding: ItemDefaultBinding) :
+  class DefaultSpinnerViewHolder(val binding: ItemDefaultBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(item: CharSequence, spinnerView: PowerSpinnerView) {
-      itemView.apply {
-        binding.itemDefaultText.apply {
-          text = item
-          typeface = spinnerView.typeface
-          gravity = spinnerView.gravity
-          setTextSize(TypedValue.COMPLEX_UNIT_PX, spinnerView.textSize)
-          setTextColor(spinnerView.currentTextColor)
-        }
-        setPadding(spinnerView.paddingLeft, spinnerView.paddingTop, spinnerView.paddingRight,
-          spinnerView.paddingBottom)
+      binding.itemDefaultText.apply {
+        text = item
+        typeface = spinnerView.typeface
+        gravity = spinnerView.gravity
+        setTextSize(TypedValue.COMPLEX_UNIT_PX, spinnerView.textSize)
+        setTextColor(spinnerView.currentTextColor)
       }
+      binding.root.setPadding(
+        spinnerView.paddingLeft,
+        spinnerView.paddingTop,
+        spinnerView.paddingRight,
+        spinnerView.paddingBottom)
     }
   }
 }
