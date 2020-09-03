@@ -25,6 +25,10 @@ dependencies {
     kapt "androidx.lifecycle:lifecycle-compiler:$versions.lifecycle"
 }
 
+kotlin {
+    explicitApiWarning()
+}
+
 dokka {
     outputFormat = 'html'
     outputDirectory = "$buildDir/javadoc"

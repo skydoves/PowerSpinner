@@ -25,27 +25,23 @@ import android.widget.TextView
 import androidx.preference.Preference
 import androidx.preference.PreferenceViewHolder
 
-class PowerSpinnerPreference : Preference {
+class PowerSpinnerPreference @JvmOverloads constructor(
+  context: Context,
+  attributeSet: AttributeSet? = null,
+  defStyle: Int = androidx.preference.R.attr.preferenceStyle
+) : Preference(context, attributeSet, defStyle) {
 
   val powerSpinnerView: PowerSpinnerView = PowerSpinnerView(context)
   private var defaultValue: Int = 0
 
   init {
     this.layoutResource = R.layout.layout_preference
-  }
 
-  constructor(context: Context) : super(context)
-
-  constructor(context: Context, attributeSet: AttributeSet) : super(context, attributeSet) {
-    getAttrs(attributeSet)
-  }
-
-  constructor(context: Context, attributeSet: AttributeSet, defStyle: Int) : super(
-    context,
-    attributeSet,
-    defStyle
-  ) {
-    getAttrs(attributeSet, defStyle)
+    when {
+      attributeSet != null && defStyle != androidx.preference.R.attr.preferenceStyle ->
+        getAttrs(attributeSet, defStyle)
+      attributeSet != null -> getAttrs(attributeSet)
+    }
   }
 
   private fun getAttrs(attributeSet: AttributeSet) {

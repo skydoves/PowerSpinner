@@ -17,7 +17,7 @@
 package com.skydoves.powerspinner
 
 /** definition of the non-value of Int type. */
-const val NO_INT_VALUE: Int = Int.MIN_VALUE
+internal const val NO_INT_VALUE: Int = Int.MIN_VALUE
 
 /** definition of the non-selected index value. */
-const val NO_SELECTED_INDEX: Int = -1
+internal const val NO_SELECTED_INDEX: Int = -1
