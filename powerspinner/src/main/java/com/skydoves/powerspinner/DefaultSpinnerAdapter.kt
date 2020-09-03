@@ -72,7 +72,8 @@ class DefaultSpinnerAdapter(
         spinnerView.paddingLeft,
         spinnerView.paddingTop,
         spinnerView.paddingRight,
-        spinnerView.paddingBottom)
+        spinnerView.paddingBottom
+      )
     }
   }
 }

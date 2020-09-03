@@ -47,7 +47,8 @@ class PreferenceFragment : PreferenceFragmentCompat() {
             IconSpinnerItem(contextDrawable(R.drawable.germany), "Germany"),
             IconSpinnerItem(contextDrawable(R.drawable.spain), "Spain"),
             IconSpinnerItem(contextDrawable(R.drawable.china), "China")
-          ))
+          )
+        )
         getSpinnerRecyclerView().layoutManager = GridLayoutManager(requireContext(), 2)
       }
       it.setOnSpinnerItemSelectedListener<IconSpinnerItem> { index, item ->

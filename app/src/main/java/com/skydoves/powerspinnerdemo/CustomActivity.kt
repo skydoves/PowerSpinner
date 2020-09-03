@@ -50,7 +50,8 @@ class CustomActivity : AppCompatActivity() {
           IconSpinnerItem(contextDrawable(R.drawable.germany), "Germany"),
           IconSpinnerItem(contextDrawable(R.drawable.spain), "Spain"),
           IconSpinnerItem(contextDrawable(R.drawable.china), "China")
-        ))
+        )
+      )
       setOnSpinnerItemSelectedListener<IconSpinnerItem> { index, item ->
         Toast.makeText(applicationContext, item.text, Toast.LENGTH_SHORT).show()
       }

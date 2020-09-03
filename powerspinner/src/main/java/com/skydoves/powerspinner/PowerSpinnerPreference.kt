@@ -77,15 +77,18 @@ class PowerSpinnerPreference : Preference {
         R.styleable.PowerSpinnerView_spinner_arrow_show,
         this.powerSpinnerView.showArrow
       )
-    when (a.getInteger(
-      R.styleable.PowerSpinnerView_spinner_arrow_gravity,
-      this.powerSpinnerView.arrowGravity.value
-    )) {
+    when (
+      a.getInteger(
+        R.styleable.PowerSpinnerView_spinner_arrow_gravity,
+        this.powerSpinnerView.arrowGravity.value
+      )
+    ) {
       SpinnerGravity.START.value -> this.powerSpinnerView.arrowGravity = SpinnerGravity.START
       SpinnerGravity.TOP.value -> this.powerSpinnerView.arrowGravity = SpinnerGravity.TOP
       SpinnerGravity.END.value -> this.powerSpinnerView.arrowGravity = SpinnerGravity.END
-      SpinnerGravity.BOTTOM.value -> this.powerSpinnerView.arrowGravity =
-        SpinnerGravity.BOTTOM
+      SpinnerGravity.BOTTOM.value ->
+        this.powerSpinnerView.arrowGravity =
+          SpinnerGravity.BOTTOM
     }
     this.powerSpinnerView.arrowPadding =
       a.getDimensionPixelSize(
@@ -122,16 +125,21 @@ class PowerSpinnerPreference : Preference {
         R.styleable.PowerSpinnerView_spinner_popup_background,
         this.powerSpinnerView.spinnerPopupBackgroundColor
       )
-    when (a.getInteger(
-      R.styleable.PowerSpinnerView_spinner_popup_animation,
-      this.powerSpinnerView.spinnerPopupAnimation.value
-    )) {
-      SpinnerAnimation.DROPDOWN.value -> this.powerSpinnerView.spinnerPopupAnimation =
-        SpinnerAnimation.DROPDOWN
-      SpinnerAnimation.FADE.value -> this.powerSpinnerView.spinnerPopupAnimation =
-        SpinnerAnimation.FADE
-      SpinnerAnimation.BOUNCE.value -> this.powerSpinnerView.spinnerPopupAnimation =
-        SpinnerAnimation.BOUNCE
+    when (
+      a.getInteger(
+        R.styleable.PowerSpinnerView_spinner_popup_animation,
+        this.powerSpinnerView.spinnerPopupAnimation.value
+      )
+    ) {
+      SpinnerAnimation.DROPDOWN.value ->
+        this.powerSpinnerView.spinnerPopupAnimation =
+          SpinnerAnimation.DROPDOWN
+      SpinnerAnimation.FADE.value ->
+        this.powerSpinnerView.spinnerPopupAnimation =
+          SpinnerAnimation.FADE
+      SpinnerAnimation.BOUNCE.value ->
+        this.powerSpinnerView.spinnerPopupAnimation =
+          SpinnerAnimation.BOUNCE
     }
     this.powerSpinnerView.spinnerPopupAnimationStyle =
       a.getResourceId(
@@ -176,15 +184,18 @@ class PowerSpinnerPreference : Preference {
     holder?.let {
       val preference = it.findViewById(R.id.powerSpinner_preference) as ViewGroup
       preference.addView(
-        this.powerSpinnerView, FrameLayout.LayoutParams.MATCH_PARENT,
+        this.powerSpinnerView,
+        FrameLayout.LayoutParams.MATCH_PARENT,
         FrameLayout.LayoutParams.WRAP_CONTENT
       )
       val titleTextView = it.findViewById(R.id.preference_title) as TextView
       titleTextView.text = title
       val titleParams = titleTextView.layoutParams as ViewGroup.MarginLayoutParams
       this.powerSpinnerView.setPadding(
-        titleParams.marginStart, context.dp2Px(10),
-        titleParams.marginEnd, context.dp2Px(10)
+        titleParams.marginStart,
+        context.dp2Px(10),
+        titleParams.marginEnd,
+        context.dp2Px(10)
       )
     }
   }

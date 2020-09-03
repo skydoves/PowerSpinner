@@ -58,8 +58,12 @@ class IconSpinnerAdapter(
   }
 
   override fun notifyItemSelected(index: Int) {
-    this.spinnerView.setCompoundDrawablesWithIntrinsicBounds(spinnerItems[index].icon, null,
-      spinnerView.arrowDrawable, null)
+    this.spinnerView.setCompoundDrawablesWithIntrinsicBounds(
+      spinnerItems[index].icon,
+      null,
+      spinnerView.arrowDrawable,
+      null
+    )
     this.spinnerView.notifyItemSelected(index, spinnerItems[index].text)
     this.onSpinnerItemSelectedListener?.onItemSelected(index, spinnerItems[index])
   }
@@ -83,7 +87,8 @@ class IconSpinnerAdapter(
         spinnerView.paddingLeft,
         spinnerView.paddingTop,
         spinnerView.paddingRight,
-        spinnerView.paddingBottom)
+        spinnerView.paddingBottom
+      )
     }
   }
 }

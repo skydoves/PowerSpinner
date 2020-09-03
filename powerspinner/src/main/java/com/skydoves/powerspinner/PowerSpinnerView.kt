@@ -204,7 +204,8 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
     if (adapter is RecyclerView.Adapter<*>) {
       this.binding.recyclerView.adapter = adapter as RecyclerView.Adapter<*>
     }
-    this.spinnerWindow = PopupWindow(this.binding.body,
+    this.spinnerWindow = PopupWindow(
+      this.binding.body,
       WindowManager.LayoutParams.MATCH_PARENT,
       WindowManager.LayoutParams.WRAP_CONTENT
     )
@@ -255,8 +256,12 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
     this.arrowResource =
       a.getResourceId(R.styleable.PowerSpinnerView_spinner_arrow_drawable, NO_INT_VALUE)
     this.showArrow = a.getBoolean(R.styleable.PowerSpinnerView_spinner_arrow_show, this.showArrow)
-    when (a.getInteger(R.styleable.PowerSpinnerView_spinner_arrow_gravity,
-      this.arrowGravity.value)) {
+    when (
+      a.getInteger(
+        R.styleable.PowerSpinnerView_spinner_arrow_gravity,
+        this.arrowGravity.value
+      )
+    ) {
       SpinnerGravity.START.value -> this.arrowGravity = SpinnerGravity.START
       SpinnerGravity.TOP.value -> this.arrowGravity = SpinnerGravity.TOP
       SpinnerGravity.END.value -> this.arrowGravity = SpinnerGravity.END
@@ -269,8 +274,10 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
     this.arrowAnimate =
       a.getBoolean(R.styleable.PowerSpinnerView_spinner_arrow_animate, this.arrowAnimate)
     this.arrowAnimationDuration =
-      a.getInteger(R.styleable.PowerSpinnerView_spinner_arrow_animate_duration,
-        this.arrowAnimationDuration.toInt()).toLong()
+      a.getInteger(
+        R.styleable.PowerSpinnerView_spinner_arrow_animate_duration,
+        this.arrowAnimationDuration.toInt()
+      ).toLong()
     this.showDivider =
       a.getBoolean(R.styleable.PowerSpinnerView_spinner_divider_show, this.showDivider)
     this.dividerSize =
@@ -278,33 +285,49 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
     this.dividerColor =
       a.getColor(R.styleable.PowerSpinnerView_spinner_divider_color, this.dividerColor)
     this.spinnerPopupBackgroundColor =
-      a.getColor(R.styleable.PowerSpinnerView_spinner_popup_background,
-        this.spinnerPopupBackgroundColor)
-    when (a.getInteger(R.styleable.PowerSpinnerView_spinner_popup_animation,
-      this.spinnerPopupAnimation.value)) {
+      a.getColor(
+        R.styleable.PowerSpinnerView_spinner_popup_background,
+        this.spinnerPopupBackgroundColor
+      )
+    when (
+      a.getInteger(
+        R.styleable.PowerSpinnerView_spinner_popup_animation,
+        this.spinnerPopupAnimation.value
+      )
+    ) {
       SpinnerAnimation.DROPDOWN.value -> this.spinnerPopupAnimation = SpinnerAnimation.DROPDOWN
       SpinnerAnimation.FADE.value -> this.spinnerPopupAnimation = SpinnerAnimation.FADE
       SpinnerAnimation.BOUNCE.value -> this.spinnerPopupAnimation = SpinnerAnimation.BOUNCE
     }
     this.spinnerPopupAnimationStyle =
-      a.getResourceId(R.styleable.PowerSpinnerView_spinner_popup_animation_style,
-        this.spinnerPopupAnimationStyle)
+      a.getResourceId(
+        R.styleable.PowerSpinnerView_spinner_popup_animation_style,
+        this.spinnerPopupAnimationStyle
+      )
     this.spinnerPopupWidth =
-      a.getDimensionPixelSize(R.styleable.PowerSpinnerView_spinner_popup_width,
-        this.spinnerPopupWidth)
+      a.getDimensionPixelSize(
+        R.styleable.PowerSpinnerView_spinner_popup_width,
+        this.spinnerPopupWidth
+      )
     this.spinnerPopupHeight =
-      a.getDimensionPixelSize(R.styleable.PowerSpinnerView_spinner_popup_height,
-        this.spinnerPopupHeight)
+      a.getDimensionPixelSize(
+        R.styleable.PowerSpinnerView_spinner_popup_height,
+        this.spinnerPopupHeight
+      )
     this.spinnerPopupElevation =
-      a.getDimensionPixelSize(R.styleable.PowerSpinnerView_spinner_popup_elevation,
-        this.spinnerPopupElevation)
+      a.getDimensionPixelSize(
+        R.styleable.PowerSpinnerView_spinner_popup_elevation,
+        this.spinnerPopupElevation
+      )
     val itemArray = a.getResourceId(R.styleable.PowerSpinnerView_spinner_item_array, NO_INT_VALUE)
     if (itemArray != NO_INT_VALUE) {
       setItems(itemArray)
     }
     this.dismissWhenNotifiedItemSelected =
-      a.getBoolean(R.styleable.PowerSpinnerView_spinner_dismiss_notified_select,
-        this.dismissWhenNotifiedItemSelected)
+      a.getBoolean(
+        R.styleable.PowerSpinnerView_spinner_dismiss_notified_select,
+        this.dismissWhenNotifiedItemSelected
+      )
     this.debounceDuration =
       a.getInteger(R.styleable.PowerSpinnerView_spinner_debounce_duration, debounceDuration.toInt())
         .toLong()
@@ -324,16 +347,18 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
       this.spinnerWindow.apply {
         width = this@PowerSpinnerView.width
         isOutsideTouchable = true
-        setTouchInterceptor(object : OnTouchListener {
-          @SuppressLint("ClickableViewAccessibility")
-          override fun onTouch(view: View, event: MotionEvent): Boolean {
-            if (event.action == MotionEvent.ACTION_OUTSIDE) {
-              spinnerOutsideTouchListener?.onSpinnerOutsideTouch(view, event)
-              return true
+        setTouchInterceptor(
+          object : OnTouchListener {
+            @SuppressLint("ClickableViewAccessibility")
+            override fun onTouch(view: View, event: MotionEvent): Boolean {
+              if (event.action == MotionEvent.ACTION_OUTSIDE) {
+                spinnerOutsideTouchListener?.onSpinnerOutsideTouch(view, event)
+                return true
+              }
+              return false
             }
-            return false
           }
-        })
+        )
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
           elevation = spinnerPopupElevation.toFloat()
         }
@@ -345,7 +370,11 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
           setBackgroundColor(this@PowerSpinnerView.spinnerPopupBackgroundColor)
         }
         setPadding(
-          this.paddingLeft, this.paddingTop, this.paddingRight, this.paddingBottom)
+          this.paddingLeft,
+          this.paddingTop,
+          this.paddingRight,
+          this.paddingBottom
+        )
         if (this@PowerSpinnerView.showDivider) {
           val decoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
           val shape = GradientDrawable().apply {
@@ -396,7 +425,8 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
     this.preferenceName.whatIfNotNullOrEmpty {
       if (PowerSpinnerPersistence.getInstance(context).getSelectedIndex(it) != -1) {
         this.adapter.notifyItemSelected(
-          PowerSpinnerPersistence.getInstance(context).getSelectedIndex(it))
+          PowerSpinnerPersistence.getInstance(context).getSelectedIndex(it)
+        )
       }
     }
   }
@@ -431,7 +461,8 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   fun setItems(@ArrayRes resource: Int) {
     if (this.adapter is DefaultSpinnerAdapter) {
       (this.adapter as DefaultSpinnerAdapter).setItems(
-        context.resources.getStringArray(resource).toList())
+        context.resources.getStringArray(resource).toList()
+      )
     }
   }
 

@@ -56,25 +56,41 @@ class MainActivity : AppCompatActivity() {
     }
 
     val adapter = IconSpinnerAdapter(spinnerView2)
-    spinnerView2.setOnSpinnerItemSelectedListener(object : OnSpinnerItemSelectedListener<IconSpinnerItem> {
-      override fun onItemSelected(position: Int, item: IconSpinnerItem) {
-        Toast.makeText(applicationContext, item.text, Toast.LENGTH_SHORT).show()
+    spinnerView2.setOnSpinnerItemSelectedListener(
+      object : OnSpinnerItemSelectedListener<IconSpinnerItem> {
+        override fun onItemSelected(position: Int, item: IconSpinnerItem) {
+          Toast.makeText(applicationContext, item.text, Toast.LENGTH_SHORT).show()
+        }
       }
-    })
+    )
     adapter.setItems(
       arrayListOf(
-        IconSpinnerItem(ContextCompat.getDrawable(this, R.drawable.ic_dashboard_white_24dp),
-          "Item0"),
-        IconSpinnerItem(ContextCompat.getDrawable(this, R.drawable.ic_dashboard_white_24dp),
-          "Item1"),
-        IconSpinnerItem(ContextCompat.getDrawable(this, R.drawable.ic_dashboard_white_24dp),
-          "Item2"),
-        IconSpinnerItem(ContextCompat.getDrawable(this, R.drawable.ic_dashboard_white_24dp),
-          "Item3"),
-        IconSpinnerItem(ContextCompat.getDrawable(this, R.drawable.ic_dashboard_white_24dp),
-          "Item4"),
-        IconSpinnerItem(ContextCompat.getDrawable(this, R.drawable.ic_dashboard_white_24dp),
-          "Item5")))
+        IconSpinnerItem(
+          ContextCompat.getDrawable(this, R.drawable.ic_dashboard_white_24dp),
+          "Item0"
+        ),
+        IconSpinnerItem(
+          ContextCompat.getDrawable(this, R.drawable.ic_dashboard_white_24dp),
+          "Item1"
+        ),
+        IconSpinnerItem(
+          ContextCompat.getDrawable(this, R.drawable.ic_dashboard_white_24dp),
+          "Item2"
+        ),
+        IconSpinnerItem(
+          ContextCompat.getDrawable(this, R.drawable.ic_dashboard_white_24dp),
+          "Item3"
+        ),
+        IconSpinnerItem(
+          ContextCompat.getDrawable(this, R.drawable.ic_dashboard_white_24dp),
+          "Item4"
+        ),
+        IconSpinnerItem(
+          ContextCompat.getDrawable(this, R.drawable.ic_dashboard_white_24dp),
+          "Item5"
+        )
+      )
+    )
     spinnerView2.apply {
       lifecycleOwner = this@MainActivity
       getSpinnerRecyclerView().adapter = adapter
