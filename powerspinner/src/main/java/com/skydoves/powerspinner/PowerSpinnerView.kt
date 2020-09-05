@@ -109,7 +109,7 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
 
   /** A padding of the arrow. */
   @Px
-  var arrowPadding: Int = dp2Px(2)
+  var arrowPadding: Int = 0
     set(value) {
       field = value
       updateSpinnerArrow()
