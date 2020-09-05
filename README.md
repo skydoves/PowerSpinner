@@ -36,7 +36,7 @@ allprojects {
 And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:powerspinner:1.1.0"
+    implementation "com.github.skydoves:powerspinner:1.1.1"
 }
 ```
 If your project using Java, add a below dependency code. <br><br>
