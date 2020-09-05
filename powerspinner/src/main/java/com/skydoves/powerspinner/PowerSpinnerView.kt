@@ -491,20 +491,13 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   @Suppress("UNCHECKED_CAST")
   fun <T> setOnSpinnerItemSelectedListener(block: (position: Int, item: T) -> Unit) {
     val adapter = this.adapter as PowerSpinnerInterface<T>
-    adapter.onSpinnerItemSelectedListener = object : OnSpinnerItemSelectedListener<T> {
-      override fun onItemSelected(position: Int, item: T) {
-        block(position, item)
-      }
-    }
+    adapter.onSpinnerItemSelectedListener = OnSpinnerItemSelectedListener { position, item -> block(position, item) }
   }
 
   /** sets a [OnSpinnerOutsideTouchListener] to the popup using lambda. */
   fun setOnSpinnerOutsideTouchListener(unit: (View, MotionEvent) -> Unit) {
-    this.spinnerOutsideTouchListener = object : OnSpinnerOutsideTouchListener {
-      override fun onSpinnerOutsideTouch(view: View, event: MotionEvent) {
-        unit(view, event)
-      }
-    }
+    this.spinnerOutsideTouchListener =
+      OnSpinnerOutsideTouchListener { view, event -> unit(view, event) }
   }
 
   /** shows the spinner popup menu to the center. */
@@ -651,11 +644,7 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
     fun <T> setOnSpinnerItemSelectedListener(block: (position: Int, item: T) -> Unit) {
       val adapter: PowerSpinnerInterface<T> =
         this.powerSpinnerView.adapter as PowerSpinnerInterface<T>
-      adapter.onSpinnerItemSelectedListener = object : OnSpinnerItemSelectedListener<T> {
-        override fun onItemSelected(position: Int, item: T) {
-          block(position, item)
-        }
-      }
+      adapter.onSpinnerItemSelectedListener = OnSpinnerItemSelectedListener { position, item -> block(position, item) }
     }
 
     fun setOnSpinnerOutsideTouchListener(value: OnSpinnerOutsideTouchListener) = apply {
@@ -663,11 +652,8 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
     }
 
     fun setOnSpinnerOutsideTouchListener(unit: (View, MotionEvent) -> Unit) {
-      this.powerSpinnerView.spinnerOutsideTouchListener = object : OnSpinnerOutsideTouchListener {
-        override fun onSpinnerOutsideTouch(view: View, event: MotionEvent) {
-          unit(view, event)
-        }
-      }
+      this.powerSpinnerView.spinnerOutsideTouchListener =
+        OnSpinnerOutsideTouchListener { view, event -> unit(view, event) }
     }
 
     fun setSpinnerPopupAnimation(value: SpinnerAnimation) = apply {
