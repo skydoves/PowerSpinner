@@ -49,7 +49,6 @@ import com.skydoves.powerspinner.databinding.LayoutBodyBinding
 
 /** A lightweight dropdown spinner, fully customizable with arrow and animations. */
 @Suppress("MemberVisibilityCanBePrivate", "unused")
-@SuppressLint("InflateParams")
 class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
 
   /** Main body view for composing the Spinner popup. */
@@ -395,6 +394,15 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
     }
   }
 
+  private fun updateSpinnerWindowSize() {
+    binding.recyclerView.post {
+      this.spinnerWindow.update(
+        binding.recyclerView.width,
+        binding.recyclerView.height
+      )
+    }
+  }
+
   private fun updateSpinnerArrow() {
     if (this.arrowResource != NO_INT_VALUE) {
       this.arrowDrawable = context.contextDrawable(this.arrowResource)?.mutate()
@@ -450,8 +458,8 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   /** sets an item list for setting items of the adapter. */
   @Suppress("UNCHECKED_CAST")
   fun <T> setItems(itemList: List<T>) {
-    val adapter = this.adapter as PowerSpinnerInterface<T>
-    adapter.setItems(itemList)
+    (adapter as PowerSpinnerInterface<T>).setItems(itemList)
+    updateSpinnerWindowSize()
   }
 
   /**
@@ -459,39 +467,40 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
    * This function only works for the [DefaultSpinnerAdapter].
    */
   fun setItems(@ArrayRes resource: Int) {
-    if (this.adapter is DefaultSpinnerAdapter) {
-      (this.adapter as DefaultSpinnerAdapter).setItems(
-        context.resources.getStringArray(resource).toList()
-      )
+    if (adapter is DefaultSpinnerAdapter) {
+      setItems(context.resources.getStringArray(resource).toList())
     }
+    updateSpinnerWindowSize()
   }
 
   /** sets an adapter of the [PowerSpinnerView]. */
   fun <T> setSpinnerAdapter(powerSpinnerInterface: PowerSpinnerInterface<T>) {
-    this.adapter = powerSpinnerInterface
-    if (this.adapter is RecyclerView.Adapter<*>) {
-      binding.recyclerView.adapter = this.adapter as RecyclerView.Adapter<*>
+    adapter = powerSpinnerInterface
+    if (adapter is RecyclerView.Adapter<*>) {
+      binding.recyclerView.adapter = adapter as RecyclerView.Adapter<*>
     }
+    updateSpinnerWindowSize()
   }
 
   /** gets an adapter of the [PowerSpinnerView]. */
   @Suppress("UNCHECKED_CAST")
   fun <T> getSpinnerAdapter(): PowerSpinnerInterface<T> {
-    return this.adapter as PowerSpinnerInterface<T>
+    return adapter as PowerSpinnerInterface<T>
   }
 
   /** sets a [OnSpinnerItemSelectedListener] to the default adapter. */
   @Suppress("UNCHECKED_CAST")
   fun <T> setOnSpinnerItemSelectedListener(onSpinnerItemSelectedListener: OnSpinnerItemSelectedListener<T>) {
-    val adapter = this.adapter as PowerSpinnerInterface<T>
+    val adapter = adapter as PowerSpinnerInterface<T>
     adapter.onSpinnerItemSelectedListener = onSpinnerItemSelectedListener
   }
 
   /** sets a [OnSpinnerItemSelectedListener] to the popup using lambda. */
   @Suppress("UNCHECKED_CAST")
   fun <T> setOnSpinnerItemSelectedListener(block: (position: Int, item: T) -> Unit) {
-    val adapter = this.adapter as PowerSpinnerInterface<T>
-    adapter.onSpinnerItemSelectedListener = OnSpinnerItemSelectedListener { position, item -> block(position, item) }
+    val adapter = adapter as PowerSpinnerInterface<T>
+    adapter.onSpinnerItemSelectedListener =
+      OnSpinnerItemSelectedListener { position, item -> block(position, item) }
   }
 
   /** sets a [OnSpinnerOutsideTouchListener] to the popup using lambda. */
@@ -504,7 +513,7 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   @MainThread
   fun show() {
     debounceShowOrDismiss {
-      if (!this.isShowing) {
+      if (!isShowing) {
         this.isShowing = true
         animateArrow(true)
         applyWindowAnimation()
@@ -644,7 +653,8 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
     fun <T> setOnSpinnerItemSelectedListener(block: (position: Int, item: T) -> Unit) {
       val adapter: PowerSpinnerInterface<T> =
         this.powerSpinnerView.adapter as PowerSpinnerInterface<T>
-      adapter.onSpinnerItemSelectedListener = OnSpinnerItemSelectedListener { position, item -> block(position, item) }
+      adapter.onSpinnerItemSelectedListener =
+        OnSpinnerItemSelectedListener { position, item -> block(position, item) }
     }
 
     fun setOnSpinnerOutsideTouchListener(value: OnSpinnerOutsideTouchListener) = apply {
