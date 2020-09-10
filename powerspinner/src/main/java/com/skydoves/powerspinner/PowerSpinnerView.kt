@@ -85,82 +85,114 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   /** A backing field of the previously debounce local time. */
   private var previousDebounceTime: Long = 0
 
+  @DrawableRes private var _arrowResource: Int = NO_INT_VALUE
+
   /** A drawable resource of the arrow. */
-  @DrawableRes
-  var arrowResource: Int = NO_INT_VALUE
-    set(value) {
-      field = value
+  var arrowResource: Int
+    @DrawableRes get() = _arrowResource
+    set(@DrawableRes value) {
+      _arrowResource = value
       updateSpinnerArrow()
     }
+
+  private var _showArrow: Boolean = true
 
   /** The arrow will be shown or not on the popup. */
-  var showArrow: Boolean = true
+  var showArrow: Boolean
+    get() = _showArrow
     set(value) {
-      field = value
+      _showArrow = value
       updateSpinnerArrow()
     }
+
+  private var _arrowGravity: SpinnerGravity = SpinnerGravity.END
 
   /** A gravity of the arrow. */
-  var arrowGravity: SpinnerGravity = SpinnerGravity.END
+  var arrowGravity: SpinnerGravity
+    get() = _arrowGravity
     set(value) {
-      field = value
+      _arrowGravity = value
       updateSpinnerArrow()
     }
+
+  @Px private var _arrowPadding: Int = 0
 
   /** A padding of the arrow. */
-  @Px
-  var arrowPadding: Int = 0
-    set(value) {
-      field = value
+  var arrowPadding: Int
+    @Px get() = _arrowPadding
+    set(@Px value) {
+      _arrowPadding = value
       updateSpinnerArrow()
     }
+
+  @ColorInt private var _arrowTint: Int = Color.WHITE
 
   /** A tint color of the arrow. */
-  @ColorInt
-  var arrowTint: Int = Color.WHITE
-    set(value) {
-      field = value
+  var arrowTint: Int
+    @ColorInt get() = _arrowTint
+    set(@ColorInt value) {
+      _arrowTint = value
       updateSpinnerArrow()
     }
 
+  private var _showDivider: Boolean = false
+
   /** A divider between items will be shown or not. */
-  var showDivider: Boolean = false
+  var showDivider: Boolean
+    get() = _showDivider
     set(value) {
-      field = value
+      _showDivider = value
       updateSpinnerWindow()
     }
+
+  @Px private var _dividerSize: Int = dp2Px(0.5f)
 
   /** A width size of the divider. */
-  @Px
-  var dividerSize: Int = dp2Px(0.5f)
-    set(value) {
-      field = value
+  var dividerSize: Int
+    @Px get() = _dividerSize
+    set(@Px value) {
+      _dividerSize = value
       updateSpinnerWindow()
     }
+
+  @ColorInt private var _dividerColor: Int = Color.WHITE
 
   /** A color of the divider. */
-  @ColorInt
-  var dividerColor: Int = Color.WHITE
-    set(value) {
-      field = value
+  var dividerColor: Int
+    @ColorInt get() = _dividerColor
+    set(@ColorInt value) {
+      _dividerColor = value
       updateSpinnerWindow()
     }
+
+  @ColorInt private var _spinnerPopupBackgroundColor: Int = outRangeColor
 
   /** A background color of the spinner popup. */
-  @ColorInt
-  var spinnerPopupBackgroundColor: Int = outRangeColor
-    set(value) {
-      field = value
+  var spinnerPopupBackgroundColor: Int
+    @ColorInt get() = _spinnerPopupBackgroundColor
+    set(@ColorInt value) {
+      _spinnerPopupBackgroundColor = value
       updateSpinnerWindow()
     }
 
+  @Px private var _spinnerPopupElevation: Int = dp2Px(4)
+
   /** A elevation of the spinner popup. */
-  @Px
-  var spinnerPopupElevation: Int = dp2Px(4)
-    set(value) {
-      field = value
+  var spinnerPopupElevation: Int
+    @Px get() = _spinnerPopupElevation
+    set(@Px value) {
+      _spinnerPopupElevation = value
       updateSpinnerWindow()
     }
+
+  /** A style resource for the popup animation when show and dismiss. */
+  @StyleRes var spinnerPopupAnimationStyle: Int = NO_INT_VALUE
+
+  /** A width size of the spinner popup. */
+  var spinnerPopupWidth: Int = NO_INT_VALUE
+
+  /** A height size of the spinner popup. */
+  var spinnerPopupHeight: Int = NO_INT_VALUE
 
   /** The spinner popup will be dismissed when got notified an item is selected. */
   var dismissWhenNotifiedItemSelected: Boolean = true
@@ -170,16 +202,6 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
 
   /** A collection of the spinner popup animation when show and dismiss. */
   var spinnerPopupAnimation: SpinnerAnimation = SpinnerAnimation.NORMAL
-
-  /** A style resource for the popup animation when show and dismiss. */
-  @StyleRes
-  var spinnerPopupAnimationStyle: Int = NO_INT_VALUE
-
-  /** A width size of the spinner popup. */
-  var spinnerPopupWidth: Int = NO_INT_VALUE
-
-  /** A height size of the spinner popup. */
-  var spinnerPopupHeight: Int = NO_INT_VALUE
 
   /** A preferences name of the spinner. */
   var preferenceName: String? = null
@@ -252,86 +274,154 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   }
 
   private fun setTypeArray(a: TypedArray) {
-    this.arrowResource =
-      a.getResourceId(R.styleable.PowerSpinnerView_spinner_arrow_drawable, NO_INT_VALUE)
-    this.showArrow = a.getBoolean(R.styleable.PowerSpinnerView_spinner_arrow_show, this.showArrow)
-    when (
-      a.getInteger(
-        R.styleable.PowerSpinnerView_spinner_arrow_gravity,
-        this.arrowGravity.value
-      )
-    ) {
-      SpinnerGravity.START.value -> this.arrowGravity = SpinnerGravity.START
-      SpinnerGravity.TOP.value -> this.arrowGravity = SpinnerGravity.TOP
-      SpinnerGravity.END.value -> this.arrowGravity = SpinnerGravity.END
-      SpinnerGravity.BOTTOM.value -> this.arrowGravity = SpinnerGravity.BOTTOM
+    a.apply {
+      if (hasValue(R.styleable.PowerSpinnerView_spinner_arrow_drawable)) {
+        _arrowResource =
+          getResourceId(R.styleable.PowerSpinnerView_spinner_arrow_drawable, _arrowResource)
+      }
+
+      if (hasValue(R.styleable.PowerSpinnerView_spinner_arrow_show)) {
+        _showArrow = a.getBoolean(R.styleable.PowerSpinnerView_spinner_arrow_show, _showArrow)
+      }
+
+      if (hasValue(R.styleable.PowerSpinnerView_spinner_arrow_gravity)) {
+        _arrowGravity = when (
+          getInteger(
+            R.styleable.PowerSpinnerView_spinner_arrow_gravity,
+            _arrowGravity.value
+          )
+        ) {
+          SpinnerGravity.START.value -> SpinnerGravity.START
+          SpinnerGravity.TOP.value -> SpinnerGravity.TOP
+          SpinnerGravity.END.value -> SpinnerGravity.END
+          SpinnerGravity.BOTTOM.value -> SpinnerGravity.BOTTOM
+          else -> throw IllegalArgumentException("unknown argument: spinner_arrow_gravity")
+        }
+      }
+
+      if (hasValue(R.styleable.PowerSpinnerView_spinner_arrow_padding)) {
+        _arrowPadding =
+          getDimensionPixelSize(R.styleable.PowerSpinnerView_spinner_arrow_padding, _arrowPadding)
+      }
+
+      if (hasValue(R.styleable.PowerSpinnerView_spinner_arrow_tint)) {
+        _arrowTint =
+          getColor(R.styleable.PowerSpinnerView_spinner_arrow_tint, _arrowTint)
+      }
+
+      if (hasValue(R.styleable.PowerSpinnerView_spinner_arrow_animate)) {
+        arrowAnimate =
+          getBoolean(R.styleable.PowerSpinnerView_spinner_arrow_animate, arrowAnimate)
+      }
+
+      if (hasValue(R.styleable.PowerSpinnerView_spinner_arrow_animate_duration)) {
+        arrowAnimationDuration =
+          getInteger(
+            R.styleable.PowerSpinnerView_spinner_arrow_animate_duration,
+            arrowAnimationDuration.toInt()
+          ).toLong()
+      }
+
+      if (hasValue(R.styleable.PowerSpinnerView_spinner_divider_show)) {
+        _showDivider =
+          getBoolean(R.styleable.PowerSpinnerView_spinner_divider_show, _showDivider)
+      }
+
+      if (hasValue(R.styleable.PowerSpinnerView_spinner_divider_size)) {
+        _dividerSize =
+          getDimensionPixelSize(R.styleable.PowerSpinnerView_spinner_divider_size, _dividerSize)
+      }
+
+      if (hasValue(R.styleable.PowerSpinnerView_spinner_divider_color)) {
+        _dividerColor =
+          getColor(R.styleable.PowerSpinnerView_spinner_divider_color, _dividerColor)
+      }
+
+      if (hasValue(R.styleable.PowerSpinnerView_spinner_popup_background)) {
+        _spinnerPopupBackgroundColor =
+          getColor(
+            R.styleable.PowerSpinnerView_spinner_popup_background,
+            _spinnerPopupBackgroundColor
+          )
+      }
+
+      if (hasValue(R.styleable.PowerSpinnerView_spinner_popup_animation)) {
+        spinnerPopupAnimation = when (
+          getInteger(
+            R.styleable.PowerSpinnerView_spinner_popup_animation,
+            spinnerPopupAnimation.value
+          )
+        ) {
+          SpinnerAnimation.DROPDOWN.value -> SpinnerAnimation.DROPDOWN
+          SpinnerAnimation.FADE.value -> SpinnerAnimation.FADE
+          SpinnerAnimation.BOUNCE.value -> SpinnerAnimation.BOUNCE
+          SpinnerAnimation.NORMAL.value -> SpinnerAnimation.NORMAL
+          else -> throw IllegalArgumentException("unknown argument: spinner_popup_animation")
+        }
+      }
+
+      if (hasValue(R.styleable.PowerSpinnerView_spinner_popup_animation_style)) {
+        spinnerPopupAnimationStyle =
+          getResourceId(
+            R.styleable.PowerSpinnerView_spinner_popup_animation_style,
+            spinnerPopupAnimationStyle
+          )
+      }
+
+      if (hasValue(R.styleable.PowerSpinnerView_spinner_popup_width)) {
+        spinnerPopupWidth =
+          getDimensionPixelSize(
+            R.styleable.PowerSpinnerView_spinner_popup_width,
+            spinnerPopupWidth
+          )
+      }
+
+      if (hasValue(R.styleable.PowerSpinnerView_spinner_popup_height)) {
+        spinnerPopupHeight =
+          getDimensionPixelSize(
+            R.styleable.PowerSpinnerView_spinner_popup_height,
+            spinnerPopupHeight
+          )
+      }
+
+      if (hasValue(R.styleable.PowerSpinnerView_spinner_popup_elevation)) {
+        _spinnerPopupElevation =
+          getDimensionPixelSize(
+            R.styleable.PowerSpinnerView_spinner_popup_elevation,
+            _spinnerPopupElevation
+          )
+      }
+
+      if (hasValue(R.styleable.PowerSpinnerView_spinner_item_array)) {
+        val itemArray =
+          getResourceId(R.styleable.PowerSpinnerView_spinner_item_array, NO_INT_VALUE)
+        if (itemArray != NO_INT_VALUE) {
+          setItems(itemArray)
+        }
+      }
+
+      if (hasValue(R.styleable.PowerSpinnerView_spinner_dismiss_notified_select)) {
+        dismissWhenNotifiedItemSelected =
+          getBoolean(
+            R.styleable.PowerSpinnerView_spinner_dismiss_notified_select,
+            dismissWhenNotifiedItemSelected
+          )
+      }
+
+      if (hasValue(R.styleable.PowerSpinnerView_spinner_debounce_duration)) {
+        debounceDuration =
+          getInteger(
+            R.styleable.PowerSpinnerView_spinner_debounce_duration,
+            debounceDuration.toInt()
+          )
+            .toLong()
+      }
+
+      if (hasValue(R.styleable.PowerSpinnerView_spinner_preference_name)) {
+        preferenceName =
+          getString(R.styleable.PowerSpinnerView_spinner_preference_name)
+      }
     }
-    this.arrowPadding =
-      a.getDimensionPixelSize(R.styleable.PowerSpinnerView_spinner_arrow_padding, this.arrowPadding)
-    this.arrowTint =
-      a.getColor(R.styleable.PowerSpinnerView_spinner_arrow_tint, this.arrowTint)
-    this.arrowAnimate =
-      a.getBoolean(R.styleable.PowerSpinnerView_spinner_arrow_animate, this.arrowAnimate)
-    this.arrowAnimationDuration =
-      a.getInteger(
-        R.styleable.PowerSpinnerView_spinner_arrow_animate_duration,
-        this.arrowAnimationDuration.toInt()
-      ).toLong()
-    this.showDivider =
-      a.getBoolean(R.styleable.PowerSpinnerView_spinner_divider_show, this.showDivider)
-    this.dividerSize =
-      a.getDimensionPixelSize(R.styleable.PowerSpinnerView_spinner_divider_size, this.dividerSize)
-    this.dividerColor =
-      a.getColor(R.styleable.PowerSpinnerView_spinner_divider_color, this.dividerColor)
-    this.spinnerPopupBackgroundColor =
-      a.getColor(
-        R.styleable.PowerSpinnerView_spinner_popup_background,
-        this.spinnerPopupBackgroundColor
-      )
-    when (
-      a.getInteger(
-        R.styleable.PowerSpinnerView_spinner_popup_animation,
-        this.spinnerPopupAnimation.value
-      )
-    ) {
-      SpinnerAnimation.DROPDOWN.value -> this.spinnerPopupAnimation = SpinnerAnimation.DROPDOWN
-      SpinnerAnimation.FADE.value -> this.spinnerPopupAnimation = SpinnerAnimation.FADE
-      SpinnerAnimation.BOUNCE.value -> this.spinnerPopupAnimation = SpinnerAnimation.BOUNCE
-    }
-    this.spinnerPopupAnimationStyle =
-      a.getResourceId(
-        R.styleable.PowerSpinnerView_spinner_popup_animation_style,
-        this.spinnerPopupAnimationStyle
-      )
-    this.spinnerPopupWidth =
-      a.getDimensionPixelSize(
-        R.styleable.PowerSpinnerView_spinner_popup_width,
-        this.spinnerPopupWidth
-      )
-    this.spinnerPopupHeight =
-      a.getDimensionPixelSize(
-        R.styleable.PowerSpinnerView_spinner_popup_height,
-        this.spinnerPopupHeight
-      )
-    this.spinnerPopupElevation =
-      a.getDimensionPixelSize(
-        R.styleable.PowerSpinnerView_spinner_popup_elevation,
-        this.spinnerPopupElevation
-      )
-    val itemArray = a.getResourceId(R.styleable.PowerSpinnerView_spinner_item_array, NO_INT_VALUE)
-    if (itemArray != NO_INT_VALUE) {
-      setItems(itemArray)
-    }
-    this.dismissWhenNotifiedItemSelected =
-      a.getBoolean(
-        R.styleable.PowerSpinnerView_spinner_dismiss_notified_select,
-        this.dismissWhenNotifiedItemSelected
-      )
-    this.debounceDuration =
-      a.getInteger(R.styleable.PowerSpinnerView_spinner_debounce_duration, debounceDuration.toInt())
-        .toLong()
-    this.preferenceName =
-      a.getString(R.styleable.PowerSpinnerView_spinner_preference_name)
   }
 
   override fun onFinishInflate() {
