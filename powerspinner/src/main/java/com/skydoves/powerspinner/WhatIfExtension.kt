@@ -25,7 +25,7 @@ package com.skydoves.powerspinner
  */
 
 /** An expression for invoking [whatIf] when the [String] is not null and not empty. */
-inline fun String?.whatIfNotNullOrEmpty(
+internal inline fun String?.whatIfNotNullOrEmpty(
   whatIf: (String) -> Unit
 ) {
 
@@ -39,7 +39,7 @@ inline fun String?.whatIfNotNullOrEmpty(
  * An expression for invoking [whatIf] when the [String] is not null and not empty.
  * If the array is null or empty, [whatIfNot] will be invoked instead of the [whatIf].
  */
-inline fun String?.whatIfNotNullOrEmpty(
+internal inline fun String?.whatIfNotNullOrEmpty(
   whatIf: (String) -> Unit,
   whatIfNot: () -> Unit
 ) {

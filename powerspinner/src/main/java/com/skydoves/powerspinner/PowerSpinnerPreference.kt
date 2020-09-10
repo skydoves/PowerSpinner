@@ -205,6 +205,7 @@ class PowerSpinnerPreference @JvmOverloads constructor(
   }
 
   /** sets a [OnSpinnerItemSelectedListener] to the popup using lambda. */
+  @JvmSynthetic
   fun <T> setOnSpinnerItemSelectedListener(block: (position: Int, item: T) -> Unit) {
     this.powerSpinnerView.setOnSpinnerItemSelectedListener<T> { position, item ->
       block(position, item)

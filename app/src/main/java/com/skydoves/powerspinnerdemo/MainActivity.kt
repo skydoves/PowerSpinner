@@ -38,7 +38,6 @@ class MainActivity : AppCompatActivity() {
       lifecycleOwner = this@MainActivity
       setOnSpinnerItemSelectedListener<String> { _, text ->
         Toast.makeText(applicationContext, text, Toast.LENGTH_SHORT).show()
-        setItems(listOf("123"))
       }
     }
     spinnerView.selectItemByIndex(3)

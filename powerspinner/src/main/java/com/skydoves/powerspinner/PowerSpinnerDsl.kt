@@ -17,4 +17,4 @@
 package com.skydoves.powerspinner
 
 @DslMarker
-annotation class PowerSpinnerDsl
+internal annotation class PowerSpinnerDsl

@@ -643,14 +643,15 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
     }
 
     @Suppress("UNCHECKED_CAST")
-    fun <T> setOnSpinnerItemSelectedListener(onSpinnerItemSelectedListener: OnSpinnerItemSelectedListener<T>) {
+    fun <T> setOnSpinnerItemSelectedListener(onSpinnerItemSelectedListener: OnSpinnerItemSelectedListener<T>) = apply {
       val adapter: PowerSpinnerInterface<T> =
         this.powerSpinnerView.adapter as PowerSpinnerInterface<T>
       adapter.onSpinnerItemSelectedListener = onSpinnerItemSelectedListener
     }
 
     @Suppress("UNCHECKED_CAST")
-    fun <T> setOnSpinnerItemSelectedListener(block: (position: Int, item: T) -> Unit) {
+    @JvmSynthetic
+    fun <T> setOnSpinnerItemSelectedListener(block: (position: Int, item: T) -> Unit) = apply {
       val adapter: PowerSpinnerInterface<T> =
         this.powerSpinnerView.adapter as PowerSpinnerInterface<T>
       adapter.onSpinnerItemSelectedListener =
@@ -661,7 +662,8 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
       this.powerSpinnerView.spinnerOutsideTouchListener = value
     }
 
-    fun setOnSpinnerOutsideTouchListener(unit: (View, MotionEvent) -> Unit) {
+    @JvmSynthetic
+    fun setOnSpinnerOutsideTouchListener(unit: (View, MotionEvent) -> Unit) = apply {
       this.powerSpinnerView.spinnerOutsideTouchListener =
         OnSpinnerOutsideTouchListener { view, event -> unit(view, event) }
     }
