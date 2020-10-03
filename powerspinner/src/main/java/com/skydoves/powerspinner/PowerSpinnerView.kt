@@ -200,6 +200,9 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   /** Interface definition for a callback to be invoked when touched on outside of the spinner popup. */
   var spinnerOutsideTouchListener: OnSpinnerOutsideTouchListener? = null
 
+  /** Interface definition for a callback to be invoked when spinner popup is dismissed. */
+  var onSpinnerDismissListener: OnSpinnerDismissListener? = null
+
   /** A collection of the spinner popup animation when show and dismiss. */
   var spinnerPopupAnimation: SpinnerAnimation = SpinnerAnimation.NORMAL
 
@@ -436,6 +439,7 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
       this.spinnerWindow.apply {
         width = this@PowerSpinnerView.width
         isOutsideTouchable = true
+        setOnDismissListener { onSpinnerDismissListener?.onDismiss() }
         setTouchInterceptor(
           object : OnTouchListener {
             @SuppressLint("ClickableViewAccessibility")
@@ -596,9 +600,17 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
 
   /** sets a [OnSpinnerOutsideTouchListener] to the popup using lambda. */
   @JvmSynthetic
-  fun setOnSpinnerOutsideTouchListener(unit: (View, MotionEvent) -> Unit) {
+  fun setOnSpinnerOutsideTouchListener(block: (View, MotionEvent) -> Unit) {
     this.spinnerOutsideTouchListener =
-      OnSpinnerOutsideTouchListener { view, event -> unit(view, event) }
+      OnSpinnerOutsideTouchListener { view, event -> block(view, event) }
+  }
+
+  /** sets a [OnSpinnerDismissListener] to the popup using lambda. */
+  @JvmSynthetic
+  fun setOnSpinnerDismissListener(block: () -> Unit) {
+    this.onSpinnerDismissListener = OnSpinnerDismissListener {
+      block()
+    }
   }
 
   /** shows the spinner popup menu to the center. */
@@ -651,6 +663,15 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
     } else {
       dismiss()
     }
+  }
+
+  /**
+   * sets isFocusable of the spinner popup.
+   * The spinner popup will got a focus and [onSpinnerDismissListener] will be replaced.
+   */
+  fun setIsFocusable(isFocusable: Boolean) {
+    this.spinnerWindow.isFocusable = isFocusable
+    this.onSpinnerDismissListener = OnSpinnerDismissListener { dismiss() }
   }
 
   /** debounce for showing or dismissing spinner popup. */
@@ -758,6 +779,17 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
     fun setOnSpinnerOutsideTouchListener(unit: (View, MotionEvent) -> Unit) = apply {
       this.powerSpinnerView.spinnerOutsideTouchListener =
         OnSpinnerOutsideTouchListener { view, event -> unit(view, event) }
+    }
+
+    fun setOnSpinnerDismissListener(value: OnSpinnerDismissListener) = apply {
+      this.powerSpinnerView.onSpinnerDismissListener = value
+    }
+
+    @JvmSynthetic
+    fun setOnSpinnerDismissListener(block: () -> Unit) = apply {
+      this.powerSpinnerView.onSpinnerDismissListener = OnSpinnerDismissListener {
+        block()
+      }
     }
 
     fun setSpinnerPopupAnimation(value: SpinnerAnimation) = apply {

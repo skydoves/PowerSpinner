@@ -40,6 +40,7 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(applicationContext, text, Toast.LENGTH_SHORT).show()
       }
     }
+    spinnerView.setIsFocusable(true)
     spinnerView.selectItemByIndex(3)
     spinnerView1.apply {
       lifecycleOwner = this@MainActivity
