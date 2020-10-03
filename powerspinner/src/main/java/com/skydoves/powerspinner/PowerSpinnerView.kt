@@ -667,7 +667,7 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
 
   /**
    * sets isFocusable of the spinner popup.
-   * The spinner popup will got a focus and [onSpinnerDismissListener] will be replaced.
+   * The spinner popup will be got a focus and [onSpinnerDismissListener] will be replaced.
    */
   fun setIsFocusable(isFocusable: Boolean) {
     this.spinnerWindow.isFocusable = isFocusable
