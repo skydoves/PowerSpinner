@@ -82,6 +82,9 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   var debounceDuration: Long = 150L
     private set
 
+  /** Disable changing text automatically when an item selection notified. */
+  var disableChangeTextWhenNotified: Boolean = false
+
   /** A backing field of the previously debounce local time. */
   private var previousDebounceTime: Long = 0
 
@@ -665,6 +668,11 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
     }
   }
 
+  /** Disable changing text automatically when an item selection notified. */
+  fun setDisableChangeTextWhenNotified(value: Boolean) = apply {
+    this.disableChangeTextWhenNotified = value
+  }
+
   /**
    * sets isFocusable of the spinner popup.
    * The spinner popup will be got a focus and [onSpinnerDismissListener] will be replaced.
@@ -691,7 +699,9 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   /** notifies to [PowerSpinnerView] of changed information from [PowerSpinnerInterface]. */
   fun notifyItemSelected(index: Int, changedText: CharSequence) {
     this.selectedIndex = index
-    this.text = changedText
+    if (!disableChangeTextWhenNotified) {
+      this.text = changedText
+    }
     if (this.dismissWhenNotifiedItemSelected) {
       dismiss()
     }
@@ -790,6 +800,10 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
       this.powerSpinnerView.onSpinnerDismissListener = OnSpinnerDismissListener {
         block()
       }
+    }
+
+    fun setDisableChangeTextWhenNotified(value: Boolean) = apply {
+      this.powerSpinnerView.disableChangeTextWhenNotified = value
     }
 
     fun setSpinnerPopupAnimation(value: SpinnerAnimation) = apply {
