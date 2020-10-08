@@ -606,13 +606,14 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
 
   /** shows the spinner popup menu to the center. */
   @MainThread
-  fun show() {
+  @JvmOverloads
+  fun show(xOff: Int = 0, yOff: Int = 0) {
     debounceShowOrDismiss {
       if (!isShowing) {
         this.isShowing = true
         animateArrow(true)
         applyWindowAnimation()
-        this.spinnerWindow.showAsDropDown(this)
+        this.spinnerWindow.showAsDropDown(this, xOff, yOff)
         post {
           val spinnerWidth = if (spinnerPopupWidth != NO_INT_VALUE) {
             spinnerPopupWidth
@@ -647,10 +648,11 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
    * If the popup is already showing, dismiss the spinner popup menu.
    */
   @MainThread
-  fun showOrDismiss() {
+  @JvmOverloads
+  fun showOrDismiss(xOff: Int = 0, yOff: Int = 0) {
     val adapter = getSpinnerRecyclerView().adapter ?: return
     if (!isShowing && adapter.itemCount > 0) {
-      show()
+      show(xOff, yOff)
     } else {
       dismiss()
     }
