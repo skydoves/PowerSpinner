@@ -491,15 +491,6 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
     }
   }
 
-  private fun updateSpinnerWindowSize() {
-    binding.recyclerView.post {
-      this.spinnerWindow.update(
-        binding.recyclerView.width,
-        binding.recyclerView.height
-      )
-    }
-  }
-
   private fun updateSpinnerArrow() {
     if (this.arrowResource != NO_INT_VALUE) {
       this.arrowDrawable = context.contextDrawable(this.arrowResource)?.mutate()
@@ -556,7 +547,6 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   @Suppress("UNCHECKED_CAST")
   fun <T> setItems(itemList: List<T>) {
     (adapter as PowerSpinnerInterface<T>).setItems(itemList)
-    updateSpinnerWindowSize()
   }
 
   /**
@@ -567,7 +557,6 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
     if (adapter is DefaultSpinnerAdapter) {
       setItems(context.resources.getStringArray(resource).toList())
     }
-    updateSpinnerWindowSize()
   }
 
   /** sets an adapter of the [PowerSpinnerView]. */
@@ -576,7 +565,6 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
     if (adapter is RecyclerView.Adapter<*>) {
       binding.recyclerView.adapter = adapter as RecyclerView.Adapter<*>
     }
-    updateSpinnerWindowSize()
   }
 
   /** gets an adapter of the [PowerSpinnerView]. */
