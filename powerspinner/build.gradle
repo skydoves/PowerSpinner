@@ -21,7 +21,7 @@ android {
 dependencies {
     implementation "androidx.appcompat:appcompat:$versions.androidxAppcompat"
     implementation "androidx.recyclerview:recyclerview:$versions.recyclerView"
-    implementation "androidx.preference:preference:$versions.preference"
+    implementation "androidx.preference:preference-ktx:$versions.preference"
     kapt "androidx.lifecycle:lifecycle-compiler:$versions.lifecycle"
 }
 

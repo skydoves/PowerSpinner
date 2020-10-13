@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+@file:Suppress("unused")
+
 package com.skydoves.powerspinner
 
 import android.content.Context
@@ -25,6 +27,7 @@ import android.widget.TextView
 import androidx.preference.Preference
 import androidx.preference.PreferenceViewHolder
 
+/** PowerSpinnerPreference is a Preference for showing [PowerSpinnerView] in the preferences inflation from XML. */
 class PowerSpinnerPreference @JvmOverloads constructor(
   context: Context,
   attributeSet: AttributeSet? = null,
