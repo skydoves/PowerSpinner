@@ -30,6 +30,7 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.WindowManager
+import android.widget.FrameLayout
 import android.widget.PopupWindow
 import androidx.annotation.ArrayRes
 import androidx.annotation.ColorInt
@@ -542,6 +543,9 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
 
   /** gets the spinner popup's recyclerView. */
   fun getSpinnerRecyclerView(): RecyclerView = binding.recyclerView
+
+  /** gets the spinner popup's body. */
+  fun getSpinnerBodyView(): FrameLayout = binding.body
 
   /** sets an item list for setting items of the adapter. */
   @Suppress("UNCHECKED_CAST")
