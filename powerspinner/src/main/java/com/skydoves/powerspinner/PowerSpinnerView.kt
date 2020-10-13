@@ -627,7 +627,7 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
           val spinnerHeight = if (spinnerPopupHeight != NO_INT_VALUE) {
             spinnerPopupHeight
           } else {
-            this.binding.body.height
+            this.binding.recyclerView.height
           }
           this.spinnerWindow.update(spinnerWidth, spinnerHeight)
         }
