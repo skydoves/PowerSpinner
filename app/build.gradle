@@ -16,7 +16,7 @@ android {
 
 dependencies {
     implementation "com.google.android.material:material:$versions.googleMaterial"
-    implementation "androidx.preference:preference:$versions.preference"
+    implementation "androidx.preference:preference-ktx:$versions.preference"
     implementation project(":powerspinner")
 }
 
