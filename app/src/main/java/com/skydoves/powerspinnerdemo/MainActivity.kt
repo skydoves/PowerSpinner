@@ -24,25 +24,25 @@ import androidx.core.content.ContextCompat
 import com.skydoves.powerspinner.IconSpinnerAdapter
 import com.skydoves.powerspinner.IconSpinnerItem
 import com.skydoves.powerspinner.OnSpinnerItemSelectedListener
-import kotlinx.android.synthetic.main.activity_main.spinnerView
-import kotlinx.android.synthetic.main.activity_main.spinnerView1
-import kotlinx.android.synthetic.main.activity_main.spinnerView2
+import com.skydoves.powerspinnerdemo.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_main)
 
-    spinnerView.apply {
+    val binding = ActivityMainBinding.inflate(layoutInflater)
+    setContentView(binding.root)
+
+    binding.spinnerView.apply {
       lifecycleOwner = this@MainActivity
       setOnSpinnerItemSelectedListener<String> { _, text ->
         Toast.makeText(applicationContext, text, Toast.LENGTH_SHORT).show()
       }
     }
-    spinnerView.setIsFocusable(true)
-    spinnerView.selectItemByIndex(3)
-    spinnerView1.apply {
+    binding.spinnerView.setIsFocusable(true)
+    binding.spinnerView.selectItemByIndex(3)
+    binding.spinnerView1.apply {
       lifecycleOwner = this@MainActivity
       setOnSpinnerItemSelectedListener<String> { index, _ ->
         when (index) {
@@ -56,8 +56,8 @@ class MainActivity : AppCompatActivity() {
       }
     }
 
-    val adapter = IconSpinnerAdapter(spinnerView2)
-    spinnerView2.setOnSpinnerItemSelectedListener(
+    val adapter = IconSpinnerAdapter(binding.spinnerView2)
+    binding.spinnerView2.setOnSpinnerItemSelectedListener(
       OnSpinnerItemSelectedListener<IconSpinnerItem> { _, item ->
         Toast.makeText(applicationContext, item.text, Toast.LENGTH_SHORT).show()
       }
@@ -90,7 +90,7 @@ class MainActivity : AppCompatActivity() {
         )
       )
     )
-    spinnerView2.apply {
+    binding.spinnerView2.apply {
       lifecycleOwner = this@MainActivity
       getSpinnerRecyclerView().adapter = adapter
     }
