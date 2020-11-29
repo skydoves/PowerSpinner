@@ -46,12 +46,17 @@ class IconSpinnerAdapter(
         LayoutInflater.from(parent.context), parent,
         false
       )
-    return IconSpinnerViewHolder(binding)
+    return IconSpinnerViewHolder(binding).apply {
+      binding.root.setOnClickListener {
+        val position = adapterPosition.takeIf { it != RecyclerView.NO_POSITION }
+          ?: return@setOnClickListener
+        notifyItemSelected(position)
+      }
+    }
   }
 
   override fun onBindViewHolder(holder: IconSpinnerViewHolder, position: Int) {
     holder.bind(spinnerItems[position], spinnerView)
-    holder.binding.root.setOnClickListener { notifyItemSelected(position) }
   }
 
   override fun setItems(itemList: List<IconSpinnerItem>) {
@@ -73,7 +78,7 @@ class IconSpinnerAdapter(
 
   override fun getItemCount() = this.spinnerItems.size
 
-  class IconSpinnerViewHolder(val binding: ItemDefaultPowerSpinnerLibraryBinding) :
+  class IconSpinnerViewHolder(private val binding: ItemDefaultPowerSpinnerLibraryBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(item: IconSpinnerItem, spinnerView: PowerSpinnerView) {

@@ -45,7 +45,7 @@
       app:spinner_divider_color="@color/white_70"
       app:spinner_divider_show="true"
       app:spinner_divider_size="0.4dp"
-      app:spinner_popup_animation="dropdown"
+      app:spinner_popup_animation="normal"
       app:spinner_popup_background="@color/background900"
       app:spinner_popup_elevation="14dp"
       tools:ignore="HardcodedText,UnusedAttribute" />
@@ -75,7 +75,7 @@
       app:spinner_divider_show="true"
       app:spinner_divider_size="0.4dp"
       app:spinner_item_array="@array/questions1"
-      app:spinner_popup_animation="dropdown"
+      app:spinner_popup_animation="normal"
       app:spinner_popup_background="@color/background900"
       app:spinner_popup_elevation="14dp"
       tools:ignore="HardcodedText,UnusedAttribute" />
@@ -201,8 +201,7 @@
         tools:ignore="HardcodedText,UnusedAttribute" />
     </LinearLayout>
   </LinearLayout>
-
-
+  
   <Button
     android:layout_width="match_parent"
     android:layout_height="wrap_content"

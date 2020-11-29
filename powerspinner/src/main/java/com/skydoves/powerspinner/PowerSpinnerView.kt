@@ -442,7 +442,6 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   private fun updateSpinnerWindow() {
     post {
       this.spinnerWindow.apply {
-        isClippingEnabled = false
         width = this@PowerSpinnerView.width
         isOutsideTouchable = true
         setOnDismissListener { onSpinnerDismissListener?.onDismiss() }
