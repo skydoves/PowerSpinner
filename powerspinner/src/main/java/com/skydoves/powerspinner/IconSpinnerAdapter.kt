@@ -84,10 +84,10 @@ class IconSpinnerAdapter(
     fun bind(item: IconSpinnerItem, spinnerView: PowerSpinnerView) {
       binding.itemDefaultText.apply {
         text = item.text
-        typeface = spinnerView.typeface
-        gravity = spinnerView.gravity
-        setTextSize(TypedValue.COMPLEX_UNIT_PX, spinnerView.textSize)
-        setTextColor(spinnerView.currentTextColor)
+        item.typeface?.let { setTypeface(typeface, it) } ?: let { typeface = spinnerView.typeface }
+        gravity = item.gravity ?: spinnerView.gravity
+        setTextSize(TypedValue.COMPLEX_UNIT_PX, item.textSize ?: spinnerView.textSize)
+        setTextColor(item.textColor ?: spinnerView.currentTextColor)
         compoundDrawablePadding = spinnerView.compoundDrawablePadding
         setCompoundDrawablesWithIntrinsicBounds(item.icon, null, null, null)
       }
