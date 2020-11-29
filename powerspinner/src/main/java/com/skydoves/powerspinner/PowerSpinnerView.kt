@@ -532,9 +532,9 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   private fun applyWindowAnimation() {
     if (this.spinnerPopupAnimationStyle == NO_INT_VALUE) {
       when (this.spinnerPopupAnimation) {
-        SpinnerAnimation.DROPDOWN -> this.spinnerWindow.animationStyle = R.style.DropDown
-        SpinnerAnimation.FADE -> this.spinnerWindow.animationStyle = R.style.Fade
-        SpinnerAnimation.BOUNCE -> this.spinnerWindow.animationStyle = R.style.Elastic
+        SpinnerAnimation.DROPDOWN -> this.spinnerWindow.animationStyle = R.style.DropDown_PowerSpinner
+        SpinnerAnimation.FADE -> this.spinnerWindow.animationStyle = R.style.Fade_PowerSpinner
+        SpinnerAnimation.BOUNCE -> this.spinnerWindow.animationStyle = R.style.Elastic_PowerSpinner
         else -> Unit
       }
     } else {
