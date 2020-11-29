@@ -65,28 +65,28 @@ class MainActivity : AppCompatActivity() {
     adapter.setItems(
       arrayListOf(
         IconSpinnerItem(
-          ContextCompat.getDrawable(this, R.drawable.ic_dashboard_white_24dp),
-          "Item0"
+          iconRes = R.drawable.ic_dashboard_white_24dp,
+          text = "Item0"
         ),
         IconSpinnerItem(
-          ContextCompat.getDrawable(this, R.drawable.ic_dashboard_white_24dp),
-          "Item1"
+          iconRes = R.drawable.ic_dashboard_white_24dp,
+          text = "Item1"
         ),
         IconSpinnerItem(
-          ContextCompat.getDrawable(this, R.drawable.ic_dashboard_white_24dp),
-          "Item2"
+          icon = ContextCompat.getDrawable(this, R.drawable.ic_dashboard_white_24dp),
+          text = "Item2"
         ),
         IconSpinnerItem(
-          ContextCompat.getDrawable(this, R.drawable.ic_dashboard_white_24dp),
-          "Item3"
+          icon = ContextCompat.getDrawable(this, R.drawable.ic_dashboard_white_24dp),
+          text = "Item3"
         ),
         IconSpinnerItem(
-          ContextCompat.getDrawable(this, R.drawable.ic_dashboard_white_24dp),
-          "Item4"
+          icon = ContextCompat.getDrawable(this, R.drawable.ic_dashboard_white_24dp),
+          text = "Item4"
         ),
         IconSpinnerItem(
-          ContextCompat.getDrawable(this, R.drawable.ic_dashboard_white_24dp),
-          "Item5"
+          icon = ContextCompat.getDrawable(this, R.drawable.ic_dashboard_white_24dp),
+          text = "Item5"
         )
       )
     )

@@ -39,14 +39,14 @@ class PreferenceFragment : PreferenceFragmentCompat() {
         setSpinnerAdapter(IconSpinnerAdapter(this))
         setItems(
           arrayListOf(
-            IconSpinnerItem(contextDrawable(R.drawable.unitedstates), "USA"),
-            IconSpinnerItem(contextDrawable(R.drawable.unitedkingdom), "UK"),
-            IconSpinnerItem(contextDrawable(R.drawable.france), "France"),
-            IconSpinnerItem(contextDrawable(R.drawable.canada), "Canada"),
-            IconSpinnerItem(contextDrawable(R.drawable.southkorea), "South Korea"),
-            IconSpinnerItem(contextDrawable(R.drawable.germany), "Germany"),
-            IconSpinnerItem(contextDrawable(R.drawable.spain), "Spain"),
-            IconSpinnerItem(contextDrawable(R.drawable.china), "China")
+            IconSpinnerItem(icon = contextDrawable(R.drawable.unitedstates), text = "USA"),
+            IconSpinnerItem(icon = contextDrawable(R.drawable.unitedkingdom), text = "UK"),
+            IconSpinnerItem(icon = contextDrawable(R.drawable.france), text = "France"),
+            IconSpinnerItem(icon = contextDrawable(R.drawable.canada), text = "Canada"),
+            IconSpinnerItem(icon = contextDrawable(R.drawable.southkorea), text = "South Korea"),
+            IconSpinnerItem(icon = contextDrawable(R.drawable.germany), text = "Germany"),
+            IconSpinnerItem(icon = contextDrawable(R.drawable.spain), text = "Spain"),
+            IconSpinnerItem(icon = contextDrawable(R.drawable.china), text = "China")
           )
         )
         getSpinnerRecyclerView().layoutManager = GridLayoutManager(requireContext(), 2)

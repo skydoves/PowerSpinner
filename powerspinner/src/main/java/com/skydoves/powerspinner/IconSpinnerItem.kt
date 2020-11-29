@@ -17,15 +17,26 @@
 package com.skydoves.powerspinner
 
 import android.graphics.drawable.Drawable
+import android.view.Gravity
 import androidx.annotation.ColorInt
+import androidx.annotation.DrawableRes
 import androidx.annotation.Px
 
-/** IconSpinnerItem is an item class for constructing [IconSpinnerAdapter]. */
+/**
+ * IconSpinnerItem is an item class for constructing [IconSpinnerAdapter].
+ *
+ * @param text A text for constructing the spinner item.
+ * @param icon An icon of the spinner item.
+ * @param iconRes An icon resource of the spinner item.
+ */
 data class IconSpinnerItem(
-  val icon: Drawable?,
   val text: CharSequence,
+  val icon: Drawable? = null,
+  @DrawableRes val iconRes: Int? = null,
+  @Px val iconPadding: Int? = null,
+  val iconGravity: Int = Gravity.START,
   val typeface: Int? = null,
   val gravity: Int? = null,
-  @Px val textSize: Float? = null,
+  val textSize: Float? = null,
   @ColorInt val textColor: Int? = null,
 )

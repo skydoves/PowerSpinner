@@ -19,8 +19,10 @@
 package com.skydoves.powerspinner
 
 import android.util.TypedValue
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.skydoves.powerspinner.databinding.ItemDefaultPowerSpinnerLibraryBinding
 
@@ -66,14 +68,23 @@ class IconSpinnerAdapter(
   }
 
   override fun notifyItemSelected(index: Int) {
-    this.spinnerView.setCompoundDrawablesWithIntrinsicBounds(
-      spinnerItems[index].icon,
-      null,
-      spinnerView.arrowDrawable,
-      null
-    )
-    this.spinnerView.notifyItemSelected(index, spinnerItems[index].text)
-    this.onSpinnerItemSelectedListener?.onItemSelected(index, spinnerItems[index])
+    val item = spinnerItems[index]
+    spinnerView.compoundDrawablePadding = item.iconPadding ?: spinnerView.compoundDrawablePadding
+    val icon = item.iconRes?.let {
+      ResourcesCompat.getDrawable(spinnerView.resources, it, null)
+    } ?: item.icon
+    when (item.iconGravity) {
+      Gravity.START ->
+        spinnerView.setCompoundDrawablesWithIntrinsicBounds(icon, null, null, null)
+      Gravity.END ->
+        spinnerView.setCompoundDrawablesWithIntrinsicBounds(null, null, icon, null)
+      Gravity.TOP ->
+        spinnerView.setCompoundDrawablesWithIntrinsicBounds(null, icon, null, null)
+      Gravity.BOTTOM ->
+        spinnerView.setCompoundDrawablesWithIntrinsicBounds(null, null, null, icon)
+    }
+    this.spinnerView.notifyItemSelected(index, item.text)
+    this.onSpinnerItemSelectedListener?.onItemSelected(index, item)
   }
 
   override fun getItemCount() = this.spinnerItems.size
@@ -88,8 +99,20 @@ class IconSpinnerAdapter(
         gravity = item.gravity ?: spinnerView.gravity
         setTextSize(TypedValue.COMPLEX_UNIT_PX, item.textSize ?: spinnerView.textSize)
         setTextColor(item.textColor ?: spinnerView.currentTextColor)
-        compoundDrawablePadding = spinnerView.compoundDrawablePadding
-        setCompoundDrawablesWithIntrinsicBounds(item.icon, null, null, null)
+        compoundDrawablePadding = item.iconPadding ?: spinnerView.compoundDrawablePadding
+        val icon = item.iconRes?.let {
+          ResourcesCompat.getDrawable(spinnerView.resources, it, null)
+        } ?: item.icon
+        when (item.iconGravity) {
+          Gravity.START ->
+            setCompoundDrawablesWithIntrinsicBounds(icon, null, null, null)
+          Gravity.END ->
+            setCompoundDrawablesWithIntrinsicBounds(null, null, icon, null)
+          Gravity.TOP ->
+            setCompoundDrawablesWithIntrinsicBounds(null, icon, null, null)
+          Gravity.BOTTOM ->
+            setCompoundDrawablesWithIntrinsicBounds(null, null, null, icon)
+        }
       }
       binding.root.setPadding(
         spinnerView.paddingLeft,
