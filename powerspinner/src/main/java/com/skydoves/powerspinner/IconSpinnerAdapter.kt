@@ -22,7 +22,7 @@ import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.skydoves.powerspinner.databinding.ItemDefaultBinding
+import com.skydoves.powerspinner.databinding.ItemDefaultPowerSpinnerLibraryBinding
 
 /** IconSpinnerAdapter is a custom adapter composed of [IconSpinnerItem] items. */
 class IconSpinnerAdapter(
@@ -42,7 +42,10 @@ class IconSpinnerAdapter(
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IconSpinnerViewHolder {
     val binding =
-      ItemDefaultBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+      ItemDefaultPowerSpinnerLibraryBinding.inflate(
+        LayoutInflater.from(parent.context), parent,
+        false
+      )
     return IconSpinnerViewHolder(binding)
   }
 
@@ -70,7 +73,7 @@ class IconSpinnerAdapter(
 
   override fun getItemCount() = this.spinnerItems.size
 
-  class IconSpinnerViewHolder(val binding: ItemDefaultBinding) :
+  class IconSpinnerViewHolder(val binding: ItemDefaultPowerSpinnerLibraryBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(item: IconSpinnerItem, spinnerView: PowerSpinnerView) {

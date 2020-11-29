@@ -46,15 +46,15 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
-import com.skydoves.powerspinner.databinding.LayoutBodyBinding
+import com.skydoves.powerspinner.databinding.LayoutBodyPowerSpinnerLibraryBinding
 
 /** A lightweight dropdown spinner, fully customizable with arrow and animations. */
 @Suppress("MemberVisibilityCanBePrivate", "unused")
 class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
 
   /** Main body view for composing the Spinner popup. */
-  private val binding: LayoutBodyBinding =
-    LayoutBodyBinding.inflate(LayoutInflater.from(context), null, false)
+  private val binding: LayoutBodyPowerSpinnerLibraryBinding =
+    LayoutBodyPowerSpinnerLibraryBinding.inflate(LayoutInflater.from(context), null, false)
 
   /** PopupWindow for creating the spinner. */
   private val spinnerWindow: PopupWindow
@@ -77,7 +77,8 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   var arrowAnimationDuration: Long = 250L
 
   /** A drawable of the arrow. */
-  var arrowDrawable: Drawable? = context.contextDrawable(R.drawable.arrow_power_spinner_library)?.mutate()
+  var arrowDrawable: Drawable? =
+    context.contextDrawable(R.drawable.arrow_power_spinner_library)?.mutate()
 
   /** A duration of the debounce for showOrDismiss. */
   var debounceDuration: Long = 150L

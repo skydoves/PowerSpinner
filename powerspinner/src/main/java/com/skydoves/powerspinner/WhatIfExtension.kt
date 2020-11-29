@@ -30,7 +30,7 @@ internal inline fun String?.whatIfNotNullOrEmpty(
 ) {
 
   this.whatIfNotNullOrEmpty(
-    whatIf = { whatIf(it) },
+    whatIf = whatIf,
     whatIfNot = { }
   )
 }

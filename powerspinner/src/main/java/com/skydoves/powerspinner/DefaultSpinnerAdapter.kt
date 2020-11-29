@@ -20,7 +20,7 @@ import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.skydoves.powerspinner.databinding.ItemDefaultBinding
+import com.skydoves.powerspinner.databinding.ItemDefaultPowerSpinnerLibraryBinding
 
 /** DefaultSpinnerAdapter is a default adapter composed of string items. */
 class DefaultSpinnerAdapter(
@@ -35,7 +35,10 @@ class DefaultSpinnerAdapter(
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DefaultSpinnerViewHolder {
     val binding =
-      ItemDefaultBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+      ItemDefaultPowerSpinnerLibraryBinding.inflate(
+        LayoutInflater.from(parent.context), parent,
+        false
+      )
     return DefaultSpinnerViewHolder(binding)
   }
 
@@ -57,7 +60,7 @@ class DefaultSpinnerAdapter(
 
   override fun getItemCount() = spinnerItems.size
 
-  class DefaultSpinnerViewHolder(val binding: ItemDefaultBinding) :
+  class DefaultSpinnerViewHolder(val binding: ItemDefaultPowerSpinnerLibraryBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(item: CharSequence, spinnerView: PowerSpinnerView) {
