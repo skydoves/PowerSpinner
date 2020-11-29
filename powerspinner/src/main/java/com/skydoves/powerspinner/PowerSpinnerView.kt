@@ -231,7 +231,7 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
 
   init {
     if (adapter is RecyclerView.Adapter<*>) {
-      this.binding.recyclerView.adapter = adapter as RecyclerView.Adapter<*>
+      getSpinnerRecyclerView().adapter = adapter as RecyclerView.Adapter<*>
     }
     this.spinnerWindow = PopupWindow(
       this.binding.body,
@@ -442,6 +442,7 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   private fun updateSpinnerWindow() {
     post {
       this.spinnerWindow.apply {
+        isClippingEnabled = false
         width = this@PowerSpinnerView.width
         isOutsideTouchable = true
         setOnDismissListener { onSpinnerDismissListener?.onDismiss() }
@@ -481,7 +482,7 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
             setColor(dividerColor)
           }
           decoration.setDrawable(shape)
-          binding.recyclerView.addItemDecoration(decoration)
+          getSpinnerRecyclerView().addItemDecoration(decoration)
         }
       }
       if (this.spinnerPopupWidth != NO_INT_VALUE) {
@@ -532,7 +533,8 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   private fun applyWindowAnimation() {
     if (this.spinnerPopupAnimationStyle == NO_INT_VALUE) {
       when (this.spinnerPopupAnimation) {
-        SpinnerAnimation.DROPDOWN -> this.spinnerWindow.animationStyle = R.style.DropDown_PowerSpinner
+        SpinnerAnimation.DROPDOWN ->
+          this.spinnerWindow.animationStyle = R.style.DropDown_PowerSpinner
         SpinnerAnimation.FADE -> this.spinnerWindow.animationStyle = R.style.Fade_PowerSpinner
         SpinnerAnimation.BOUNCE -> this.spinnerWindow.animationStyle = R.style.Elastic_PowerSpinner
         else -> Unit
@@ -568,7 +570,7 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   fun <T> setSpinnerAdapter(powerSpinnerInterface: PowerSpinnerInterface<T>) {
     adapter = powerSpinnerInterface
     if (adapter is RecyclerView.Adapter<*>) {
-      binding.recyclerView.adapter = adapter as RecyclerView.Adapter<*>
+      getSpinnerRecyclerView().adapter = adapter as RecyclerView.Adapter<*>
     }
   }
 
@@ -628,7 +630,7 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
           val spinnerHeight = if (spinnerPopupHeight != NO_INT_VALUE) {
             spinnerPopupHeight
           } else {
-            this.binding.recyclerView.height
+            getSpinnerRecyclerView().height
           }
           this.spinnerWindow.update(spinnerWidth, spinnerHeight)
         }
