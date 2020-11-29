@@ -59,9 +59,6 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   /** PopupWindow for creating the spinner. */
   private val spinnerWindow: PopupWindow
 
-  /** An adapter for composing items of the spinner. */
-  private var adapter: PowerSpinnerInterface<*> = DefaultSpinnerAdapter(this)
-
   /** Spinner is showing or not. */
   var isShowing: Boolean = false
     private set
@@ -69,6 +66,9 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   /** An index of the selected item. */
   var selectedIndex: Int = NO_SELECTED_INDEX
     private set
+
+  /** An adapter for composing items of the spinner. */
+  private var adapter: PowerSpinnerInterface<*> = DefaultSpinnerAdapter(this)
 
   /** The arrow will  be animated or not when show and dismiss the spinner. */
   var arrowAnimate: Boolean = true
@@ -520,11 +520,15 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   }
 
   private fun updateSpinnerPersistence() {
-    this.preferenceName.whatIfNotNullOrEmpty {
-      if (PowerSpinnerPersistence.getInstance(context).getSelectedIndex(it) != -1) {
-        this.adapter.notifyItemSelected(
-          PowerSpinnerPersistence.getInstance(context).getSelectedIndex(it)
-        )
+    if (adapter.getItemCount() > 0) {
+      this.preferenceName.whatIfNotNullOrEmpty {
+        if (PowerSpinnerPersistence.getInstance(context)
+          .getSelectedIndex(it) != NO_SELECTED_INDEX
+        ) {
+          this.adapter.notifyItemSelected(
+            PowerSpinnerPersistence.getInstance(context).getSelectedIndex(it)
+          )
+        }
       }
     }
   }

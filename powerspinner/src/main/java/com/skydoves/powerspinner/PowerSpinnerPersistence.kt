@@ -25,7 +25,9 @@ import android.content.SharedPreferences
 internal class PowerSpinnerPersistence private constructor() {
 
   /** gets selected index from the preference. */
-  fun getSelectedIndex(name: String): Int = sharedPreferenceManager.getInt(INDEX + name, -1)
+  fun getSelectedIndex(name: String): Int = sharedPreferenceManager.getInt(
+    INDEX + name, NO_SELECTED_INDEX
+  )
 
   /** puts selected index from the preference. */
   fun persistSelectedIndex(name: String, index: Int) =

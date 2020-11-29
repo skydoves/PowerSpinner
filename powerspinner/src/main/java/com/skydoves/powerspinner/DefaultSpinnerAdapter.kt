@@ -59,6 +59,7 @@ class DefaultSpinnerAdapter(
   }
 
   override fun notifyItemSelected(index: Int) {
+    if (index == NO_SELECTED_INDEX) return
     val oldIndex = this.index
     this.index = index
     this.spinnerView.notifyItemSelected(index, spinnerItems[index])

@@ -69,6 +69,7 @@ class IconSpinnerAdapter(
   }
 
   override fun notifyItemSelected(index: Int) {
+    if (index == NO_SELECTED_INDEX) return
     val item = spinnerItems[index]
     spinnerView.compoundDrawablePadding = item.iconPadding ?: spinnerView.compoundDrawablePadding
     val icon = item.iconRes?.let {
