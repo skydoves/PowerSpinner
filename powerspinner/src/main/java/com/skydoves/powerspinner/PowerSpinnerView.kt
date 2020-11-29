@@ -77,7 +77,7 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   var arrowAnimationDuration: Long = 250L
 
   /** A drawable of the arrow. */
-  var arrowDrawable: Drawable? = context.contextDrawable(R.drawable.arrow)?.mutate()
+  var arrowDrawable: Drawable? = context.contextDrawable(R.drawable.arrow_power_spinner_library)?.mutate()
 
   /** A duration of the debounce for showOrDismiss. */
   var debounceDuration: Long = 150L
