@@ -29,7 +29,7 @@ import androidx.annotation.Px
  * @param icon An icon of the spinner item.
  * @param iconRes An icon resource of the spinner item.
  */
-data class IconSpinnerItem(
+data class IconSpinnerItem @JvmOverloads constructor(
   val text: CharSequence,
   val icon: Drawable? = null,
   @DrawableRes val iconRes: Int? = null,

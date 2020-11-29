@@ -553,15 +553,21 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   /** gets the spinner popup's body. */
   fun getSpinnerBodyView(): FrameLayout = binding.body
 
-  /** sets an item list for setting items of the adapter. */
+  /**
+   * Sets an item list for setting items of the adapter.
+   *
+   * @param itemList An item list for the [RecyclerView.Adapter] which extends the [PowerSpinnerInterface].
+   */
   @Suppress("UNCHECKED_CAST")
   fun <T> setItems(itemList: List<T>) {
     (adapter as PowerSpinnerInterface<T>).setItems(itemList)
   }
 
   /**
-   * sets a string array resource for setting items of the adapter.
+   * Sets a string array resource for setting items of the adapter.
    * This function only works for the [DefaultSpinnerAdapter].
+   *
+   * @param resource A resource of the string array.
    */
   fun setItems(@ArrayRes resource: Int) {
     if (adapter is DefaultSpinnerAdapter) {
@@ -693,7 +699,12 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
     }
   }
 
-  /** select an item by index. */
+  /**
+   * Select an item by index.
+   * This method must be invoked after adapter items are set using the [setItems].
+   *
+   * @param index An index should be selected.
+   */
   fun selectItemByIndex(index: Int) {
     this.adapter.notifyItemSelected(index)
   }
