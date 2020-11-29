@@ -37,14 +37,7 @@ allprojects {
 And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:powerspinner:1.1.5"
-}
-```
-If your project using Java, add a below dependency code. <br><br>
-<a href="https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib-jdk7"><img alt="Kotlin" src="https://img.shields.io/badge/Kotlin-Official-orange"/></a>
-```gradle
-dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "com.github.skydoves:powerspinner:1.1.6"
 }
 ```
 
@@ -125,21 +118,22 @@ powerSpinnerView.dismissWhenNotifiedItemSelected = false
 ### OnSpinnerItemSelectedListener
 Interface definition for a callback to be invoked when selected item on the spinner popup.
 ```kotlin
-setOnSpinnerItemSelectedListener<String> { index, text ->
+setOnSpinnerItemSelectedListener<String> { oldIndex, oldItem, newIndex, newText ->
    toast("$text selected!")
 }
 ```
 Here is the Java way.
 ```java
 powerSpinnerView.setOnSpinnerItemSelectedListener(new OnSpinnerItemSelectedListener<String>() {
-  @Override public void onItemSelected(int position, String item) {
+  @Override public void onItemSelected(int oldIndex, @Nullable String oldItem, int newIndex, String newItem) {
     toast(item + " selected!");
   }
 });
 ```
 
 ### Select an item by an index
-We can select an item manually or initially using the below method.
+We can select an item manually or initially using the below method.<br>
+This method must be invoked after the `setItems` is called.
 ```kotlin
 powerSpinnerView.selectItemByIndex(4)
 ```
@@ -197,7 +191,8 @@ spinnerView.apply {
   setSpinnerAdapter(IconSpinnerAdapter(this))
   setItems(
     arrayListOf(
-        IconSpinnerItem(contextDrawable(R.drawable.unitedstates), "Item1")))
+        IconSpinnerItem(text = "Item1", iconRes = R.drawable.unitedstates),
+        IconSpinnerItem(text = "Item2", iconRes = R.drawable.southkorea)))
   getSpinnerRecyclerView().layoutManager = GridLayoutManager(context, 2)
   selectItemByIndex(0) // select an item initially.
   lifecycleOwner = this@MainActivity
@@ -206,7 +201,7 @@ spinnerView.apply {
 Here is the java way.
 ```java
 List<IconSpinnerItem> iconSpinnerItems = new ArrayList<>();
-iconSpinnerItems.add(new IconSpinnerItem(contextDrawable(R.drawable.unitedstates), "item1"));
+iconSpinnerItems.add(new IconSpinnerItem("item1", contextDrawable(R.drawable.unitedstates)));
 
 IconSpinnerAdapter iconSpinnerAdapter = new IconSpinnerAdapter(spinnerView);
 spinnerView.setSpinnerAdapter(iconSpinnerAdapter);
@@ -226,6 +221,7 @@ class MySpinnerAdapter(
 ) : RecyclerView.Adapter<MySpinnerAdapter.MySpinnerViewHolder>(),
   PowerSpinnerInterface<MySpinnerItem> {
 
+  override var index: Int = powerSpinnerView.selectedIndex
   override val spinnerView: PowerSpinnerView = powerSpinnerView
   override var onSpinnerItemSelectedListener: OnSpinnerItemSelectedListener<MySpinnerItem>? = null
 ```
@@ -240,15 +236,25 @@ override fun onBindViewHolder(holder: MySpinnerViewHolder, position: Int) {
 
 // we must call the spinnerView.notifyItemSelected method to let PowerSpinnerView know about changed information.
 override fun notifyItemSelected(index: Int) {
+  if (index == NO_SELECTED_INDEX) return
+  val oldIndex = this.index
+  this.index = index
   this.spinnerView.notifyItemSelected(index, this.spinnerItems[index].text)
-  this.onSpinnerItemSelectedListener?.onItemSelected(index, this.spinnerItems[index])
+  this.onSpinnerItemSelectedListener?.onItemSelected(
+      oldIndex = oldIndex,
+      oldItem = oldIndex.takeIf { it != NO_SELECTED_INDEX }?.let { spinnerItems[oldIndex] },
+      newIndex = index,
+      newItem = item
+    )
 }
 ```
 
 And we can listen to the selected item's information.
 
 ```kotlin
-spinnerView.setOnSpinnerItemSelectedListener<MySpinnerItem> { index, item ->  toast(item.text) }
+spinnerView.setOnSpinnerItemSelectedListener<MySpinnerItem> { 
+  oldIndex, oldItem, newIndex, newItem -> toast(newItem.text) 
+}
 ```
 
 ### PowerSpinnerPreference
@@ -257,7 +263,7 @@ We can use PowerSpinner on the `PreferenceScreen` xml for implementing setting s
 And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
 dependencies {
-    implementation "androidx.preference:preference:1.1.0"
+    implementation "androidx.preference:preference-ktx:1.1.1"
 }
 ```
 
@@ -291,8 +297,8 @@ You don't need to set `preferenceName` attribute, and `OnSpinnerItemSelectedList
 
 ```kotlin
 val countySpinnerPreference = findPreference<PowerSpinnerPreference>("country")
-countySpinnerPreference?.setOnSpinnerItemSelectedListener<IconSpinnerItem> { index, item ->
-  Toast.makeText(requireContext(), item.text, Toast.LENGTH_SHORT).show()
+countySpinnerPreference?.setOnSpinnerItemSelectedListener<IconSpinnerItem> { oldIndex, oldItem, newIndex, newItem ->
+  Toast.makeText(requireContext(), newItem.text, Toast.LENGTH_SHORT).show()
 }
 ```
 
