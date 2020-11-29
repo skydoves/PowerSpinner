@@ -28,6 +28,7 @@ class DefaultSpinnerAdapter(
 ) : RecyclerView.Adapter<DefaultSpinnerAdapter.DefaultSpinnerViewHolder>(),
   PowerSpinnerInterface<CharSequence> {
 
+  override var index: Int = powerSpinnerView.selectedIndex
   override val spinnerView: PowerSpinnerView = powerSpinnerView
   override var onSpinnerItemSelectedListener: OnSpinnerItemSelectedListener<CharSequence>? = null
 
@@ -58,8 +59,15 @@ class DefaultSpinnerAdapter(
   }
 
   override fun notifyItemSelected(index: Int) {
+    val oldIndex = this.index
+    this.index = index
     this.spinnerView.notifyItemSelected(index, spinnerItems[index])
-    this.onSpinnerItemSelectedListener?.onItemSelected(index, spinnerItems[index])
+    this.onSpinnerItemSelectedListener?.onItemSelected(
+      oldIndex = oldIndex,
+      oldItem = oldIndex.takeIf { it != NO_SELECTED_INDEX }?.let { spinnerItems[oldIndex] },
+      newIndex = index,
+      newItem = spinnerItems[index]
+    )
   }
 
   override fun getItemCount() = spinnerItems.size

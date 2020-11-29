@@ -589,10 +589,12 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   /** sets a [OnSpinnerItemSelectedListener] to the popup using lambda. */
   @Suppress("UNCHECKED_CAST")
   @JvmSynthetic
-  fun <T> setOnSpinnerItemSelectedListener(block: (position: Int, item: T) -> Unit) {
+  fun <T> setOnSpinnerItemSelectedListener(block: (oldIndex: Int, oldItem: T?, newIndex: Int, newItem: T) -> Unit) {
     val adapter = adapter as PowerSpinnerInterface<T>
     adapter.onSpinnerItemSelectedListener =
-      OnSpinnerItemSelectedListener { position, item -> block(position, item) }
+      OnSpinnerItemSelectedListener { oldIndex, oldItem, newIndex, newItem ->
+        block(oldIndex, oldItem, newIndex, newItem)
+      }
   }
 
   /** sets a [OnSpinnerOutsideTouchListener] to the popup using lambda. */
@@ -770,11 +772,13 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
 
     @Suppress("UNCHECKED_CAST")
     @JvmSynthetic
-    fun <T> setOnSpinnerItemSelectedListener(block: (position: Int, item: T) -> Unit) = apply {
+    fun <T> setOnSpinnerItemSelectedListener(block: (oldIndex: Int, oldItem: T?, newIndex: Int, newItem: T) -> Unit) = apply {
       val adapter: PowerSpinnerInterface<T> =
         this.powerSpinnerView.adapter as PowerSpinnerInterface<T>
       adapter.onSpinnerItemSelectedListener =
-        OnSpinnerItemSelectedListener { position, item -> block(position, item) }
+        OnSpinnerItemSelectedListener { oldIndex, oldItem, newIndex, newItem ->
+          block(oldIndex, oldItem, newIndex, newItem)
+        }
     }
 
     fun setOnSpinnerOutsideTouchListener(value: OnSpinnerOutsideTouchListener) = apply {

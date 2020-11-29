@@ -49,7 +49,7 @@ class CustomActivity : AppCompatActivity() {
           IconSpinnerItem(icon = contextDrawable(R.drawable.china), text = "China")
         )
       )
-      setOnSpinnerItemSelectedListener<IconSpinnerItem> { _, item ->
+      setOnSpinnerItemSelectedListener<IconSpinnerItem> { _, _, _, item ->
         Toast.makeText(applicationContext, item.text, Toast.LENGTH_SHORT).show()
       }
       getSpinnerRecyclerView().layoutManager = GridLayoutManager(baseContext, 2)
@@ -59,7 +59,7 @@ class CustomActivity : AppCompatActivity() {
     }
 
     binding.spinnerView1.apply {
-      setOnSpinnerItemSelectedListener<String> { _, item ->
+      setOnSpinnerItemSelectedListener<String> { _, _, _, item ->
         binding.spinnerView2.hint = item
         Toast.makeText(applicationContext, item, Toast.LENGTH_SHORT).show()
       }

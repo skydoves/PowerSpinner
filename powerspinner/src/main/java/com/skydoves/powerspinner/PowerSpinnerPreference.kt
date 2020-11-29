@@ -175,8 +175,8 @@ class PowerSpinnerPreference @JvmOverloads constructor(
     this.powerSpinnerView.apply {
       selectItemByIndex(getPersistedInt(defaultValue))
       if (getSpinnerAdapter<Any>().onSpinnerItemSelectedListener == null) {
-        setOnSpinnerItemSelectedListener<Any> { position, _ ->
-          persistInt(position)
+        setOnSpinnerItemSelectedListener<Any> { _, _, newIndex, _ ->
+          persistInt(newIndex)
         }
       }
     }
@@ -201,22 +201,22 @@ class PowerSpinnerPreference @JvmOverloads constructor(
 
   /** sets a [OnSpinnerItemSelectedListener] to the default adapter. */
   fun <T> setOnSpinnerItemSelectedListener(onSpinnerItemSelectedListener: OnSpinnerItemSelectedListener<T>) {
-    this.powerSpinnerView.setOnSpinnerItemSelectedListener<T> { position, item ->
-      onSpinnerItemSelectedListener.onItemSelected(position, item)
-      persistInt(position)
+    this.powerSpinnerView.setOnSpinnerItemSelectedListener<T> { oldIndex, oldItem, newIndex, newItem ->
+      onSpinnerItemSelectedListener.onItemSelected(oldIndex, oldItem, newIndex, newItem)
+      persistInt(newIndex)
     }
   }
 
   /** sets a [OnSpinnerItemSelectedListener] to the popup using lambda. */
   @JvmSynthetic
-  fun <T> setOnSpinnerItemSelectedListener(block: (position: Int, item: T) -> Unit) {
-    this.powerSpinnerView.setOnSpinnerItemSelectedListener<T> { position, item ->
-      block(position, item)
-      persistInt(position)
+  fun <T> setOnSpinnerItemSelectedListener(block: (oldIndex: Int, oldItem: T?, newIndex: Int, newItem: T) -> Unit) {
+    this.powerSpinnerView.setOnSpinnerItemSelectedListener<T> { oldIndex, oldItem, newIndex, newItem ->
+      block(oldIndex, oldItem, newIndex, newItem)
+      persistInt(newIndex)
     }
   }
 
-  override fun onGetDefaultValue(a: TypedArray, index: Int): Any? {
+  override fun onGetDefaultValue(a: TypedArray, index: Int): Any {
     return a.getInt(index, 0)
   }
 

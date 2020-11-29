@@ -32,6 +32,7 @@ class IconSpinnerAdapter(
 ) : RecyclerView.Adapter<IconSpinnerAdapter.IconSpinnerViewHolder>(),
   PowerSpinnerInterface<IconSpinnerItem> {
 
+  override var index: Int = powerSpinnerView.selectedIndex
   override val spinnerView: PowerSpinnerView = powerSpinnerView
   override var onSpinnerItemSelectedListener: OnSpinnerItemSelectedListener<IconSpinnerItem>? = null
 
@@ -83,8 +84,15 @@ class IconSpinnerAdapter(
       Gravity.BOTTOM ->
         spinnerView.setCompoundDrawablesWithIntrinsicBounds(null, null, null, icon)
     }
+    val oldIndex = this.index
+    this.index = index
     this.spinnerView.notifyItemSelected(index, item.text)
-    this.onSpinnerItemSelectedListener?.onItemSelected(index, item)
+    this.onSpinnerItemSelectedListener?.onItemSelected(
+      oldIndex = oldIndex,
+      oldItem = oldIndex.takeIf { it != NO_SELECTED_INDEX }?.let { spinnerItems[oldIndex] },
+      newIndex = index,
+      newItem = item
+    )
   }
 
   override fun getItemCount() = this.spinnerItems.size

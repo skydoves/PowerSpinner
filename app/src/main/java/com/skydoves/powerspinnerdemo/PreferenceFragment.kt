@@ -51,7 +51,7 @@ class PreferenceFragment : PreferenceFragmentCompat() {
         )
         getSpinnerRecyclerView().layoutManager = GridLayoutManager(requireContext(), 2)
       }
-      it.setOnSpinnerItemSelectedListener<IconSpinnerItem> { _, item ->
+      it.setOnSpinnerItemSelectedListener<IconSpinnerItem> { _, _, _, item ->
         Toast.makeText(requireContext(), item.text, Toast.LENGTH_SHORT).show()
       }
     }

@@ -17,6 +17,7 @@
 package com.skydoves.powerspinner
 
 interface PowerSpinnerInterface<T> {
+  var index: Int
   val spinnerView: PowerSpinnerView
   var onSpinnerItemSelectedListener: OnSpinnerItemSelectedListener<T>?
   fun notifyItemSelected(index: Int)
