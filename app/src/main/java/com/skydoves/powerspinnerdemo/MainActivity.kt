@@ -34,16 +34,12 @@ class MainActivity : AppCompatActivity() {
     val binding = ActivityMainBinding.inflate(layoutInflater)
     setContentView(binding.root)
 
-    binding.spinnerView.apply {
-      lifecycleOwner = this@MainActivity
-      setOnSpinnerItemSelectedListener<String> { _, _, _, text ->
-        Toast.makeText(applicationContext, text, Toast.LENGTH_SHORT).show()
-      }
+    binding.spinnerView.setOnSpinnerItemSelectedListener<String> { _, _, _, text ->
+      Toast.makeText(applicationContext, text, Toast.LENGTH_SHORT).show()
     }
     binding.spinnerView.setIsFocusable(true)
     binding.spinnerView.selectItemByIndex(3)
     binding.spinnerView1.apply {
-      lifecycleOwner = this@MainActivity
       setOnSpinnerItemSelectedListener<String> { _, _, index, _ ->
         when (index) {
           0 -> setBackgroundColor(getContextColor(R.color.colorPrimary))
@@ -90,10 +86,7 @@ class MainActivity : AppCompatActivity() {
         )
       )
     )
-    binding.spinnerView2.apply {
-      lifecycleOwner = this@MainActivity
-      getSpinnerRecyclerView().adapter = adapter
-    }
+    binding.spinnerView2.getSpinnerRecyclerView().adapter = adapter
   }
 
   private fun getContextColor(@ColorRes resource: Int): Int {

@@ -55,7 +55,6 @@ class CustomActivity : AppCompatActivity() {
       getSpinnerRecyclerView().layoutManager = GridLayoutManager(baseContext, 2)
       selectItemByIndex(4)
       preferenceName = "country"
-      lifecycleOwner = this@CustomActivity
     }
 
     binding.spinnerView1.apply {
@@ -63,29 +62,16 @@ class CustomActivity : AppCompatActivity() {
         binding.spinnerView2.hint = item
         Toast.makeText(applicationContext, item, Toast.LENGTH_SHORT).show()
       }
-      lifecycleOwner = this@CustomActivity
       preferenceName = "question1"
     }
 
-    binding.spinnerView2.apply {
-      lifecycleOwner = this@CustomActivity
-      preferenceName = "question2"
-    }
+    binding.spinnerView2.preferenceName = "question2"
 
-    binding.spinnerView3.apply {
-      lifecycleOwner = this@CustomActivity
-      preferenceName = "year"
-    }
+    binding.spinnerView3.preferenceName = "year"
 
-    binding.spinnerView4.apply {
-      lifecycleOwner = this@CustomActivity
-      preferenceName = "month"
-    }
+    binding.spinnerView4.preferenceName = "month"
 
-    binding.spinnerView5.apply {
-      lifecycleOwner = this@CustomActivity
-      preferenceName = "day"
-    }
+    binding.spinnerView5.preferenceName = "day"
   }
 
   private fun contextDrawable(@DrawableRes resource: Int): Drawable? {
