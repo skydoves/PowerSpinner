@@ -28,6 +28,12 @@ import androidx.annotation.Px
  * @param text A text for constructing the spinner item.
  * @param icon An icon of the spinner item.
  * @param iconRes An icon resource of the spinner item.
+ * @param iconPadding A padding between icon and text.
+ * @param iconGravity A gravity of the icon.
+ * @param typeface A typeface for the text.
+ * @param gravity A gravity of the text.
+ * @param textSize A size of the text.
+ * @param textColor A color of the text.
  */
 data class IconSpinnerItem @JvmOverloads constructor(
   val text: CharSequence,
