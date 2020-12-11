@@ -433,6 +433,10 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
         preferenceName =
           getString(R.styleable.PowerSpinnerView_spinner_preference_name)
       }
+
+      if (hasValue(R.styleable.PowerSpinnerView_spinner_popup_focusable)) {
+        setIsFocusable(getBoolean(R.styleable.PowerSpinnerView_spinner_popup_focusable, false))
+      }
     }
   }
 

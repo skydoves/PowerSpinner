@@ -51,5 +51,7 @@
     <attr name="spinner_debounce_duration" format="integer" />
     <!--  Saves and restores automatically the selected position. -->
     <attr name="spinner_preference_name" format="string" />
+    <!--  Sets focusable options to the spinner popup. -->
+    <attr name="spinner_popup_focusable" format="boolean" />
   </declare-styleable>
 </resources>
