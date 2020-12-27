@@ -21,8 +21,8 @@ package com.skydoves.powerspinner
 import android.content.Context
 
 /** creates an instance of [PowerSpinnerView] by [PowerSpinnerView.Builder] using kotlin dsl. */
-@PowerSpinnerDsl
 @JvmSynthetic
+@PowerSpinnerDsl
 inline fun createPowerSpinnerView(
   context: Context,
   builder: PowerSpinnerView.Builder.() -> Unit

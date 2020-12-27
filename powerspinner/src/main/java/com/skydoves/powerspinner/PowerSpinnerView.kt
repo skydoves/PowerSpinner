@@ -243,7 +243,7 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
       this.gravity = Gravity.CENTER_VERTICAL
     }
     val viewContext = context
-    if (viewContext is LifecycleOwner) {
+    if (lifecycleOwner == null && viewContext is LifecycleOwner) {
       lifecycleOwner = viewContext
     }
   }
