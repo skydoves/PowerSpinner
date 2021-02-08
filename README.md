@@ -22,7 +22,6 @@
 
 
 ## Including in your project
-[![Download](https://api.bintray.com/packages/devmagician/maven/powerspinner/images/download.svg) ](https://bintray.com/devmagician/maven/powerspinner/_latestVersion)
 [![Maven Central](https://img.shields.io/maven-central/v/com.github.skydoves/powerspinner.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.skydoves%22%20AND%20a:%22powerspinner%22)
 [![JitPack](https://jitpack.io/v/skydoves/PowerSpinner.svg)](https://jitpack.io/#skydoves/PowerSpinner) <br>
 
@@ -31,7 +30,7 @@ Add below codes to your **root** `build.gradle` file (not your module build.grad
 ```gradle
 allprojects {
     repositories {
-        jcenter()
+        mavenCentral()
     }
 }
 ```
