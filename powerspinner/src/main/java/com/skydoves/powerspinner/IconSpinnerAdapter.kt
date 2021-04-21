@@ -104,7 +104,7 @@ class IconSpinnerAdapter(
     fun bind(item: IconSpinnerItem, spinnerView: PowerSpinnerView) {
       binding.itemDefaultText.apply {
         text = item.text
-        item.typeface?.let { setTypeface(typeface, it) } ?: let { typeface = spinnerView.typeface }
+        item.textTypeface?.let { typeface = it } ?: setTypeface(typeface, item.textStyle)
         gravity = item.gravity ?: spinnerView.gravity
         setTextSize(TypedValue.COMPLEX_UNIT_PX, item.textSize ?: spinnerView.textSize)
         setTextColor(item.textColor ?: spinnerView.currentTextColor)

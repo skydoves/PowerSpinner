@@ -16,6 +16,7 @@
 
 package com.skydoves.powerspinner
 
+import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.view.Gravity
 import androidx.annotation.ColorInt
@@ -30,7 +31,7 @@ import androidx.annotation.Px
  * @param iconRes An icon resource of the spinner item.
  * @param iconPadding A padding between icon and text.
  * @param iconGravity A gravity of the icon.
- * @param typeface A typeface for the text.
+ * @param textStyle A typeface for the text.
  * @param gravity A gravity of the text.
  * @param textSize A size of the text.
  * @param textColor A color of the text.
@@ -41,7 +42,8 @@ data class IconSpinnerItem @JvmOverloads constructor(
   @DrawableRes val iconRes: Int? = null,
   @Px val iconPadding: Int? = null,
   val iconGravity: Int = Gravity.START,
-  val typeface: Int? = null,
+  val textStyle: Int = Typeface.NORMAL,
+  val textTypeface: Typeface? = null,
   val gravity: Int? = null,
   val textSize: Float? = null,
   @ColorInt val textColor: Int? = null,
