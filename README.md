@@ -40,6 +40,14 @@ dependencies {
     implementation "com.github.skydoves:powerspinner:1.1.7"
 }
 ```
+## SNAPSHOT 
+[![PowerSpinner](https://img.shields.io/static/v1?label=snapshot&message=powerspinner&logo=apache%20maven&color=C71A36)](https://oss.sonatype.org/content/repositories/snapshots/com/github/skydoves/powerspinner/) <br>
+Snapshots of the current development version of PowerSpinner are available, which track [the latest versions](https://oss.sonatype.org/content/repositories/snapshots/com/github/skydoves/powerspinner/).
+```Gradle
+repositories {
+   maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+}
+```
 
 ## Usage
 Add following XML namespace inside your XML layout file.
