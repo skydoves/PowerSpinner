@@ -51,7 +51,7 @@ class IconSpinnerAdapter(
       )
     return IconSpinnerViewHolder(binding).apply {
       binding.root.setOnClickListener {
-        val position = adapterPosition.takeIf { it != RecyclerView.NO_POSITION }
+        val position = bindingAdapterPosition.takeIf { it != RecyclerView.NO_POSITION }
           ?: return@setOnClickListener
         notifyItemSelected(position)
       }

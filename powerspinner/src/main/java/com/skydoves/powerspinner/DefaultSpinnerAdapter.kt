@@ -42,7 +42,7 @@ class DefaultSpinnerAdapter(
       )
     return DefaultSpinnerViewHolder(binding).apply {
       binding.root.setOnClickListener {
-        val position = adapterPosition.takeIf { it != RecyclerView.NO_POSITION }
+        val position = bindingAdapterPosition.takeIf { it != RecyclerView.NO_POSITION }
           ?: return@setOnClickListener
         notifyItemSelected(position)
       }
