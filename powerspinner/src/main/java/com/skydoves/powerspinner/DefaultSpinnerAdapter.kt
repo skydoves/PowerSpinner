@@ -55,6 +55,7 @@ class DefaultSpinnerAdapter(
   override fun setItems(itemList: List<CharSequence>) {
     this.spinnerItems.clear()
     this.spinnerItems.addAll(itemList)
+    this.index = NO_SELECTED_INDEX
     notifyDataSetChanged()
   }
 
