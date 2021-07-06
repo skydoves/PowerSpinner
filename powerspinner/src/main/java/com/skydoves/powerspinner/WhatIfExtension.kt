@@ -17,7 +17,6 @@
 package com.skydoves.powerspinner
 
 /**
- *
  * ☔ WhatIf is kotlin extensions for expressing a single if-else statement, nullable and boolean.
  *
  * [WhatIf](https://github.com/skydoves/WhatIf)
