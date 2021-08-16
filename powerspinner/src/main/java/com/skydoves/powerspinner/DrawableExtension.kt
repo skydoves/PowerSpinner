@@ -24,7 +24,7 @@ import android.graphics.drawable.Drawable
 
 /** resize a drawable width and height size using specific pixel sizes.  */
 @JvmSynthetic
-internal fun Drawable.resize(context: Context, size: PowerSpinnerSizeSpec): Drawable {
+internal fun Drawable.resize(context: Context, size: SpinnerSizeSpec): Drawable {
   val bitmap = Bitmap.createBitmap(size.width, size.height, Bitmap.Config.ARGB_8888)
   val canvas = Canvas(bitmap)
   setBounds(0, 0, size.width, size.height)

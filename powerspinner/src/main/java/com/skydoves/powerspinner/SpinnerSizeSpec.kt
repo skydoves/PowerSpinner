@@ -19,7 +19,7 @@ package com.skydoves.powerspinner
 import androidx.annotation.Px
 
 /** A size specification for determining the [PowerSpinnerView]'s arrow size. */
-data class PowerSpinnerSizeSpec(
+data class SpinnerSizeSpec(
   @Px val width: Int,
   @Px val height: Int
 )
