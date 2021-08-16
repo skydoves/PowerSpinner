@@ -120,6 +120,16 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
       updateSpinnerArrow()
     }
 
+  private var _arrowSize: SpinnerSizeSpec? = null
+
+  /** A size spec of the arrow. */
+  var arrowSize: SpinnerSizeSpec?
+    get() = _arrowSize
+    set(value) {
+      _arrowSize = value
+      updateSpinnerArrow()
+    }
+
   @Px private var _arrowPadding: Int = 0
 
   /** A padding of the arrow. */
@@ -506,6 +516,9 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
       this.arrowDrawable = context.contextDrawable(this.arrowResource)?.mutate()
     }
     this.compoundDrawablePadding = this.arrowPadding
+    this.arrowSize?.let {
+      arrowDrawable = arrowDrawable?.resize(context, it)
+    }
     updateCompoundDrawable(this.arrowDrawable)
   }
 
