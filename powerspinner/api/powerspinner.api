@@ -1,0 +1,269 @@
+public final class com/skydoves/powerspinner/DefaultSpinnerAdapter : androidx/recyclerview/widget/RecyclerView$Adapter, com/skydoves/powerspinner/PowerSpinnerInterface {
+	public fun <init> (Lcom/skydoves/powerspinner/PowerSpinnerView;)V
+	public fun getIndex ()I
+	public fun getItemCount ()I
+	public fun getOnSpinnerItemSelectedListener ()Lcom/skydoves/powerspinner/OnSpinnerItemSelectedListener;
+	public fun getSpinnerView ()Lcom/skydoves/powerspinner/PowerSpinnerView;
+	public fun notifyItemSelected (I)V
+	public synthetic fun onBindViewHolder (Landroidx/recyclerview/widget/RecyclerView$ViewHolder;I)V
+	public fun onBindViewHolder (Lcom/skydoves/powerspinner/DefaultSpinnerAdapter$DefaultSpinnerViewHolder;I)V
+	public synthetic fun onCreateViewHolder (Landroid/view/ViewGroup;I)Landroidx/recyclerview/widget/RecyclerView$ViewHolder;
+	public fun onCreateViewHolder (Landroid/view/ViewGroup;I)Lcom/skydoves/powerspinner/DefaultSpinnerAdapter$DefaultSpinnerViewHolder;
+	public fun setIndex (I)V
+	public fun setItems (Ljava/util/List;)V
+	public fun setOnSpinnerItemSelectedListener (Lcom/skydoves/powerspinner/OnSpinnerItemSelectedListener;)V
+}
+
+public final class com/skydoves/powerspinner/DefaultSpinnerAdapter$DefaultSpinnerViewHolder : androidx/recyclerview/widget/RecyclerView$ViewHolder {
+	public fun <init> (Lcom/skydoves/powerspinner/databinding/ItemDefaultPowerSpinnerLibraryBinding;)V
+	public final fun bind (Ljava/lang/CharSequence;Lcom/skydoves/powerspinner/PowerSpinnerView;)V
+}
+
+public final class com/skydoves/powerspinner/IconSpinnerAdapter : androidx/recyclerview/widget/RecyclerView$Adapter, com/skydoves/powerspinner/PowerSpinnerInterface {
+	public fun <init> (Lcom/skydoves/powerspinner/PowerSpinnerView;)V
+	public fun getIndex ()I
+	public fun getItemCount ()I
+	public fun getOnSpinnerItemSelectedListener ()Lcom/skydoves/powerspinner/OnSpinnerItemSelectedListener;
+	public fun getSpinnerView ()Lcom/skydoves/powerspinner/PowerSpinnerView;
+	public fun notifyItemSelected (I)V
+	public synthetic fun onBindViewHolder (Landroidx/recyclerview/widget/RecyclerView$ViewHolder;I)V
+	public fun onBindViewHolder (Lcom/skydoves/powerspinner/IconSpinnerAdapter$IconSpinnerViewHolder;I)V
+	public synthetic fun onCreateViewHolder (Landroid/view/ViewGroup;I)Landroidx/recyclerview/widget/RecyclerView$ViewHolder;
+	public fun onCreateViewHolder (Landroid/view/ViewGroup;I)Lcom/skydoves/powerspinner/IconSpinnerAdapter$IconSpinnerViewHolder;
+	public fun setIndex (I)V
+	public fun setItems (Ljava/util/List;)V
+	public fun setOnSpinnerItemSelectedListener (Lcom/skydoves/powerspinner/OnSpinnerItemSelectedListener;)V
+}
+
+public final class com/skydoves/powerspinner/IconSpinnerAdapter$IconSpinnerViewHolder : androidx/recyclerview/widget/RecyclerView$ViewHolder {
+	public fun <init> (Lcom/skydoves/powerspinner/databinding/ItemDefaultPowerSpinnerLibraryBinding;)V
+	public final fun bind (Lcom/skydoves/powerspinner/IconSpinnerItem;Lcom/skydoves/powerspinner/PowerSpinnerView;)V
+}
+
+public final class com/skydoves/powerspinner/IconSpinnerItem {
+	public fun <init> (Ljava/lang/CharSequence;)V
+	public fun <init> (Ljava/lang/CharSequence;Landroid/graphics/drawable/Drawable;)V
+	public fun <init> (Ljava/lang/CharSequence;Landroid/graphics/drawable/Drawable;Ljava/lang/Integer;)V
+	public fun <init> (Ljava/lang/CharSequence;Landroid/graphics/drawable/Drawable;Ljava/lang/Integer;Ljava/lang/Integer;)V
+	public fun <init> (Ljava/lang/CharSequence;Landroid/graphics/drawable/Drawable;Ljava/lang/Integer;Ljava/lang/Integer;I)V
+	public fun <init> (Ljava/lang/CharSequence;Landroid/graphics/drawable/Drawable;Ljava/lang/Integer;Ljava/lang/Integer;II)V
+	public fun <init> (Ljava/lang/CharSequence;Landroid/graphics/drawable/Drawable;Ljava/lang/Integer;Ljava/lang/Integer;IILandroid/graphics/Typeface;)V
+	public fun <init> (Ljava/lang/CharSequence;Landroid/graphics/drawable/Drawable;Ljava/lang/Integer;Ljava/lang/Integer;IILandroid/graphics/Typeface;Ljava/lang/Integer;)V
+	public fun <init> (Ljava/lang/CharSequence;Landroid/graphics/drawable/Drawable;Ljava/lang/Integer;Ljava/lang/Integer;IILandroid/graphics/Typeface;Ljava/lang/Integer;Ljava/lang/Float;)V
+	public fun <init> (Ljava/lang/CharSequence;Landroid/graphics/drawable/Drawable;Ljava/lang/Integer;Ljava/lang/Integer;IILandroid/graphics/Typeface;Ljava/lang/Integer;Ljava/lang/Float;Ljava/lang/Integer;)V
+	public synthetic fun <init> (Ljava/lang/CharSequence;Landroid/graphics/drawable/Drawable;Ljava/lang/Integer;Ljava/lang/Integer;IILandroid/graphics/Typeface;Ljava/lang/Integer;Ljava/lang/Float;Ljava/lang/Integer;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/CharSequence;
+	public final fun component10 ()Ljava/lang/Integer;
+	public final fun component2 ()Landroid/graphics/drawable/Drawable;
+	public final fun component3 ()Ljava/lang/Integer;
+	public final fun component4 ()Ljava/lang/Integer;
+	public final fun component5 ()I
+	public final fun component6 ()I
+	public final fun component7 ()Landroid/graphics/Typeface;
+	public final fun component8 ()Ljava/lang/Integer;
+	public final fun component9 ()Ljava/lang/Float;
+	public final fun copy (Ljava/lang/CharSequence;Landroid/graphics/drawable/Drawable;Ljava/lang/Integer;Ljava/lang/Integer;IILandroid/graphics/Typeface;Ljava/lang/Integer;Ljava/lang/Float;Ljava/lang/Integer;)Lcom/skydoves/powerspinner/IconSpinnerItem;
+	public static synthetic fun copy$default (Lcom/skydoves/powerspinner/IconSpinnerItem;Ljava/lang/CharSequence;Landroid/graphics/drawable/Drawable;Ljava/lang/Integer;Ljava/lang/Integer;IILandroid/graphics/Typeface;Ljava/lang/Integer;Ljava/lang/Float;Ljava/lang/Integer;ILjava/lang/Object;)Lcom/skydoves/powerspinner/IconSpinnerItem;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getGravity ()Ljava/lang/Integer;
+	public final fun getIcon ()Landroid/graphics/drawable/Drawable;
+	public final fun getIconGravity ()I
+	public final fun getIconPadding ()Ljava/lang/Integer;
+	public final fun getIconRes ()Ljava/lang/Integer;
+	public final fun getText ()Ljava/lang/CharSequence;
+	public final fun getTextColor ()Ljava/lang/Integer;
+	public final fun getTextSize ()Ljava/lang/Float;
+	public final fun getTextStyle ()I
+	public final fun getTextTypeface ()Landroid/graphics/Typeface;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public abstract interface class com/skydoves/powerspinner/OnSpinnerDismissListener {
+	public abstract fun onDismiss ()V
+}
+
+public abstract interface class com/skydoves/powerspinner/OnSpinnerItemSelectedListener {
+	public abstract fun onItemSelected (ILjava/lang/Object;ILjava/lang/Object;)V
+}
+
+public abstract interface class com/skydoves/powerspinner/OnSpinnerOutsideTouchListener {
+	public abstract fun onSpinnerOutsideTouch (Landroid/view/View;Landroid/view/MotionEvent;)V
+}
+
+public final class com/skydoves/powerspinner/PowerSpinnerExtensionKt {
+	public static final synthetic fun createPowerSpinnerView (Landroid/content/Context;Lkotlin/jvm/functions/Function1;)Lcom/skydoves/powerspinner/PowerSpinnerView;
+}
+
+public abstract interface class com/skydoves/powerspinner/PowerSpinnerInterface {
+	public abstract fun getIndex ()I
+	public abstract fun getItemCount ()I
+	public abstract fun getOnSpinnerItemSelectedListener ()Lcom/skydoves/powerspinner/OnSpinnerItemSelectedListener;
+	public abstract fun getSpinnerView ()Lcom/skydoves/powerspinner/PowerSpinnerView;
+	public abstract fun notifyItemSelected (I)V
+	public abstract fun setIndex (I)V
+	public abstract fun setItems (Ljava/util/List;)V
+	public abstract fun setOnSpinnerItemSelectedListener (Lcom/skydoves/powerspinner/OnSpinnerItemSelectedListener;)V
+}
+
+public final class com/skydoves/powerspinner/PowerSpinnerPreference : androidx/preference/Preference {
+	public fun <init> (Landroid/content/Context;)V
+	public fun <init> (Landroid/content/Context;Landroid/util/AttributeSet;)V
+	public fun <init> (Landroid/content/Context;Landroid/util/AttributeSet;I)V
+	public synthetic fun <init> (Landroid/content/Context;Landroid/util/AttributeSet;IILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getPowerSpinnerView ()Lcom/skydoves/powerspinner/PowerSpinnerView;
+	public fun onBindViewHolder (Landroidx/preference/PreferenceViewHolder;)V
+	public final fun setOnSpinnerItemSelectedListener (Lcom/skydoves/powerspinner/OnSpinnerItemSelectedListener;)V
+	public final synthetic fun setOnSpinnerItemSelectedListener (Lkotlin/jvm/functions/Function4;)V
+}
+
+public final class com/skydoves/powerspinner/PowerSpinnerView : androidx/appcompat/widget/AppCompatTextView, androidx/lifecycle/LifecycleObserver {
+	public fun <init> (Landroid/content/Context;)V
+	public fun <init> (Landroid/content/Context;Landroid/util/AttributeSet;)V
+	public fun <init> (Landroid/content/Context;Landroid/util/AttributeSet;I)V
+	public final fun clearSelectedItem ()V
+	public final fun dismiss ()V
+	public final fun getArrowAnimate ()Z
+	public final fun getArrowAnimationDuration ()J
+	public final fun getArrowDrawable ()Landroid/graphics/drawable/Drawable;
+	public final fun getArrowGravity ()Lcom/skydoves/powerspinner/SpinnerGravity;
+	public final fun getArrowPadding ()I
+	public final fun getArrowResource ()I
+	public final fun getArrowSize ()Lcom/skydoves/powerspinner/SpinnerSizeSpec;
+	public final fun getArrowTint ()I
+	public final fun getDebounceDuration ()J
+	public final fun getDisableChangeTextWhenNotified ()Z
+	public final fun getDismissWhenNotifiedItemSelected ()Z
+	public final fun getDividerColor ()I
+	public final fun getDividerSize ()I
+	public final fun getLifecycleOwner ()Landroidx/lifecycle/LifecycleOwner;
+	public final fun getOnSpinnerDismissListener ()Lcom/skydoves/powerspinner/OnSpinnerDismissListener;
+	public final fun getPreferenceName ()Ljava/lang/String;
+	public final fun getSelectedIndex ()I
+	public final fun getShowArrow ()Z
+	public final fun getShowDivider ()Z
+	public final fun getSpinnerAdapter ()Lcom/skydoves/powerspinner/PowerSpinnerInterface;
+	public final fun getSpinnerBodyView ()Landroid/widget/FrameLayout;
+	public final fun getSpinnerOutsideTouchListener ()Lcom/skydoves/powerspinner/OnSpinnerOutsideTouchListener;
+	public final fun getSpinnerPopupAnimation ()Lcom/skydoves/powerspinner/SpinnerAnimation;
+	public final fun getSpinnerPopupAnimationStyle ()I
+	public final fun getSpinnerPopupBackgroundColor ()I
+	public final fun getSpinnerPopupElevation ()I
+	public final fun getSpinnerPopupHeight ()I
+	public final fun getSpinnerPopupWidth ()I
+	public final fun getSpinnerRecyclerView ()Landroidx/recyclerview/widget/RecyclerView;
+	public final fun isShowing ()Z
+	public final fun notifyItemSelected (ILjava/lang/CharSequence;)V
+	public final fun onDestroy ()V
+	public final fun selectItemByIndex (I)V
+	public final fun setArrowAnimate (Z)V
+	public final fun setArrowAnimationDuration (J)V
+	public final fun setArrowDrawable (Landroid/graphics/drawable/Drawable;)V
+	public final fun setArrowGravity (Lcom/skydoves/powerspinner/SpinnerGravity;)V
+	public final fun setArrowPadding (I)V
+	public final fun setArrowResource (I)V
+	public final fun setArrowSize (Lcom/skydoves/powerspinner/SpinnerSizeSpec;)V
+	public final fun setArrowTint (I)V
+	public final fun setDisableChangeTextWhenNotified (Z)Lcom/skydoves/powerspinner/PowerSpinnerView;
+	public final fun setDisableChangeTextWhenNotified (Z)V
+	public final fun setDismissWhenNotifiedItemSelected (Z)V
+	public final fun setDividerColor (I)V
+	public final fun setDividerSize (I)V
+	public final fun setIsFocusable (Z)V
+	public final fun setItems (I)V
+	public final fun setItems (Ljava/util/List;)V
+	public final fun setLifecycleOwner (Landroidx/lifecycle/LifecycleOwner;)V
+	public final fun setOnSpinnerDismissListener (Lcom/skydoves/powerspinner/OnSpinnerDismissListener;)V
+	public final synthetic fun setOnSpinnerDismissListener (Lkotlin/jvm/functions/Function0;)V
+	public final fun setOnSpinnerItemSelectedListener (Lcom/skydoves/powerspinner/OnSpinnerItemSelectedListener;)V
+	public final synthetic fun setOnSpinnerItemSelectedListener (Lkotlin/jvm/functions/Function4;)V
+	public final synthetic fun setOnSpinnerOutsideTouchListener (Lkotlin/jvm/functions/Function2;)V
+	public final fun setPreferenceName (Ljava/lang/String;)V
+	public final fun setShowArrow (Z)V
+	public final fun setShowDivider (Z)V
+	public final fun setSpinnerAdapter (Lcom/skydoves/powerspinner/PowerSpinnerInterface;)V
+	public final fun setSpinnerOutsideTouchListener (Lcom/skydoves/powerspinner/OnSpinnerOutsideTouchListener;)V
+	public final fun setSpinnerPopupAnimation (Lcom/skydoves/powerspinner/SpinnerAnimation;)V
+	public final fun setSpinnerPopupAnimationStyle (I)V
+	public final fun setSpinnerPopupBackgroundColor (I)V
+	public final fun setSpinnerPopupElevation (I)V
+	public final fun setSpinnerPopupHeight (I)V
+	public final fun setSpinnerPopupWidth (I)V
+	public final fun show ()V
+	public final fun show (I)V
+	public final fun show (II)V
+	public static synthetic fun show$default (Lcom/skydoves/powerspinner/PowerSpinnerView;IIILjava/lang/Object;)V
+	public final fun showOrDismiss ()V
+	public final fun showOrDismiss (I)V
+	public final fun showOrDismiss (II)V
+	public static synthetic fun showOrDismiss$default (Lcom/skydoves/powerspinner/PowerSpinnerView;IIILjava/lang/Object;)V
+}
+
+public final class com/skydoves/powerspinner/PowerSpinnerView$Builder {
+	public fun <init> (Landroid/content/Context;)V
+	public final fun build ()Lcom/skydoves/powerspinner/PowerSpinnerView;
+	public final fun getPowerSpinnerView ()Lcom/skydoves/powerspinner/PowerSpinnerView;
+	public final fun setArrowAnimate (Z)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;
+	public final fun setArrowAnimationDuration (J)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;
+	public final fun setArrowDrawableResource (I)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;
+	public final fun setArrowGravity (Lcom/skydoves/powerspinner/SpinnerGravity;)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;
+	public final fun setArrowPadding (I)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;
+	public final fun setArrowTint (I)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;
+	public final fun setDisableChangeTextWhenNotified (Z)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;
+	public final fun setDismissWhenNotifiedItemSelected (Z)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;
+	public final fun setDividerColor (I)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;
+	public final fun setDividerSize (I)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;
+	public final fun setLifecycleOwner (Landroidx/lifecycle/LifecycleOwner;)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;
+	public final fun setOnSpinnerDismissListener (Lcom/skydoves/powerspinner/OnSpinnerDismissListener;)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;
+	public final synthetic fun setOnSpinnerDismissListener (Lkotlin/jvm/functions/Function0;)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;
+	public final fun setOnSpinnerItemSelectedListener (Lcom/skydoves/powerspinner/OnSpinnerItemSelectedListener;)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;
+	public final synthetic fun setOnSpinnerItemSelectedListener (Lkotlin/jvm/functions/Function4;)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;
+	public final fun setOnSpinnerOutsideTouchListener (Lcom/skydoves/powerspinner/OnSpinnerOutsideTouchListener;)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;
+	public final synthetic fun setOnSpinnerOutsideTouchListener (Lkotlin/jvm/functions/Function2;)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;
+	public final fun setPreferenceName (Ljava/lang/String;)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;
+	public final fun setShowArrow (Z)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;
+	public final fun setShowDivider (Z)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;
+	public final fun setSpinnerPopupAnimation (Lcom/skydoves/powerspinner/SpinnerAnimation;)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;
+	public final fun setSpinnerPopupAnimationStyle (I)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;
+	public final fun setSpinnerPopupBackgroundColor (I)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;
+	public final fun setSpinnerPopupHeight (I)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;
+	public final fun setSpinnerPopupWidth (I)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;
+}
+
+public class com/skydoves/powerspinner/PowerSpinnerView_LifecycleAdapter : androidx/lifecycle/GeneratedAdapter {
+	public fun callMethods (Landroidx/lifecycle/LifecycleOwner;Landroidx/lifecycle/Lifecycle$Event;ZLandroidx/lifecycle/MethodCallsLogger;)V
+}
+
+public final class com/skydoves/powerspinner/SpinnerAnimation : java/lang/Enum {
+	public static final field BOUNCE Lcom/skydoves/powerspinner/SpinnerAnimation;
+	public static final field DROPDOWN Lcom/skydoves/powerspinner/SpinnerAnimation;
+	public static final field FADE Lcom/skydoves/powerspinner/SpinnerAnimation;
+	public static final field NORMAL Lcom/skydoves/powerspinner/SpinnerAnimation;
+	public final fun getValue ()I
+	public static fun valueOf (Ljava/lang/String;)Lcom/skydoves/powerspinner/SpinnerAnimation;
+	public static fun values ()[Lcom/skydoves/powerspinner/SpinnerAnimation;
+}
+
+public final class com/skydoves/powerspinner/SpinnerGravity : java/lang/Enum {
+	public static final field BOTTOM Lcom/skydoves/powerspinner/SpinnerGravity;
+	public static final field END Lcom/skydoves/powerspinner/SpinnerGravity;
+	public static final field START Lcom/skydoves/powerspinner/SpinnerGravity;
+	public static final field TOP Lcom/skydoves/powerspinner/SpinnerGravity;
+	public final fun getValue ()I
+	public static fun valueOf (Ljava/lang/String;)Lcom/skydoves/powerspinner/SpinnerGravity;
+	public static fun values ()[Lcom/skydoves/powerspinner/SpinnerGravity;
+}
+
+public final class com/skydoves/powerspinner/SpinnerSizeSpec {
+	public fun <init> (II)V
+	public final fun component1 ()I
+	public final fun component2 ()I
+	public final fun copy (II)Lcom/skydoves/powerspinner/SpinnerSizeSpec;
+	public static synthetic fun copy$default (Lcom/skydoves/powerspinner/SpinnerSizeSpec;IIILjava/lang/Object;)Lcom/skydoves/powerspinner/SpinnerSizeSpec;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getHeight ()I
+	public final fun getWidth ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+

@@ -2,6 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'org.jetbrains.dokka'
+apply plugin: 'binary-compatibility-validator'
 apply from: "$rootDir/dependencies.gradle"
 
 android {
@@ -20,6 +21,15 @@ android {
         sourceCompatibility 1.8
         targetCompatibility 1.8
     }
+}
+
+apiValidation {
+    ignoredPackages += [
+        "com/skydoves/powerspinner/databinding",
+    ]
+    nonPublicMarkers += [
+        "kotlin.PublishedApi",
+    ]
 }
 
 dependencies {
