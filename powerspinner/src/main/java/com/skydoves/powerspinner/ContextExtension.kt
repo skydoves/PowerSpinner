@@ -19,34 +19,41 @@ package com.skydoves.powerspinner
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.view.View
+import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 
 /** A definition of the out-ranged color. */
+@JvmSynthetic
 internal const val outRangeColor = 65555
 
 /** dp size to px size. */
+@JvmSynthetic
 internal fun Context.dp2Px(dp: Int): Int {
   val scale = resources.displayMetrics.density
   return (dp * scale).toInt()
 }
 
 /** dp size to px size. */
+@JvmSynthetic
 internal fun View.dp2Px(dp: Int): Int {
   return context.dp2Px(dp)
 }
 
 /** dp size to px size. */
+@JvmSynthetic
 internal fun Context.dp2Px(dp: Float): Int {
   val scale = resources.displayMetrics.density
   return (dp * scale).toInt()
 }
 
 /** dp size to px size. */
+@JvmSynthetic
 internal fun View.dp2Px(dp: Float): Int {
   return context.dp2Px(dp)
 }
 
 /** gets a drawable from the resource. */
-internal fun Context.contextDrawable(resource: Int): Drawable? {
+@JvmSynthetic
+internal fun Context.contextDrawable(@DrawableRes resource: Int): Drawable? {
   return ContextCompat.getDrawable(this, resource)
 }
