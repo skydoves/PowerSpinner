@@ -65,6 +65,7 @@ class IconSpinnerAdapter(
   override fun setItems(itemList: List<IconSpinnerItem>) {
     this.spinnerItems.clear()
     this.spinnerItems.addAll(itemList)
+    this.index = NO_SELECTED_INDEX
     notifyDataSetChanged()
   }
 
