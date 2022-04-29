@@ -180,13 +180,13 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
       updateSpinnerWindow()
     }
 
-  @ColorInt private var _spinnerPopupBackgroundColor: Int = outRangeColor
+  private var _spinnerPopupBackground: Drawable? = null
 
-  /** A background color of the spinner popup. */
-  var spinnerPopupBackgroundColor: Int
-    @ColorInt get() = _spinnerPopupBackgroundColor
-    set(@ColorInt value) {
-      _spinnerPopupBackgroundColor = value
+  /** A background of the spinner popup. */
+  var spinnerPopupBackground: Drawable?
+    get() = _spinnerPopupBackground
+    set(value) {
+      _spinnerPopupBackground = value
       updateSpinnerWindow()
     }
 
@@ -360,10 +360,9 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
       }
 
       if (hasValue(R.styleable.PowerSpinnerView_spinner_popup_background)) {
-        _spinnerPopupBackgroundColor =
-          getColor(
-            R.styleable.PowerSpinnerView_spinner_popup_background,
-            _spinnerPopupBackgroundColor
+        _spinnerPopupBackground =
+          getDrawable(
+            R.styleable.PowerSpinnerView_spinner_popup_background
           )
       }
 
@@ -480,10 +479,10 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
         }
       }
       binding.body.apply {
-        if (this@PowerSpinnerView.spinnerPopupBackgroundColor == outRangeColor) {
+        if (this@PowerSpinnerView.spinnerPopupBackground == null) {
           background = this@PowerSpinnerView.background
         } else {
-          setBackgroundColor(this@PowerSpinnerView.spinnerPopupBackgroundColor)
+          background = this@PowerSpinnerView.spinnerPopupBackground
         }
         setPadding(
           this.paddingLeft,
@@ -791,8 +790,11 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
     fun setShowDivider(value: Boolean) = apply { this.powerSpinnerView.showDivider = value }
     fun setDividerSize(@Px value: Int) = apply { this.powerSpinnerView.dividerSize = value }
     fun setDividerColor(@ColorInt value: Int) = apply { this.powerSpinnerView.dividerColor = value }
-    fun setSpinnerPopupBackgroundColor(@ColorInt value: Int) = apply {
-      this.powerSpinnerView.spinnerPopupBackgroundColor = value
+    fun setSpinnerPopupBackground(value: Drawable) = apply {
+      this.powerSpinnerView.spinnerPopupBackground = value
+    }
+    fun setSpinnerPopupBackgroundResource(@DrawableRes value: Int) = apply {
+      this.powerSpinnerView.setBackgroundResource(value)
     }
 
     fun setDismissWhenNotifiedItemSelected(value: Boolean) = apply {

@@ -119,10 +119,9 @@ class PowerSpinnerPreference @JvmOverloads constructor(
         R.styleable.PowerSpinnerView_spinner_divider_color,
         this.powerSpinnerView.dividerColor
       )
-    this.powerSpinnerView.spinnerPopupBackgroundColor =
-      a.getColor(
-        R.styleable.PowerSpinnerView_spinner_popup_background,
-        this.powerSpinnerView.spinnerPopupBackgroundColor
+    this.powerSpinnerView.spinnerPopupBackground =
+      a.getDrawable(
+        R.styleable.PowerSpinnerView_spinner_popup_background
       )
     when (
       a.getInteger(
