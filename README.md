@@ -334,6 +334,7 @@ spinner_divider_size | Dimension | 0.5dp | sets the height of the divider.
 spinner_divider_color | Color | White | sets the color of the divider.
 spinner_popup_width | Dimension | spinnerView's width | the width of the popup.
 spinner_popup_height | Dimension | WRAP_CONTENT | the height of the popup.
+spinner_item_height | Dimension | WRAP_CONTENT | a fixed item height of the popup.
 spinner_popup_background | Color | spinnerView's background | the background color of the popup.
 spinner_popup_animation | SpinnerAnimation | NORMAL | the spinner animation when showing.
 spinner_popup_animation_style | Style Resource | -1 | sets the customized animation style.
