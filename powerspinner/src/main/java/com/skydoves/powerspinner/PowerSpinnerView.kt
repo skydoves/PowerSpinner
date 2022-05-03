@@ -688,10 +688,10 @@ public class PowerSpinnerView : AppCompatTextView, DefaultLifecycleObserver {
           } else {
             width
           }
-          val spinnerHeight = if (spinnerPopupHeight != NO_INT_VALUE) {
-            spinnerPopupHeight
-          } else {
-            getSpinnerRecyclerView().height
+          val spinnerHeight = when {
+            spinnerPopupHeight != NO_INT_VALUE -> spinnerPopupHeight
+            spinnerItemHeight != NO_INT_VALUE -> calculateSpinnerHeight()
+            else -> getSpinnerRecyclerView().height
           }
           this.spinnerWindow.update(spinnerWidth, spinnerHeight)
         }
