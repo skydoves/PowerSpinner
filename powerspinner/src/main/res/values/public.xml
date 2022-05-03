@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+  <!-- Definitions of attributes to be exposed as public -->
+  <public name="spinner_arrow_drawable" type="attr" tools:ignore="ResourceName" />
+  <public name="spinner_arrow_show" type="attr" tools:ignore="ResourceName" />
+  <public name="spinner_arrow_gravity" type="attr" tools:ignore="ResourceName" />
+  <public name="spinner_arrow_padding" type="attr" tools:ignore="ResourceName" />
+  <public name="spinner_arrow_tint" type="attr" tools:ignore="ResourceName" />
+  <public name="spinner_arrow_animate_duration" type="attr" tools:ignore="ResourceName" />
+  <public name="spinner_divider_show" type="attr" tools:ignore="ResourceName" />
+  <public name="spinner_divider_size" type="attr" tools:ignore="ResourceName" />
+  <public name="spinner_divider_color" type="attr" tools:ignore="ResourceName" />
+  <public name="spinner_popup_background" type="attr" tools:ignore="ResourceName" />
+  <public name="spinner_popup_animation" type="attr" tools:ignore="ResourceName" />
+  <public name="spinner_popup_animation_style" type="attr" tools:ignore="ResourceName" />
+  <public name="spinner_popup_width" type="attr" tools:ignore="ResourceName" />
+  <public name="spinner_popup_height" type="attr" tools:ignore="ResourceName" />
+  <public name="spinner_popup_elevation" type="attr" tools:ignore="ResourceName" />
+  <public name="spinner_item_array" type="attr" tools:ignore="ResourceName" />
+  <public name="spinner_dismiss_notified_select" type="attr" tools:ignore="ResourceName" />
+  <public name="spinner_debounce_duration" type="attr" tools:ignore="ResourceName" />
+  <public name="spinner_preference_name" type="attr" tools:ignore="ResourceName" />
+  <public name="spinner_popup_focusable" type="attr" tools:ignore="ResourceName" />
+
+</resources>
