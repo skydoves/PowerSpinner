@@ -43,6 +43,7 @@ import androidx.core.graphics.drawable.DrawableCompat
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.skydoves.powerspinner.databinding.PowerspinnerLayoutBodyBinding
 import com.skydoves.powerspinner.internals.NO_INT_VALUE
@@ -597,6 +598,10 @@ public class PowerSpinnerView : AppCompatTextView, DefaultLifecycleObserver {
   /** calculates the height size of the popup window. */
   internal fun calculateSpinnerHeight(): Int {
     val itemSize = getSpinnerAdapter<Any>().getItemCount()
+    val layoutManager = getSpinnerRecyclerView().layoutManager
+    if (layoutManager is GridLayoutManager) {
+      return itemSize * (spinnerItemHeight + dividerSize) / layoutManager.spanCount
+    }
     return itemSize * (spinnerItemHeight + dividerSize)
   }
 
