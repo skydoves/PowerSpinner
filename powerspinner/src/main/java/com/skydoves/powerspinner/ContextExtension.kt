@@ -22,10 +22,6 @@ import android.view.View
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 
-/** A definition of the out-ranged color. */
-@JvmSynthetic
-internal const val outRangeColor = 65555
-
 /** dp size to px size. */
 @JvmSynthetic
 internal fun Context.dp2Px(dp: Int): Int {
