@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-  <declare-styleable name="PowerSpinnerView">
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <declare-styleable name="PowerSpinnerView" tools:ignore="ResourceName">
     <!-- Sets an arrow drawable. -->
     <attr name="spinner_arrow_drawable" format="reference" />
     <!-- Sets the visibility of the arrow. -->

@@ -39,7 +39,7 @@ public class PowerSpinnerPreference @JvmOverloads constructor(
   private var defaultValue: Int = 0
 
   init {
-    this.layoutResource = R.layout.layout_preference_power_spinner_library
+    this.layoutResource = R.layout.powerspinner_layout_preference
 
     when {
       attributeSet != null && defStyle != androidx.preference.R.attr.preferenceStyle ->
