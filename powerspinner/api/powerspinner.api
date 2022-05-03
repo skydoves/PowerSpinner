@@ -147,7 +147,7 @@ public final class com/skydoves/powerspinner/PowerSpinnerView : androidx/appcomp
 	public final fun getSpinnerOutsideTouchListener ()Lcom/skydoves/powerspinner/OnSpinnerOutsideTouchListener;
 	public final fun getSpinnerPopupAnimation ()Lcom/skydoves/powerspinner/SpinnerAnimation;
 	public final fun getSpinnerPopupAnimationStyle ()I
-	public final fun getSpinnerPopupBackgroundColor ()I
+	public final fun getSpinnerPopupBackground ()Landroid/graphics/drawable/Drawable;
 	public final fun getSpinnerPopupElevation ()I
 	public final fun getSpinnerPopupHeight ()I
 	public final fun getSpinnerPopupWidth ()I
@@ -185,7 +185,7 @@ public final class com/skydoves/powerspinner/PowerSpinnerView : androidx/appcomp
 	public final fun setSpinnerOutsideTouchListener (Lcom/skydoves/powerspinner/OnSpinnerOutsideTouchListener;)V
 	public final fun setSpinnerPopupAnimation (Lcom/skydoves/powerspinner/SpinnerAnimation;)V
 	public final fun setSpinnerPopupAnimationStyle (I)V
-	public final fun setSpinnerPopupBackgroundColor (I)V
+	public final fun setSpinnerPopupBackground (Landroid/graphics/drawable/Drawable;)V
 	public final fun setSpinnerPopupElevation (I)V
 	public final fun setSpinnerPopupHeight (I)V
 	public final fun setSpinnerPopupWidth (I)V
@@ -225,13 +225,10 @@ public final class com/skydoves/powerspinner/PowerSpinnerView$Builder {
 	public final fun setShowDivider (Z)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;
 	public final fun setSpinnerPopupAnimation (Lcom/skydoves/powerspinner/SpinnerAnimation;)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;
 	public final fun setSpinnerPopupAnimationStyle (I)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;
-	public final fun setSpinnerPopupBackgroundColor (I)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;
+	public final fun setSpinnerPopupBackground (Landroid/graphics/drawable/Drawable;)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;
+	public final fun setSpinnerPopupBackgroundResource (I)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;
 	public final fun setSpinnerPopupHeight (I)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;
 	public final fun setSpinnerPopupWidth (I)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;
-}
-
-public class com/skydoves/powerspinner/PowerSpinnerView_LifecycleAdapter : androidx/lifecycle/GeneratedAdapter {
-	public fun callMethods (Landroidx/lifecycle/LifecycleOwner;Landroidx/lifecycle/Lifecycle$Event;ZLandroidx/lifecycle/MethodCallsLogger;)V
 }
 
 public final class com/skydoves/powerspinner/SpinnerAnimation : java/lang/Enum {

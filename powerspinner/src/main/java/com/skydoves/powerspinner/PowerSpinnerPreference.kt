@@ -170,7 +170,7 @@ class PowerSpinnerPreference @JvmOverloads constructor(
       )
   }
 
-  override fun onBindViewHolder(holder: PreferenceViewHolder?) {
+  override fun onBindViewHolder(holder: PreferenceViewHolder) {
     this.powerSpinnerView.apply {
       selectItemByIndex(getPersistedInt(defaultValue))
       if (getSpinnerAdapter<Any>().onSpinnerItemSelectedListener == null) {
@@ -179,23 +179,21 @@ class PowerSpinnerPreference @JvmOverloads constructor(
         }
       }
     }
-    holder?.let {
-      val preference = it.findViewById(R.id.powerSpinner_preference) as ViewGroup
-      preference.addView(
-        this.powerSpinnerView,
-        FrameLayout.LayoutParams.MATCH_PARENT,
-        FrameLayout.LayoutParams.WRAP_CONTENT
-      )
-      val titleTextView = it.findViewById(R.id.preference_title) as TextView
-      titleTextView.text = title
-      val titleParams = titleTextView.layoutParams as ViewGroup.MarginLayoutParams
-      this.powerSpinnerView.setPadding(
-        titleParams.marginStart,
-        context.dp2Px(10),
-        titleParams.marginEnd,
-        context.dp2Px(10)
-      )
-    }
+    val preference = holder.findViewById(R.id.powerSpinner_preference) as ViewGroup
+    preference.addView(
+      this.powerSpinnerView,
+      FrameLayout.LayoutParams.MATCH_PARENT,
+      FrameLayout.LayoutParams.WRAP_CONTENT
+    )
+    val titleTextView = holder.findViewById(R.id.preference_title) as TextView
+    titleTextView.text = title
+    val titleParams = titleTextView.layoutParams as ViewGroup.MarginLayoutParams
+    this.powerSpinnerView.setPadding(
+      titleParams.marginStart,
+      context.dp2Px(10),
+      titleParams.marginEnd,
+      context.dp2Px(10)
+    )
   }
 
   /** sets a [OnSpinnerItemSelectedListener] to the default adapter. */
