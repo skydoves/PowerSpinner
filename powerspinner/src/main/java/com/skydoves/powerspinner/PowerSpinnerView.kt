@@ -222,6 +222,9 @@ public class PowerSpinnerView : AppCompatTextView, DefaultLifecycleObserver {
   /** A height size of the spinner popup. */
   public var spinnerPopupHeight: Int = NO_INT_VALUE
 
+  /** A fixed item height size of the spinner popup. */
+  public var spinnerItemHeight: Int = NO_INT_VALUE
+
   /** The spinner popup will be dismissed when got notified an item is selected. */
   public var dismissWhenNotifiedItemSelected: Boolean = true
 
@@ -418,6 +421,14 @@ public class PowerSpinnerView : AppCompatTextView, DefaultLifecycleObserver {
           )
       }
 
+      if (hasValue(R.styleable.PowerSpinnerView_spinner_item_height)) {
+        spinnerItemHeight =
+          getDimensionPixelSize(
+            R.styleable.PowerSpinnerView_spinner_item_height,
+            spinnerItemHeight
+          )
+      }
+
       if (hasValue(R.styleable.PowerSpinnerView_spinner_popup_elevation)) {
         _spinnerPopupElevation =
           getDimensionPixelSize(
@@ -582,6 +593,12 @@ public class PowerSpinnerView : AppCompatTextView, DefaultLifecycleObserver {
 
   /** gets the spinner popup's recyclerView. */
   public fun getSpinnerRecyclerView(): RecyclerView = binding.recyclerView
+
+  /** calculates the height size of the popup window. */
+  private fun calculateSpinnerHeight(): Int {
+    val itemSize = getSpinnerAdapter<Any>().getItemCount()
+    return itemSize * (spinnerItemHeight + dividerSize)
+  }
 
   /** gets the spinner popup's body. */
   public fun getSpinnerBodyView(): FrameLayout = binding.body
@@ -890,6 +907,10 @@ public class PowerSpinnerView : AppCompatTextView, DefaultLifecycleObserver {
 
     public fun setSpinnerPopupHeight(@Px value: Int): Builder = apply {
       this.powerSpinnerView.spinnerPopupHeight = value
+    }
+
+    public fun setSpinnerItemHeight(@Px value: Int): Builder = apply {
+      this.powerSpinnerView.spinnerItemHeight = value
     }
 
     public fun setPreferenceName(value: String): Builder = apply {

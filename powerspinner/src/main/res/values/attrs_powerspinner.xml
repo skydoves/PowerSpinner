@@ -41,6 +41,8 @@
     <attr name="spinner_popup_width" format="dimension" />
     <!-- Sets the height of the popup. -->
     <attr name="spinner_popup_height" format="dimension" />
+    <!-- Sets a fixed item height of the popup. -->
+    <attr name="spinner_item_height" format="dimension" />
     <!-- Sets the elevation size of the popup. -->
     <attr name="spinner_popup_elevation" format="dimension" />
     <!-- 	Sets the items of the popup. -->
