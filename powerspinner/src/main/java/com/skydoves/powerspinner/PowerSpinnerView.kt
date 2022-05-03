@@ -595,7 +595,7 @@ public class PowerSpinnerView : AppCompatTextView, DefaultLifecycleObserver {
   public fun getSpinnerRecyclerView(): RecyclerView = binding.recyclerView
 
   /** calculates the height size of the popup window. */
-  private fun calculateSpinnerHeight(): Int {
+  internal fun calculateSpinnerHeight(): Int {
     val itemSize = getSpinnerAdapter<Any>().getItemCount()
     return itemSize * (spinnerItemHeight + dividerSize)
   }
@@ -678,24 +678,34 @@ public class PowerSpinnerView : AppCompatTextView, DefaultLifecycleObserver {
   public fun show(xOff: Int = 0, yOff: Int = 0) {
     debounceShowOrDismiss {
       if (!isShowing) {
-        this.isShowing = true
+        isShowing = true
         animateArrow(true)
         applyWindowAnimation()
-        this.spinnerWindow.showAsDropDown(this, xOff, yOff)
+        spinnerWindow.width = getSpinnerWidth()
+        if (getSpinnerHeight() != 0) {
+          spinnerWindow.height = getSpinnerHeight()
+        }
+        spinnerWindow.showAsDropDown(this, xOff, yOff)
         post {
-          val spinnerWidth = if (spinnerPopupWidth != NO_INT_VALUE) {
-            spinnerPopupWidth
-          } else {
-            width
-          }
-          val spinnerHeight = when {
-            spinnerPopupHeight != NO_INT_VALUE -> spinnerPopupHeight
-            spinnerItemHeight != NO_INT_VALUE -> calculateSpinnerHeight()
-            else -> getSpinnerRecyclerView().height
-          }
-          this.spinnerWindow.update(spinnerWidth, spinnerHeight)
+          spinnerWindow.update(getSpinnerWidth(), getSpinnerHeight())
         }
       }
+    }
+  }
+
+  private fun getSpinnerWidth(): Int {
+    return if (spinnerPopupWidth != NO_INT_VALUE) {
+      spinnerPopupWidth
+    } else {
+      width
+    }
+  }
+
+  private fun getSpinnerHeight(): Int {
+    return when {
+      spinnerPopupHeight != NO_INT_VALUE -> spinnerPopupHeight
+      spinnerItemHeight != NO_INT_VALUE -> calculateSpinnerHeight()
+      else -> getSpinnerRecyclerView().height
     }
   }
 

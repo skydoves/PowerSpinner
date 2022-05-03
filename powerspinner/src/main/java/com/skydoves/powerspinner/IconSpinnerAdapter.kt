@@ -25,6 +25,7 @@ import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.skydoves.powerspinner.databinding.PowerspinnerItemDefaultPowerBinding
+import com.skydoves.powerspinner.internals.NO_INT_VALUE
 import com.skydoves.powerspinner.internals.NO_SELECTED_INDEX
 
 /** IconSpinnerAdapter is a custom adapter composed of [IconSpinnerItem] items. */
@@ -131,6 +132,9 @@ public class IconSpinnerAdapter(
         spinnerView.paddingRight,
         spinnerView.paddingBottom
       )
+      if (spinnerView.spinnerItemHeight != NO_INT_VALUE) {
+        binding.root.height = spinnerView.spinnerItemHeight
+      }
     }
   }
 }
