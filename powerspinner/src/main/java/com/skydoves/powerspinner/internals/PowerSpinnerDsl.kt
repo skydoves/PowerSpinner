@@ -14,10 +14,7 @@
  * limitations under the License.
  */
 
-package com.skydoves.powerspinner
+package com.skydoves.powerspinner.internals
 
-/** definition of the non-value of Int type. */
-internal const val NO_INT_VALUE: Int = Int.MIN_VALUE
-
-/** definition of the non-selected index value. */
-internal const val NO_SELECTED_INDEX: Int = -1
+@DslMarker
+internal annotation class PowerSpinnerDsl

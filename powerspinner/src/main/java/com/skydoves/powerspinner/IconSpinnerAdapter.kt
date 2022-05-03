@@ -25,9 +25,10 @@ import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.skydoves.powerspinner.databinding.ItemDefaultPowerSpinnerLibraryBinding
+import com.skydoves.powerspinner.internals.NO_SELECTED_INDEX
 
 /** IconSpinnerAdapter is a custom adapter composed of [IconSpinnerItem] items. */
-class IconSpinnerAdapter(
+public class IconSpinnerAdapter(
   powerSpinnerView: PowerSpinnerView
 ) : RecyclerView.Adapter<IconSpinnerAdapter.IconSpinnerViewHolder>(),
   PowerSpinnerInterface<IconSpinnerItem> {
@@ -97,12 +98,12 @@ class IconSpinnerAdapter(
     )
   }
 
-  override fun getItemCount() = this.spinnerItems.size
+  override fun getItemCount(): Int = this.spinnerItems.size
 
-  class IconSpinnerViewHolder(private val binding: ItemDefaultPowerSpinnerLibraryBinding) :
+  public class IconSpinnerViewHolder(private val binding: ItemDefaultPowerSpinnerLibraryBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(item: IconSpinnerItem, spinnerView: PowerSpinnerView) {
+    internal fun bind(item: IconSpinnerItem, spinnerView: PowerSpinnerView) {
       binding.itemDefaultText.apply {
         text = item.text
         item.textTypeface?.let { typeface = it } ?: setTypeface(typeface, item.textStyle)

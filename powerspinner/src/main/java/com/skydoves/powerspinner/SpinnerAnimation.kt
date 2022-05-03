@@ -17,7 +17,7 @@
 package com.skydoves.powerspinner
 
 /** SpinnerAnimation is an animation attribute of the showing the spinner popup. */
-enum class SpinnerAnimation(val value: Int) {
+public enum class SpinnerAnimation(public val value: Int) {
   DROPDOWN(0),
   FADE(1),
   BOUNCE(2),

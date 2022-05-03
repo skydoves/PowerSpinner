@@ -16,7 +16,6 @@ public final class com/skydoves/powerspinner/DefaultSpinnerAdapter : androidx/re
 
 public final class com/skydoves/powerspinner/DefaultSpinnerAdapter$DefaultSpinnerViewHolder : androidx/recyclerview/widget/RecyclerView$ViewHolder {
 	public fun <init> (Lcom/skydoves/powerspinner/databinding/ItemDefaultPowerSpinnerLibraryBinding;)V
-	public final fun bind (Ljava/lang/CharSequence;Lcom/skydoves/powerspinner/PowerSpinnerView;)V
 }
 
 public final class com/skydoves/powerspinner/IconSpinnerAdapter : androidx/recyclerview/widget/RecyclerView$Adapter, com/skydoves/powerspinner/PowerSpinnerInterface {
@@ -37,7 +36,6 @@ public final class com/skydoves/powerspinner/IconSpinnerAdapter : androidx/recyc
 
 public final class com/skydoves/powerspinner/IconSpinnerAdapter$IconSpinnerViewHolder : androidx/recyclerview/widget/RecyclerView$ViewHolder {
 	public fun <init> (Lcom/skydoves/powerspinner/databinding/ItemDefaultPowerSpinnerLibraryBinding;)V
-	public final fun bind (Lcom/skydoves/powerspinner/IconSpinnerItem;Lcom/skydoves/powerspinner/PowerSpinnerView;)V
 }
 
 public final class com/skydoves/powerspinner/IconSpinnerItem {
@@ -118,6 +116,7 @@ public final class com/skydoves/powerspinner/PowerSpinnerPreference : androidx/p
 }
 
 public final class com/skydoves/powerspinner/PowerSpinnerView : androidx/appcompat/widget/AppCompatTextView, androidx/lifecycle/LifecycleObserver {
+	public field disableChangeTextWhenNotified Z
 	public fun <init> (Landroid/content/Context;)V
 	public fun <init> (Landroid/content/Context;Landroid/util/AttributeSet;)V
 	public fun <init> (Landroid/content/Context;Landroid/util/AttributeSet;I)V
@@ -132,7 +131,6 @@ public final class com/skydoves/powerspinner/PowerSpinnerView : androidx/appcomp
 	public final fun getArrowSize ()Lcom/skydoves/powerspinner/SpinnerSizeSpec;
 	public final fun getArrowTint ()I
 	public final fun getDebounceDuration ()J
-	public final fun getDisableChangeTextWhenNotified ()Z
 	public final fun getDismissWhenNotifiedItemSelected ()Z
 	public final fun getDividerColor ()I
 	public final fun getDividerSize ()I
@@ -164,7 +162,6 @@ public final class com/skydoves/powerspinner/PowerSpinnerView : androidx/appcomp
 	public final fun setArrowResource (I)V
 	public final fun setArrowSize (Lcom/skydoves/powerspinner/SpinnerSizeSpec;)V
 	public final fun setArrowTint (I)V
-	public final fun setDisableChangeTextWhenNotified (Z)Lcom/skydoves/powerspinner/PowerSpinnerView;
 	public final fun setDisableChangeTextWhenNotified (Z)V
 	public final fun setDismissWhenNotifiedItemSelected (Z)V
 	public final fun setDividerColor (I)V
@@ -202,7 +199,6 @@ public final class com/skydoves/powerspinner/PowerSpinnerView : androidx/appcomp
 public final class com/skydoves/powerspinner/PowerSpinnerView$Builder {
 	public fun <init> (Landroid/content/Context;)V
 	public final fun build ()Lcom/skydoves/powerspinner/PowerSpinnerView;
-	public final fun getPowerSpinnerView ()Lcom/skydoves/powerspinner/PowerSpinnerView;
 	public final fun setArrowAnimate (Z)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;
 	public final fun setArrowAnimationDuration (J)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;
 	public final fun setArrowDrawableResource (I)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;

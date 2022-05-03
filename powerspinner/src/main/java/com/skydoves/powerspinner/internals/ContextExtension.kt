@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.skydoves.powerspinner
+package com.skydoves.powerspinner.internals
 
 import android.content.Context
 import android.graphics.drawable.Drawable

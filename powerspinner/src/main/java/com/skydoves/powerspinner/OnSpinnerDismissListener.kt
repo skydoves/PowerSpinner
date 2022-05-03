@@ -17,8 +17,8 @@
 package com.skydoves.powerspinner
 
 /** Interface definition for a callback to be invoked when spinner popup is dismissed. */
-fun interface OnSpinnerDismissListener {
+public fun interface OnSpinnerDismissListener {
 
   /** invoked when spinner popup is dismissed. */
-  fun onDismiss()
+  public fun onDismiss()
 }

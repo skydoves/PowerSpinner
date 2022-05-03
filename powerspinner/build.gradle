@@ -54,6 +54,10 @@ android {
     }
 }
 
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+  kotlinOptions.freeCompilerArgs += ["-Xexplicit-api=strict"]
+}
+
 apiValidation {
     ignoredPackages += [
         "com/skydoves/powerspinner/databinding",
@@ -68,10 +72,6 @@ dependencies {
     implementation Dependencies.recyclerView
     implementation Dependencies.preference
     implementation Dependencies.lifecycle
-}
-
-kotlin {
-    explicitApiWarning()
 }
 
 apply from: "$rootDir/spotless.gradle"

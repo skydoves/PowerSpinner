@@ -20,6 +20,7 @@ package com.skydoves.powerspinner
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.skydoves.powerspinner.internals.NO_SELECTED_INDEX
 
 /** PowerSpinnerPreferences helps to persist selected item status. */
 internal class PowerSpinnerPersistence private constructor() {

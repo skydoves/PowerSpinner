@@ -47,10 +47,17 @@ import androidx.lifecycle.OnLifecycleEvent
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.skydoves.powerspinner.databinding.LayoutBodyPowerSpinnerLibraryBinding
+import com.skydoves.powerspinner.internals.NO_INT_VALUE
+import com.skydoves.powerspinner.internals.NO_SELECTED_INDEX
+import com.skydoves.powerspinner.internals.PowerSpinnerDsl
+import com.skydoves.powerspinner.internals.contextDrawable
+import com.skydoves.powerspinner.internals.dp2Px
+import com.skydoves.powerspinner.internals.resize
+import com.skydoves.powerspinner.internals.whatIfNotNullOrEmpty
 
 /** A lightweight dropdown spinner, fully customizable with arrow and animations. */
 @Suppress("MemberVisibilityCanBePrivate", "unused")
-class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
+public class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
 
   /** Main body view for composing the Spinner popup. */
   private val binding: LayoutBodyPowerSpinnerLibraryBinding =
@@ -60,40 +67,42 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   private val spinnerWindow: PopupWindow
 
   /** Spinner is showing or not. */
-  var isShowing: Boolean = false
+  public var isShowing: Boolean = false
     private set
 
   /** An index of the selected item. */
-  var selectedIndex: Int = NO_SELECTED_INDEX
+  public var selectedIndex: Int = NO_SELECTED_INDEX
     private set
 
   /** An adapter for composing items of the spinner. */
   private var adapter: PowerSpinnerInterface<*> = DefaultSpinnerAdapter(this)
 
   /** The arrow will  be animated or not when show and dismiss the spinner. */
-  var arrowAnimate: Boolean = true
+  public var arrowAnimate: Boolean = true
 
   /** A duration of the arrow animation when show and dismiss. */
-  var arrowAnimationDuration: Long = 250L
+  public var arrowAnimationDuration: Long = 250L
 
   /** A drawable of the arrow. */
-  var arrowDrawable: Drawable? =
+  public var arrowDrawable: Drawable? =
     context.contextDrawable(R.drawable.arrow_power_spinner_library)?.mutate()
 
   /** A duration of the debounce for showOrDismiss. */
-  var debounceDuration: Long = 150L
+  public var debounceDuration: Long = 150L
     private set
 
   /** Disable changing text automatically when an item selection notified. */
-  var disableChangeTextWhenNotified: Boolean = false
+  @JvmField
+  public var disableChangeTextWhenNotified: Boolean = false
 
   /** A backing field of the previously debounce local time. */
   private var previousDebounceTime: Long = 0
 
-  @DrawableRes private var _arrowResource: Int = NO_INT_VALUE
+  @DrawableRes
+  private var _arrowResource: Int = NO_INT_VALUE
 
   /** A drawable resource of the arrow. */
-  var arrowResource: Int
+  public var arrowResource: Int
     @DrawableRes get() = _arrowResource
     set(@DrawableRes value) {
       _arrowResource = value
@@ -103,7 +112,7 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   private var _showArrow: Boolean = true
 
   /** The arrow will be shown or not on the popup. */
-  var showArrow: Boolean
+  public var showArrow: Boolean
     get() = _showArrow
     set(value) {
       _showArrow = value
@@ -113,7 +122,7 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   private var _arrowGravity: SpinnerGravity = SpinnerGravity.END
 
   /** A gravity of the arrow. */
-  var arrowGravity: SpinnerGravity
+  public var arrowGravity: SpinnerGravity
     get() = _arrowGravity
     set(value) {
       _arrowGravity = value
@@ -123,27 +132,29 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   private var _arrowSize: SpinnerSizeSpec? = null
 
   /** A size spec of the arrow. */
-  var arrowSize: SpinnerSizeSpec?
+  public var arrowSize: SpinnerSizeSpec?
     get() = _arrowSize
     set(value) {
       _arrowSize = value
       updateSpinnerArrow()
     }
 
-  @Px private var _arrowPadding: Int = 0
+  @Px
+  private var _arrowPadding: Int = 0
 
   /** A padding of the arrow. */
-  var arrowPadding: Int
+  public var arrowPadding: Int
     @Px get() = _arrowPadding
     set(@Px value) {
       _arrowPadding = value
       updateSpinnerArrow()
     }
 
-  @ColorInt private var _arrowTint: Int = Color.WHITE
+  @ColorInt
+  private var _arrowTint: Int = Color.WHITE
 
   /** A tint color of the arrow. */
-  var arrowTint: Int
+  public var arrowTint: Int
     @ColorInt get() = _arrowTint
     set(@ColorInt value) {
       _arrowTint = value
@@ -153,27 +164,29 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   private var _showDivider: Boolean = false
 
   /** A divider between items will be shown or not. */
-  var showDivider: Boolean
+  public var showDivider: Boolean
     get() = _showDivider
     set(value) {
       _showDivider = value
       updateSpinnerWindow()
     }
 
-  @Px private var _dividerSize: Int = dp2Px(0.5f)
+  @Px
+  private var _dividerSize: Int = dp2Px(0.5f)
 
   /** A width size of the divider. */
-  var dividerSize: Int
+  public var dividerSize: Int
     @Px get() = _dividerSize
     set(@Px value) {
       _dividerSize = value
       updateSpinnerWindow()
     }
 
-  @ColorInt private var _dividerColor: Int = Color.WHITE
+  @ColorInt
+  private var _dividerColor: Int = Color.WHITE
 
   /** A color of the divider. */
-  var dividerColor: Int
+  public var dividerColor: Int
     @ColorInt get() = _dividerColor
     set(@ColorInt value) {
       _dividerColor = value
@@ -183,17 +196,18 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   private var _spinnerPopupBackground: Drawable? = null
 
   /** A background of the spinner popup. */
-  var spinnerPopupBackground: Drawable?
+  public var spinnerPopupBackground: Drawable?
     get() = _spinnerPopupBackground
     set(value) {
       _spinnerPopupBackground = value
       updateSpinnerWindow()
     }
 
-  @Px private var _spinnerPopupElevation: Int = dp2Px(4)
+  @Px
+  private var _spinnerPopupElevation: Int = dp2Px(4)
 
   /** A elevation of the spinner popup. */
-  var spinnerPopupElevation: Int
+  public var spinnerPopupElevation: Int
     @Px get() = _spinnerPopupElevation
     set(@Px value) {
       _spinnerPopupElevation = value
@@ -201,28 +215,29 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
     }
 
   /** A style resource for the popup animation when show and dismiss. */
-  @StyleRes var spinnerPopupAnimationStyle: Int = NO_INT_VALUE
+  @StyleRes
+  public var spinnerPopupAnimationStyle: Int = NO_INT_VALUE
 
   /** A width size of the spinner popup. */
-  var spinnerPopupWidth: Int = NO_INT_VALUE
+  public var spinnerPopupWidth: Int = NO_INT_VALUE
 
   /** A height size of the spinner popup. */
-  var spinnerPopupHeight: Int = NO_INT_VALUE
+  public var spinnerPopupHeight: Int = NO_INT_VALUE
 
   /** The spinner popup will be dismissed when got notified an item is selected. */
-  var dismissWhenNotifiedItemSelected: Boolean = true
+  public var dismissWhenNotifiedItemSelected: Boolean = true
 
   /** Interface definition for a callback to be invoked when touched on outside of the spinner popup. */
-  var spinnerOutsideTouchListener: OnSpinnerOutsideTouchListener? = null
+  public var spinnerOutsideTouchListener: OnSpinnerOutsideTouchListener? = null
 
   /** Interface definition for a callback to be invoked when spinner popup is dismissed. */
-  var onSpinnerDismissListener: OnSpinnerDismissListener? = null
+  public var onSpinnerDismissListener: OnSpinnerDismissListener? = null
 
   /** A collection of the spinner popup animation when show and dismiss. */
-  var spinnerPopupAnimation: SpinnerAnimation = SpinnerAnimation.NORMAL
+  public var spinnerPopupAnimation: SpinnerAnimation = SpinnerAnimation.NORMAL
 
   /** A preferences name of the spinner. */
-  var preferenceName: String? = null
+  public var preferenceName: String? = null
     set(value) {
       field = value
       updateSpinnerPersistence()
@@ -233,7 +248,7 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
    * It is recommended that this field be should be set for avoiding memory leak of the popup window.
    * [Avoid Memory leak](https://github.com/skydoves/powerspinner#avoid-memory-leak)
    */
-  var lifecycleOwner: LifecycleOwner? = null
+  public var lifecycleOwner: LifecycleOwner? = null
     set(value) {
       field = value
       field?.lifecycle?.addObserver(this@PowerSpinnerView)
@@ -258,13 +273,13 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
     }
   }
 
-  constructor(context: Context) : super(context)
+  public constructor(context: Context) : super(context)
 
-  constructor(context: Context, attributeSet: AttributeSet) : super(context, attributeSet) {
+  public constructor(context: Context, attributeSet: AttributeSet) : super(context, attributeSet) {
     getAttrs(attributeSet)
   }
 
-  constructor(context: Context, attributeSet: AttributeSet, defStyle: Int) : super(
+  public constructor(context: Context, attributeSet: AttributeSet, defStyle: Int) : super(
     context,
     attributeSet,
     defStyle
@@ -568,10 +583,10 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   }
 
   /** gets the spinner popup's recyclerView. */
-  fun getSpinnerRecyclerView(): RecyclerView = binding.recyclerView
+  public fun getSpinnerRecyclerView(): RecyclerView = binding.recyclerView
 
   /** gets the spinner popup's body. */
-  fun getSpinnerBodyView(): FrameLayout = binding.body
+  public fun getSpinnerBodyView(): FrameLayout = binding.body
 
   /**
    * Sets an item list for setting items of the adapter.
@@ -579,7 +594,7 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
    * @param itemList An item list for the [RecyclerView.Adapter] which extends the [PowerSpinnerInterface].
    */
   @Suppress("UNCHECKED_CAST")
-  fun <T> setItems(itemList: List<T>) {
+  public fun <T> setItems(itemList: List<T>) {
     (adapter as PowerSpinnerInterface<T>).setItems(itemList)
   }
 
@@ -589,14 +604,14 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
    *
    * @param resource A resource of the string array.
    */
-  fun setItems(@ArrayRes resource: Int) {
+  public fun setItems(@ArrayRes resource: Int) {
     if (adapter is DefaultSpinnerAdapter) {
       setItems(context.resources.getStringArray(resource).toList())
     }
   }
 
   /** sets an adapter of the [PowerSpinnerView]. */
-  fun <T> setSpinnerAdapter(powerSpinnerInterface: PowerSpinnerInterface<T>) {
+  public fun <T> setSpinnerAdapter(powerSpinnerInterface: PowerSpinnerInterface<T>) {
     adapter = powerSpinnerInterface
     if (adapter is RecyclerView.Adapter<*>) {
       getSpinnerRecyclerView().adapter = adapter as RecyclerView.Adapter<*>
@@ -605,13 +620,13 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
 
   /** gets an adapter of the [PowerSpinnerView]. */
   @Suppress("UNCHECKED_CAST")
-  fun <T> getSpinnerAdapter(): PowerSpinnerInterface<T> {
+  public fun <T> getSpinnerAdapter(): PowerSpinnerInterface<T> {
     return adapter as PowerSpinnerInterface<T>
   }
 
   /** sets a [OnSpinnerItemSelectedListener] to the default adapter. */
   @Suppress("UNCHECKED_CAST")
-  fun <T> setOnSpinnerItemSelectedListener(onSpinnerItemSelectedListener: OnSpinnerItemSelectedListener<T>) {
+  public fun <T> setOnSpinnerItemSelectedListener(onSpinnerItemSelectedListener: OnSpinnerItemSelectedListener<T>) {
     val adapter = adapter as PowerSpinnerInterface<T>
     adapter.onSpinnerItemSelectedListener = onSpinnerItemSelectedListener
   }
@@ -619,7 +634,7 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   /** sets a [OnSpinnerItemSelectedListener] to the popup using lambda. */
   @Suppress("UNCHECKED_CAST")
   @JvmSynthetic
-  fun <T> setOnSpinnerItemSelectedListener(block: (oldIndex: Int, oldItem: T?, newIndex: Int, newItem: T) -> Unit) {
+  public fun <T> setOnSpinnerItemSelectedListener(block: (oldIndex: Int, oldItem: T?, newIndex: Int, newItem: T) -> Unit) {
     val adapter = adapter as PowerSpinnerInterface<T>
     adapter.onSpinnerItemSelectedListener =
       OnSpinnerItemSelectedListener { oldIndex, oldItem, newIndex, newItem ->
@@ -629,14 +644,14 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
 
   /** sets a [OnSpinnerOutsideTouchListener] to the popup using lambda. */
   @JvmSynthetic
-  fun setOnSpinnerOutsideTouchListener(block: (View, MotionEvent) -> Unit) {
+  public fun setOnSpinnerOutsideTouchListener(block: (View, MotionEvent) -> Unit) {
     this.spinnerOutsideTouchListener =
       OnSpinnerOutsideTouchListener { view, event -> block(view, event) }
   }
 
   /** sets a [OnSpinnerDismissListener] to the popup using lambda. */
   @JvmSynthetic
-  fun setOnSpinnerDismissListener(block: () -> Unit) {
+  public fun setOnSpinnerDismissListener(block: () -> Unit) {
     this.onSpinnerDismissListener = OnSpinnerDismissListener {
       block()
     }
@@ -645,7 +660,7 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   /** shows the spinner popup menu to the center. */
   @MainThread
   @JvmOverloads
-  fun show(xOff: Int = 0, yOff: Int = 0) {
+  public fun show(xOff: Int = 0, yOff: Int = 0) {
     debounceShowOrDismiss {
       if (!isShowing) {
         this.isShowing = true
@@ -671,7 +686,7 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
 
   /** dismiss the spinner popup menu. */
   @MainThread
-  fun dismiss() {
+  public fun dismiss() {
     debounceShowOrDismiss {
       if (this.isShowing) {
         animateArrow(false)
@@ -687,7 +702,7 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
    */
   @MainThread
   @JvmOverloads
-  fun showOrDismiss(xOff: Int = 0, yOff: Int = 0) {
+  public fun showOrDismiss(xOff: Int = 0, yOff: Int = 0) {
     val adapter = getSpinnerRecyclerView().adapter ?: return
     if (!isShowing && adapter.itemCount > 0) {
       show(xOff, yOff)
@@ -697,7 +712,7 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   }
 
   /** Disable changing text automatically when an item selection notified. */
-  fun setDisableChangeTextWhenNotified(value: Boolean) = apply {
+  public fun setDisableChangeTextWhenNotified(value: Boolean) {
     this.disableChangeTextWhenNotified = value
   }
 
@@ -705,7 +720,7 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
    * sets isFocusable of the spinner popup.
    * The spinner popup will be got a focus and [onSpinnerDismissListener] will be replaced.
    */
-  fun setIsFocusable(isFocusable: Boolean) {
+  public fun setIsFocusable(isFocusable: Boolean) {
     this.spinnerWindow.isFocusable = isFocusable
     this.onSpinnerDismissListener = OnSpinnerDismissListener { dismiss() }
   }
@@ -725,12 +740,12 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
    *
    * @param index An index should be selected.
    */
-  fun selectItemByIndex(index: Int) {
+  public fun selectItemByIndex(index: Int) {
     this.adapter.notifyItemSelected(index)
   }
 
   /** notifies to [PowerSpinnerView] of changed information from [PowerSpinnerInterface]. */
-  fun notifyItemSelected(index: Int, changedText: CharSequence) {
+  public fun notifyItemSelected(index: Int, changedText: CharSequence) {
     this.selectedIndex = index
     if (!disableChangeTextWhenNotified) {
       this.text = changedText
@@ -744,7 +759,7 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   }
 
   /** clears a selected item. */
-  fun clearSelectedItem() {
+  public fun clearSelectedItem() {
     notifyItemSelected(NO_SELECTED_INDEX, "")
   }
 
@@ -762,112 +777,131 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
 
   /** dismiss automatically when lifecycle owner is destroyed. */
   @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-  fun onDestroy() {
+  public fun onDestroy() {
     dismiss()
   }
 
   /** Builder class for creating [PowerSpinnerView]. */
   @PowerSpinnerDsl
-  class Builder(context: Context) {
-    val powerSpinnerView = PowerSpinnerView(context)
+  public class Builder(context: Context) {
+    private val powerSpinnerView = PowerSpinnerView(context)
 
-    fun setArrowAnimate(value: Boolean) = apply { this.powerSpinnerView.arrowAnimate = value }
-    fun setArrowAnimationDuration(value: Long) = apply {
+    public fun setArrowAnimate(value: Boolean): Builder =
+      apply { this.powerSpinnerView.arrowAnimate = value }
+
+    public fun setArrowAnimationDuration(value: Long): Builder = apply {
       this.powerSpinnerView.arrowAnimationDuration = value
     }
 
-    fun setArrowDrawableResource(@DrawableRes value: Int) = apply {
+    public fun setArrowDrawableResource(@DrawableRes value: Int): Builder = apply {
       this.powerSpinnerView.arrowResource = value
     }
 
-    fun setShowArrow(value: Boolean) = apply { this.powerSpinnerView.showArrow = value }
-    fun setArrowGravity(value: SpinnerGravity) = apply {
+    public fun setShowArrow(value: Boolean): Builder =
+      apply { this.powerSpinnerView.showArrow = value }
+
+    public fun setArrowGravity(value: SpinnerGravity): Builder = apply {
       this.powerSpinnerView.arrowGravity = value
     }
 
-    fun setArrowPadding(@Px value: Int) = apply { this.powerSpinnerView.arrowPadding = value }
-    fun setArrowTint(@ColorInt value: Int) = apply { this.powerSpinnerView.arrowTint = value }
-    fun setShowDivider(value: Boolean) = apply { this.powerSpinnerView.showDivider = value }
-    fun setDividerSize(@Px value: Int) = apply { this.powerSpinnerView.dividerSize = value }
-    fun setDividerColor(@ColorInt value: Int) = apply { this.powerSpinnerView.dividerColor = value }
-    fun setSpinnerPopupBackground(value: Drawable) = apply {
+    public fun setArrowPadding(@Px value: Int): Builder =
+      apply { this.powerSpinnerView.arrowPadding = value }
+
+    public fun setArrowTint(@ColorInt value: Int): Builder =
+      apply { this.powerSpinnerView.arrowTint = value }
+
+    public fun setShowDivider(value: Boolean): Builder =
+      apply { this.powerSpinnerView.showDivider = value }
+
+    public fun setDividerSize(@Px value: Int): Builder =
+      apply { this.powerSpinnerView.dividerSize = value }
+
+    public fun setDividerColor(@ColorInt value: Int): Builder =
+      apply { this.powerSpinnerView.dividerColor = value }
+
+    public fun setSpinnerPopupBackground(value: Drawable): Builder = apply {
       this.powerSpinnerView.spinnerPopupBackground = value
     }
-    fun setSpinnerPopupBackgroundResource(@DrawableRes value: Int) = apply {
+
+    public fun setSpinnerPopupBackgroundResource(@DrawableRes value: Int): Builder = apply {
       this.powerSpinnerView.setBackgroundResource(value)
     }
 
-    fun setDismissWhenNotifiedItemSelected(value: Boolean) = apply {
+    public fun setDismissWhenNotifiedItemSelected(value: Boolean): Builder = apply {
       this.powerSpinnerView.dismissWhenNotifiedItemSelected = value
     }
 
     @Suppress("UNCHECKED_CAST")
-    fun <T> setOnSpinnerItemSelectedListener(onSpinnerItemSelectedListener: OnSpinnerItemSelectedListener<T>) = apply {
-      val adapter: PowerSpinnerInterface<T> =
-        this.powerSpinnerView.adapter as PowerSpinnerInterface<T>
-      adapter.onSpinnerItemSelectedListener = onSpinnerItemSelectedListener
-    }
+    public fun <T> setOnSpinnerItemSelectedListener(onSpinnerItemSelectedListener: OnSpinnerItemSelectedListener<T>): Builder =
+      apply {
+        val adapter: PowerSpinnerInterface<T> =
+          this.powerSpinnerView.adapter as PowerSpinnerInterface<T>
+        adapter.onSpinnerItemSelectedListener = onSpinnerItemSelectedListener
+      }
 
     @Suppress("UNCHECKED_CAST")
     @JvmSynthetic
-    fun <T> setOnSpinnerItemSelectedListener(block: (oldIndex: Int, oldItem: T?, newIndex: Int, newItem: T) -> Unit) = apply {
-      val adapter: PowerSpinnerInterface<T> =
-        this.powerSpinnerView.adapter as PowerSpinnerInterface<T>
-      adapter.onSpinnerItemSelectedListener =
-        OnSpinnerItemSelectedListener { oldIndex, oldItem, newIndex, newItem ->
-          block(oldIndex, oldItem, newIndex, newItem)
-        }
-    }
+    public fun <T> setOnSpinnerItemSelectedListener(block: (oldIndex: Int, oldItem: T?, newIndex: Int, newItem: T) -> Unit): Builder =
+      apply {
+        val adapter: PowerSpinnerInterface<T> =
+          this.powerSpinnerView.adapter as PowerSpinnerInterface<T>
+        adapter.onSpinnerItemSelectedListener =
+          OnSpinnerItemSelectedListener { oldIndex, oldItem, newIndex, newItem ->
+            block(oldIndex, oldItem, newIndex, newItem)
+          }
+      }
 
-    fun setOnSpinnerOutsideTouchListener(value: OnSpinnerOutsideTouchListener) = apply {
-      this.powerSpinnerView.spinnerOutsideTouchListener = value
-    }
+    public fun setOnSpinnerOutsideTouchListener(value: OnSpinnerOutsideTouchListener): Builder =
+      apply {
+        this.powerSpinnerView.spinnerOutsideTouchListener = value
+      }
 
     @JvmSynthetic
-    fun setOnSpinnerOutsideTouchListener(unit: (View, MotionEvent) -> Unit) = apply {
-      this.powerSpinnerView.spinnerOutsideTouchListener =
-        OnSpinnerOutsideTouchListener { view, event -> unit(view, event) }
-    }
+    public fun setOnSpinnerOutsideTouchListener(unit: (View, MotionEvent) -> Unit): Builder =
+      apply {
+        this.powerSpinnerView.spinnerOutsideTouchListener =
+          OnSpinnerOutsideTouchListener { view, event -> unit(view, event) }
+      }
 
-    fun setOnSpinnerDismissListener(value: OnSpinnerDismissListener) = apply {
+    public fun setOnSpinnerDismissListener(value: OnSpinnerDismissListener): Builder = apply {
       this.powerSpinnerView.onSpinnerDismissListener = value
     }
 
     @JvmSynthetic
-    fun setOnSpinnerDismissListener(block: () -> Unit) = apply {
+    public fun setOnSpinnerDismissListener(block: () -> Unit): Builder = apply {
       this.powerSpinnerView.onSpinnerDismissListener = OnSpinnerDismissListener {
         block()
       }
     }
 
-    fun setDisableChangeTextWhenNotified(value: Boolean) = apply {
+    public fun setDisableChangeTextWhenNotified(value: Boolean): Builder = apply {
       this.powerSpinnerView.disableChangeTextWhenNotified = value
     }
 
-    fun setSpinnerPopupAnimation(value: SpinnerAnimation) = apply {
+    public fun setSpinnerPopupAnimation(value: SpinnerAnimation): Builder = apply {
       this.powerSpinnerView.spinnerPopupAnimation = value
     }
 
-    fun setSpinnerPopupAnimationStyle(@StyleRes value: Int) = apply {
+    public fun setSpinnerPopupAnimationStyle(@StyleRes value: Int): Builder = apply {
       this.powerSpinnerView.spinnerPopupAnimationStyle = value
     }
 
-    fun setSpinnerPopupWidth(@Px value: Int) = apply {
+    public fun setSpinnerPopupWidth(@Px value: Int): Builder = apply {
       this.powerSpinnerView.spinnerPopupWidth = value
     }
 
-    fun setSpinnerPopupHeight(@Px value: Int) = apply {
+    public fun setSpinnerPopupHeight(@Px value: Int): Builder = apply {
       this.powerSpinnerView.spinnerPopupHeight = value
     }
 
-    fun setPreferenceName(value: String) = apply {
+    public fun setPreferenceName(value: String): Builder = apply {
       this.powerSpinnerView.preferenceName = value
     }
 
-    fun setLifecycleOwner(value: LifecycleOwner) = apply {
+    public fun setLifecycleOwner(value: LifecycleOwner): Builder = apply {
       this.powerSpinnerView.lifecycleOwner = value
     }
 
-    fun build() = this.powerSpinnerView
+    public fun build(): PowerSpinnerView = this.powerSpinnerView
   }
 }
