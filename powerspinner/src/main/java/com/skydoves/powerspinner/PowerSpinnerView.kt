@@ -40,10 +40,8 @@ import androidx.annotation.Px
 import androidx.annotation.StyleRes
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.graphics.drawable.DrawableCompat
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.OnLifecycleEvent
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.skydoves.powerspinner.databinding.LayoutBodyPowerSpinnerLibraryBinding
@@ -57,7 +55,7 @@ import com.skydoves.powerspinner.internals.whatIfNotNullOrEmpty
 
 /** A lightweight dropdown spinner, fully customizable with arrow and animations. */
 @Suppress("MemberVisibilityCanBePrivate", "unused")
-public class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
+public class PowerSpinnerView : AppCompatTextView, DefaultLifecycleObserver {
 
   /** Main body view for composing the Spinner popup. */
   private val binding: LayoutBodyPowerSpinnerLibraryBinding =
@@ -776,8 +774,8 @@ public class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   }
 
   /** dismiss automatically when lifecycle owner is destroyed. */
-  @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-  public fun onDestroy() {
+  override fun onDestroy(owner: LifecycleOwner) {
+    super.onDestroy(owner)
     dismiss()
   }
 

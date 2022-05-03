@@ -115,7 +115,7 @@ public final class com/skydoves/powerspinner/PowerSpinnerPreference : androidx/p
 	public final synthetic fun setOnSpinnerItemSelectedListener (Lkotlin/jvm/functions/Function4;)V
 }
 
-public final class com/skydoves/powerspinner/PowerSpinnerView : androidx/appcompat/widget/AppCompatTextView, androidx/lifecycle/LifecycleObserver {
+public final class com/skydoves/powerspinner/PowerSpinnerView : androidx/appcompat/widget/AppCompatTextView, androidx/lifecycle/DefaultLifecycleObserver {
 	public field disableChangeTextWhenNotified Z
 	public fun <init> (Landroid/content/Context;)V
 	public fun <init> (Landroid/content/Context;Landroid/util/AttributeSet;)V
@@ -152,7 +152,7 @@ public final class com/skydoves/powerspinner/PowerSpinnerView : androidx/appcomp
 	public final fun getSpinnerRecyclerView ()Landroidx/recyclerview/widget/RecyclerView;
 	public final fun isShowing ()Z
 	public final fun notifyItemSelected (ILjava/lang/CharSequence;)V
-	public final fun onDestroy ()V
+	public fun onDestroy (Landroidx/lifecycle/LifecycleOwner;)V
 	public final fun selectItemByIndex (I)V
 	public final fun setArrowAnimate (Z)V
 	public final fun setArrowAnimationDuration (J)V
