@@ -39,6 +39,8 @@ android {
         versionName Configuration.versionName
     }
 
+  resourcePrefix 'powerspinner'
+
     buildFeatures {
         viewBinding true
         buildConfig false

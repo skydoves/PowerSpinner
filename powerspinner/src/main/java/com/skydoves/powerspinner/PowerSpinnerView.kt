@@ -40,13 +40,11 @@ import androidx.annotation.Px
 import androidx.annotation.StyleRes
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.graphics.drawable.DrawableCompat
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.OnLifecycleEvent
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
-import com.skydoves.powerspinner.databinding.LayoutBodyPowerSpinnerLibraryBinding
+import com.skydoves.powerspinner.databinding.PowerspinnerLayoutBodyBinding
 import com.skydoves.powerspinner.internals.NO_INT_VALUE
 import com.skydoves.powerspinner.internals.NO_SELECTED_INDEX
 import com.skydoves.powerspinner.internals.PowerSpinnerDsl
@@ -57,11 +55,11 @@ import com.skydoves.powerspinner.internals.whatIfNotNullOrEmpty
 
 /** A lightweight dropdown spinner, fully customizable with arrow and animations. */
 @Suppress("MemberVisibilityCanBePrivate", "unused")
-public class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
+public class PowerSpinnerView : AppCompatTextView, DefaultLifecycleObserver {
 
   /** Main body view for composing the Spinner popup. */
-  private val binding: LayoutBodyPowerSpinnerLibraryBinding =
-    LayoutBodyPowerSpinnerLibraryBinding.inflate(LayoutInflater.from(context), null, false)
+  private val binding: PowerspinnerLayoutBodyBinding =
+    PowerspinnerLayoutBodyBinding.inflate(LayoutInflater.from(context), null, false)
 
   /** PopupWindow for creating the spinner. */
   private val spinnerWindow: PopupWindow
@@ -85,7 +83,7 @@ public class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
 
   /** A drawable of the arrow. */
   public var arrowDrawable: Drawable? =
-    context.contextDrawable(R.drawable.arrow_power_spinner_library)?.mutate()
+    context.contextDrawable(R.drawable.powerspinner_arrow)?.mutate()
 
   /** A duration of the debounce for showOrDismiss. */
   public var debounceDuration: Long = 150L
@@ -572,9 +570,9 @@ public class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
     if (this.spinnerPopupAnimationStyle == NO_INT_VALUE) {
       when (this.spinnerPopupAnimation) {
         SpinnerAnimation.DROPDOWN ->
-          this.spinnerWindow.animationStyle = R.style.DropDown_PowerSpinner
-        SpinnerAnimation.FADE -> this.spinnerWindow.animationStyle = R.style.Fade_PowerSpinner
-        SpinnerAnimation.BOUNCE -> this.spinnerWindow.animationStyle = R.style.Elastic_PowerSpinner
+          this.spinnerWindow.animationStyle = R.style.PowerSpinner_DropDown
+        SpinnerAnimation.FADE -> this.spinnerWindow.animationStyle = R.style.PowerSpinner_Fade
+        SpinnerAnimation.BOUNCE -> this.spinnerWindow.animationStyle = R.style.PowerSpinner_Elastic
         else -> Unit
       }
     } else {
@@ -776,8 +774,8 @@ public class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   }
 
   /** dismiss automatically when lifecycle owner is destroyed. */
-  @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-  public fun onDestroy() {
+  override fun onDestroy(owner: LifecycleOwner) {
+    super.onDestroy(owner)
     dismiss()
   }
 

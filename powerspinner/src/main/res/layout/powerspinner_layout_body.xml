@@ -17,6 +17,6 @@
     android:overScrollMode="never"
     android:scrollbars="vertical"
     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-    tools:listitem="@layout/item_default_power_spinner_library" />
+    tools:listitem="@layout/powerspinner_item_default_power" />
 
 </FrameLayout>
