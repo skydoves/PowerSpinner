@@ -222,6 +222,9 @@ public class PowerSpinnerView : AppCompatTextView, DefaultLifecycleObserver {
   /** A height size of the spinner popup. */
   public var spinnerPopupHeight: Int = NO_INT_VALUE
 
+  /** A fixed item height size of the spinner popup. */
+  public var spinnerItemHeight: Int = NO_INT_VALUE
+
   /** The spinner popup will be dismissed when got notified an item is selected. */
   public var dismissWhenNotifiedItemSelected: Boolean = true
 
@@ -418,6 +421,14 @@ public class PowerSpinnerView : AppCompatTextView, DefaultLifecycleObserver {
           )
       }
 
+      if (hasValue(R.styleable.PowerSpinnerView_spinner_item_height)) {
+        spinnerItemHeight =
+          getDimensionPixelSize(
+            R.styleable.PowerSpinnerView_spinner_item_height,
+            spinnerItemHeight
+          )
+      }
+
       if (hasValue(R.styleable.PowerSpinnerView_spinner_popup_elevation)) {
         _spinnerPopupElevation =
           getDimensionPixelSize(
@@ -583,6 +594,12 @@ public class PowerSpinnerView : AppCompatTextView, DefaultLifecycleObserver {
   /** gets the spinner popup's recyclerView. */
   public fun getSpinnerRecyclerView(): RecyclerView = binding.recyclerView
 
+  /** calculates the height size of the popup window. */
+  internal fun calculateSpinnerHeight(): Int {
+    val itemSize = getSpinnerAdapter<Any>().getItemCount()
+    return itemSize * (spinnerItemHeight + dividerSize)
+  }
+
   /** gets the spinner popup's body. */
   public fun getSpinnerBodyView(): FrameLayout = binding.body
 
@@ -661,24 +678,34 @@ public class PowerSpinnerView : AppCompatTextView, DefaultLifecycleObserver {
   public fun show(xOff: Int = 0, yOff: Int = 0) {
     debounceShowOrDismiss {
       if (!isShowing) {
-        this.isShowing = true
+        isShowing = true
         animateArrow(true)
         applyWindowAnimation()
-        this.spinnerWindow.showAsDropDown(this, xOff, yOff)
+        spinnerWindow.width = getSpinnerWidth()
+        if (getSpinnerHeight() != 0) {
+          spinnerWindow.height = getSpinnerHeight()
+        }
+        spinnerWindow.showAsDropDown(this, xOff, yOff)
         post {
-          val spinnerWidth = if (spinnerPopupWidth != NO_INT_VALUE) {
-            spinnerPopupWidth
-          } else {
-            width
-          }
-          val spinnerHeight = if (spinnerPopupHeight != NO_INT_VALUE) {
-            spinnerPopupHeight
-          } else {
-            getSpinnerRecyclerView().height
-          }
-          this.spinnerWindow.update(spinnerWidth, spinnerHeight)
+          spinnerWindow.update(getSpinnerWidth(), getSpinnerHeight())
         }
       }
+    }
+  }
+
+  private fun getSpinnerWidth(): Int {
+    return if (spinnerPopupWidth != NO_INT_VALUE) {
+      spinnerPopupWidth
+    } else {
+      width
+    }
+  }
+
+  private fun getSpinnerHeight(): Int {
+    return when {
+      spinnerPopupHeight != NO_INT_VALUE -> spinnerPopupHeight
+      spinnerItemHeight != NO_INT_VALUE -> calculateSpinnerHeight()
+      else -> getSpinnerRecyclerView().height
     }
   }
 
@@ -890,6 +917,10 @@ public class PowerSpinnerView : AppCompatTextView, DefaultLifecycleObserver {
 
     public fun setSpinnerPopupHeight(@Px value: Int): Builder = apply {
       this.powerSpinnerView.spinnerPopupHeight = value
+    }
+
+    public fun setSpinnerItemHeight(@Px value: Int): Builder = apply {
+      this.powerSpinnerView.spinnerItemHeight = value
     }
 
     public fun setPreferenceName(value: String): Builder = apply {

@@ -142,6 +142,7 @@ public final class com/skydoves/powerspinner/PowerSpinnerView : androidx/appcomp
 	public final fun getShowDivider ()Z
 	public final fun getSpinnerAdapter ()Lcom/skydoves/powerspinner/PowerSpinnerInterface;
 	public final fun getSpinnerBodyView ()Landroid/widget/FrameLayout;
+	public final fun getSpinnerItemHeight ()I
 	public final fun getSpinnerOutsideTouchListener ()Lcom/skydoves/powerspinner/OnSpinnerOutsideTouchListener;
 	public final fun getSpinnerPopupAnimation ()Lcom/skydoves/powerspinner/SpinnerAnimation;
 	public final fun getSpinnerPopupAnimationStyle ()I
@@ -179,6 +180,7 @@ public final class com/skydoves/powerspinner/PowerSpinnerView : androidx/appcomp
 	public final fun setShowArrow (Z)V
 	public final fun setShowDivider (Z)V
 	public final fun setSpinnerAdapter (Lcom/skydoves/powerspinner/PowerSpinnerInterface;)V
+	public final fun setSpinnerItemHeight (I)V
 	public final fun setSpinnerOutsideTouchListener (Lcom/skydoves/powerspinner/OnSpinnerOutsideTouchListener;)V
 	public final fun setSpinnerPopupAnimation (Lcom/skydoves/powerspinner/SpinnerAnimation;)V
 	public final fun setSpinnerPopupAnimationStyle (I)V
@@ -219,6 +221,7 @@ public final class com/skydoves/powerspinner/PowerSpinnerView$Builder {
 	public final fun setPreferenceName (Ljava/lang/String;)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;
 	public final fun setShowArrow (Z)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;
 	public final fun setShowDivider (Z)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;
+	public final fun setSpinnerItemHeight (I)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;
 	public final fun setSpinnerPopupAnimation (Lcom/skydoves/powerspinner/SpinnerAnimation;)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;
 	public final fun setSpinnerPopupAnimationStyle (I)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;
 	public final fun setSpinnerPopupBackground (Landroid/graphics/drawable/Drawable;)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;

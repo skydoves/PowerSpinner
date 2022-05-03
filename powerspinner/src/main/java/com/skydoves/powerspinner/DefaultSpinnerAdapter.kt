@@ -21,6 +21,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.skydoves.powerspinner.databinding.PowerspinnerItemDefaultPowerBinding
+import com.skydoves.powerspinner.internals.NO_INT_VALUE
 import com.skydoves.powerspinner.internals.NO_SELECTED_INDEX
 
 /** DefaultSpinnerAdapter is a default adapter composed of string items. */
@@ -93,6 +94,9 @@ public class DefaultSpinnerAdapter(
         spinnerView.paddingRight,
         spinnerView.paddingBottom
       )
+      if (spinnerView.spinnerItemHeight != NO_INT_VALUE) {
+        binding.root.height = spinnerView.spinnerItemHeight
+      }
     }
   }
 }
