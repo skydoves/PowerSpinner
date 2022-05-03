@@ -15,7 +15,7 @@ public final class com/skydoves/powerspinner/DefaultSpinnerAdapter : androidx/re
 }
 
 public final class com/skydoves/powerspinner/DefaultSpinnerAdapter$DefaultSpinnerViewHolder : androidx/recyclerview/widget/RecyclerView$ViewHolder {
-	public fun <init> (Lcom/skydoves/powerspinner/databinding/ItemDefaultPowerSpinnerLibraryBinding;)V
+	public fun <init> (Lcom/skydoves/powerspinner/databinding/PowerspinnerItemDefaultPowerBinding;)V
 }
 
 public final class com/skydoves/powerspinner/IconSpinnerAdapter : androidx/recyclerview/widget/RecyclerView$Adapter, com/skydoves/powerspinner/PowerSpinnerInterface {
@@ -35,7 +35,7 @@ public final class com/skydoves/powerspinner/IconSpinnerAdapter : androidx/recyc
 }
 
 public final class com/skydoves/powerspinner/IconSpinnerAdapter$IconSpinnerViewHolder : androidx/recyclerview/widget/RecyclerView$ViewHolder {
-	public fun <init> (Lcom/skydoves/powerspinner/databinding/ItemDefaultPowerSpinnerLibraryBinding;)V
+	public fun <init> (Lcom/skydoves/powerspinner/databinding/PowerspinnerItemDefaultPowerBinding;)V
 }
 
 public final class com/skydoves/powerspinner/IconSpinnerItem {
