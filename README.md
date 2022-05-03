@@ -1,7 +1,7 @@
 <h1 align="center">PowerSpinner</h1></br>
 
 <p align="center">
-🌀 A lightweight dropdown popup spinner with fully customizable arrow and animations.
+🌀 A lightweight dropdown popup spinner, fully customizable with an arrow and animations for Android.
 </p> <br>
 
 <p align="center">
@@ -23,7 +23,6 @@
 
 ## Including in your project
 [![Maven Central](https://img.shields.io/maven-central/v/com.github.skydoves/powerspinner.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.skydoves%22%20AND%20a:%22powerspinner%22)
-[![JitPack](https://jitpack.io/v/skydoves/PowerSpinner.svg)](https://jitpack.io/#skydoves/PowerSpinner) <br>
 
 ### Gradle
 Add below codes to your **root** `build.gradle` file (not your module build.gradle file).
