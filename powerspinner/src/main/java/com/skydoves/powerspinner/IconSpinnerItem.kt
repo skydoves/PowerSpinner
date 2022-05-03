@@ -36,7 +36,7 @@ import androidx.annotation.Px
  * @param textSize A size of the text.
  * @param textColor A color of the text.
  */
-data class IconSpinnerItem @JvmOverloads constructor(
+public data class IconSpinnerItem @JvmOverloads constructor(
   val text: CharSequence,
   val icon: Drawable? = null,
   @DrawableRes val iconRes: Int? = null,

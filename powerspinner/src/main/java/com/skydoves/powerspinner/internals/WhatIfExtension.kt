@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.skydoves.powerspinner
+package com.skydoves.powerspinner.internals
 
 /**
  * ☔ WhatIf is kotlin extensions for expressing a single if-else statement, nullable and boolean.

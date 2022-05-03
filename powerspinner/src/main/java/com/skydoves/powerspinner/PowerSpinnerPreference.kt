@@ -26,15 +26,16 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.preference.Preference
 import androidx.preference.PreferenceViewHolder
+import com.skydoves.powerspinner.internals.dp2Px
 
 /** PowerSpinnerPreference is a Preference for showing [PowerSpinnerView] in the preferences inflation from XML. */
-class PowerSpinnerPreference @JvmOverloads constructor(
+public class PowerSpinnerPreference @JvmOverloads constructor(
   context: Context,
   attributeSet: AttributeSet? = null,
   defStyle: Int = androidx.preference.R.attr.preferenceStyle
 ) : Preference(context, attributeSet, defStyle) {
 
-  val powerSpinnerView: PowerSpinnerView = PowerSpinnerView(context)
+  public val powerSpinnerView: PowerSpinnerView = PowerSpinnerView(context)
   private var defaultValue: Int = 0
 
   init {
@@ -197,7 +198,7 @@ class PowerSpinnerPreference @JvmOverloads constructor(
   }
 
   /** sets a [OnSpinnerItemSelectedListener] to the default adapter. */
-  fun <T> setOnSpinnerItemSelectedListener(onSpinnerItemSelectedListener: OnSpinnerItemSelectedListener<T>) {
+  public fun <T> setOnSpinnerItemSelectedListener(onSpinnerItemSelectedListener: OnSpinnerItemSelectedListener<T>) {
     this.powerSpinnerView.setOnSpinnerItemSelectedListener<T> { oldIndex, oldItem, newIndex, newItem ->
       onSpinnerItemSelectedListener.onItemSelected(oldIndex, oldItem, newIndex, newItem)
       persistInt(newIndex)
@@ -206,7 +207,7 @@ class PowerSpinnerPreference @JvmOverloads constructor(
 
   /** sets a [OnSpinnerItemSelectedListener] to the popup using lambda. */
   @JvmSynthetic
-  fun <T> setOnSpinnerItemSelectedListener(block: (oldIndex: Int, oldItem: T?, newIndex: Int, newItem: T) -> Unit) {
+  public fun <T> setOnSpinnerItemSelectedListener(block: (oldIndex: Int, oldItem: T?, newIndex: Int, newItem: T) -> Unit) {
     this.powerSpinnerView.setOnSpinnerItemSelectedListener<T> { oldIndex, oldItem, newIndex, newItem ->
       block(oldIndex, oldItem, newIndex, newItem)
       persistInt(newIndex)

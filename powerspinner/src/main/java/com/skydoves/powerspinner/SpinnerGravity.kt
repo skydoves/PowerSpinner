@@ -17,7 +17,7 @@
 package com.skydoves.powerspinner
 
 /** SpinnerGravity is a gravity attribute for positioning the arrow on the [PowerSpinnerView]. */
-enum class SpinnerGravity(val value: Int) {
+public enum class SpinnerGravity(public val value: Int) {
   START(0),
   TOP(1),
   END(2),

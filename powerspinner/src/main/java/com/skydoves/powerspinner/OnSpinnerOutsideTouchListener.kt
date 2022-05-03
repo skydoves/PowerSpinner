@@ -20,7 +20,7 @@ import android.view.MotionEvent
 import android.view.View
 
 /** Interface definition for a callback to be invoked when touched on outside of the spinner popup. */
-fun interface OnSpinnerOutsideTouchListener {
+public fun interface OnSpinnerOutsideTouchListener {
 
-  fun onSpinnerOutsideTouch(view: View, event: MotionEvent)
+  public fun onSpinnerOutsideTouch(view: View, event: MotionEvent)
 }

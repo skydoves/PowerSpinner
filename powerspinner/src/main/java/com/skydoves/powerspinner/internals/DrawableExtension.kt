@@ -14,13 +14,14 @@
  * limitations under the License.
  */
 
-package com.skydoves.powerspinner
+package com.skydoves.powerspinner.internals
 
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
+import com.skydoves.powerspinner.SpinnerSizeSpec
 
 /** resize a drawable width and height size using specific pixel sizes.  */
 @JvmSynthetic

@@ -16,11 +16,11 @@
 
 package com.skydoves.powerspinner
 
-interface PowerSpinnerInterface<T> {
-  var index: Int
-  val spinnerView: PowerSpinnerView
-  var onSpinnerItemSelectedListener: OnSpinnerItemSelectedListener<T>?
-  fun notifyItemSelected(index: Int)
-  fun setItems(itemList: List<T>)
-  fun getItemCount(): Int
+public interface PowerSpinnerInterface<T> {
+  public var index: Int
+  public val spinnerView: PowerSpinnerView
+  public var onSpinnerItemSelectedListener: OnSpinnerItemSelectedListener<T>?
+  public fun notifyItemSelected(index: Int)
+  public fun setItems(itemList: List<T>)
+  public fun getItemCount(): Int
 }
