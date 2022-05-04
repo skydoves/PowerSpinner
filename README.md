@@ -55,10 +55,8 @@ Add following XML namespace inside your XML layout file.
 xmlns:app="http://schemas.android.com/apk/res-auto"
 ```
 
-### PowerSpinnerView
-Here is a basic example of implementing `PowerSpinnerView` in XML layout. </br>
-Basically We can use `PowerSpinnerView` like a `TextView`.</br>
-We can set the text using the `hint` and `textColorHint` attributes when the item is not selected.
+### PowerSpinnerView in XML
+You can implement `PowerSpinnerView` in your XML layout as the below example. You can use `PowerSpinnerView` same as `TextView`. For instance, you can set the default text with the `hint` and `textColorHint` attributes..
 
 ```gradle
 <com.skydoves.powerspinner.PowerSpinnerView
@@ -77,13 +75,14 @@ We can set the text using the `hint` and `textColorHint` attributes when the ite
   app:spinner_divider_show="true"
   app:spinner_divider_size="0.4dp"
   app:spinner_item_array="@array/questions"
+  app:spinner_item_height="46dp"
   app:spinner_popup_animation="dropdown"
   app:spinner_popup_background="@color/background800"
   app:spinner_popup_elevation="14dp" />
 ```
 
-### Create using builder class
-We can create an instance of `PowerSpinnerView` using the builder class.
+### Create PowerSpinner with Kotlin extension
+You can also create the `PowerSpinnerView` programmatically with the Kotlin extension class.
 ```gradle
 val mySpinnerView = createPowerSpinnerView(this) {
   setSpinnerPopupWidth(300)
@@ -101,19 +100,20 @@ val mySpinnerView = createPowerSpinnerView(this) {
 }
 ```
 
-### Show and dismiss
-If the `PowerSpinnerView` is clicked, the spinner popup will be shown and when an item is selected, </br>the spinner popup will be dismissed. We can also show and dismiss manually using below methods.
+### Show and Dismiss
+By default, the spinner popup will be displayed when you click the `PowerSpinnerView`, and it will be dismissed when you select an item. You can also show and dismiss manually with the methods below:
 
 ```kotlin
-powerSpinnerView.show() // show the spinner popup
-powerSpinnerView.dismiss() // dismiss the spinner popup
+powerSpinnerView.show() // show the spinner popup.
+powerSpinnerView.dismiss() // dismiss the spinner popup.
 
 // If the popup is not showing, shows the spinner popup menu.
 // If the popup is already showing, dismiss the spinner popup menu.
 powerSpinnerView.showOrDismiss()
 ```
 
-And we can customize the basic actions of the spinner popup using the following ways.
+You can customize the default behaviours of the spinner with the method and property below:
+
 ```kotlin
 // the spinner popup will not be shown when clicked.
 powerSpinnerView.setOnClickListener { }
@@ -123,13 +123,17 @@ powerSpinnerView.dismissWhenNotifiedItemSelected = false
 ```
 
 ### OnSpinnerItemSelectedListener
-Interface definition for a callback to be invoked when selected item on the spinner popup.
+
+You can listen the selection of the spinner items with the `setOnSpinnerItemSelectedListener` method below:
+
 ```kotlin
-setOnSpinnerItemSelectedListener<String> { oldIndex, oldItem, newIndex, newText ->
+powerSpinnerView.setOnSpinnerItemSelectedListener<String> { oldIndex, oldItem, newIndex, newText ->
    toast("$text selected!")
 }
 ```
-Here is the Java way.
+
+If you use Java, see the example below:
+
 ```java
 powerSpinnerView.setOnSpinnerItemSelectedListener(new OnSpinnerItemSelectedListener<String>() {
   @Override public void onItemSelected(int oldIndex, @Nullable String oldItem, int newIndex, String newItem) {
@@ -138,28 +142,30 @@ powerSpinnerView.setOnSpinnerItemSelectedListener(new OnSpinnerItemSelectedListe
 });
 ```
 
-### Select an item by an index
-We can select an item manually or initially using the below method.<br>
-This method must be invoked after the `setItems` is called.
+### Select an Item by an Index
+You can select an item manually/initially with the method below:<br>
+
 ```kotlin
 powerSpinnerView.selectItemByIndex(4)
 ```
 
-### Store and restore a selected position
-We can store and restore the selected position in the past automatically.<br>
-If we select an item, the position that we selected will be selected again automatically on the next inflation.<br>
-Just use the below method or attribute.
+> Note: `selectItemByIndex` must be invoked after setting items with the `setItems` method.
+
+### Store and Restore a selected Position
+
+You can store and restore the selected position automatically and it will be re-selected automatically when the `PowerSpinnerView` is inflated with the property below:
 
 ```kotlin
 powerSpinnerView.preferenceName = "country"
 ```
 
-Or we can set it using attribute in XML layout.
+You can also set the property above with the attribute below in your XML layout:
 
 ```gradle
 app:spinner_preference_name="country"
 ```
-We can remove the stored position data on an item or clear all of the data on your application.
+
+You can remove or clear the stored position data with the methods below:
 
 ```kotlin
 spinnerView.removePersistedData("country")
@@ -167,7 +173,15 @@ spinnerView.clearAllPersistedData()
 ```
 
 ### SpinnerAnimation
-We can customize the showing and dimsmiss animation.
+
+You can set an animation when you display and dismiss the spinner with the method below:
+
+```kotlin
+app:spinner_popup_animation="normal"
+```
+
+This library supports the four animations below:
+
 ```kotlin
 SpinnerAnimation.NORMAL
 SpinnerAnimation.DROPDOWN
@@ -179,20 +193,10 @@ SpinnerAnimation.BOUNCE
 | :---------------: | :---------------: | :---------------: | :---------------: |
 | <img src="https://user-images.githubusercontent.com/24237865/71888721-14a4a500-3184-11ea-9d47-a744229577f2.gif" align="center" width="100%"/> | <img src="https://user-images.githubusercontent.com/24237865/71888722-14a4a500-3184-11ea-9142-e5a594fc6909.gif" align="center" width="100%"/> | <img src="https://user-images.githubusercontent.com/24237865/71888724-153d3b80-3184-11ea-9f02-4da4c8482302.gif" align="center" width="100%"/> | <img src="https://user-images.githubusercontent.com/24237865/71888720-14a4a500-3184-11ea-8c31-949da8517e7f.gif" align="center" width="100%"/> |
 
-### Customized adapter
-We can use our customized adapter and binds to the `PowerSpinnerView`.</br>
-The `PowerSpinnerView` provides the spinner popup's recyclerview via `getSpinnerRecyclerView` method.
+### IconSpinnerAdapter
 
-Here is a sample of the customized adapter.
-```kotlin
-val adapter = IconSpinnerAdapter(spinnerView)
-spinnerView.setSpinnerAdapter(adapter)
-spinnerView.getSpinnerRecyclerView().layoutManager = GridLayoutManager(context, 2)
-```
+You can also check out the dafult custom adapter, `IconSpinnerAdapter` with the `setItems` and `IconSpinnerItem` methods below:
 
-#### IconSpinnerAdapter
-Basically, this library provides a customized adapter.</br>
-We should create an instance of the `IconSpinnerAdapter` and call `setItems` using a list of `IconSpinnerItem`.
 ```kotlin
 spinnerView.apply {
   setSpinnerAdapter(IconSpinnerAdapter(this))
@@ -201,11 +205,15 @@ spinnerView.apply {
         IconSpinnerItem(text = "Item1", iconRes = R.drawable.unitedstates),
         IconSpinnerItem(text = "Item2", iconRes = R.drawable.southkorea)))
   getSpinnerRecyclerView().layoutManager = GridLayoutManager(context, 2)
-  selectItemByIndex(0) // select an item initially.
+  selectItemByIndex(0) // select a default item.
   lifecycleOwner = this@MainActivity
 }
 ```
-Here is the java way.
+
+> Note: You can get the `RecyclerView` of the spinner with the `getSpinnerRecyclerView()` method.
+
+If you use Java, see the example below:
+
 ```java
 List<IconSpinnerItem> iconSpinnerItems = new ArrayList<>();
 iconSpinnerItems.add(new IconSpinnerItem("item1", contextDrawable(R.drawable.unitedstates)));
@@ -217,10 +225,8 @@ spinnerView.selectItemByIndex(0);
 spinnerView.setLifecycleOwner(this);
 ```
 
-#### Customized adapter
-Here is a way to customize your adapter for binding the `PowerSpinnerView`.<br>
-Firstly, create a new adapter and viewHolder extending `RecyclerView.Adapter` and `PowerSpinnerInterface<T>`.<br>
-You shoud override `spinnerView`, `onSpinnerItemSelectedListener` fields and `setItems`, `notifyItemSelected` methods.
+#### Custom Spinner Adapter
+You can also implement your own custom adapter and bind to the `PowerSpinnerView`. Firstly, create a new adapter and viewHolder, which extend each `RecyclerView.Adapter` and `PowerSpinnerInterface<T>` below: <br>
 
 ```kotlin
 class MySpinnerAdapter(
@@ -232,7 +238,12 @@ class MySpinnerAdapter(
   override val spinnerView: PowerSpinnerView = powerSpinnerView
   override var onSpinnerItemSelectedListener: OnSpinnerItemSelectedListener<MySpinnerItem>? = null
 ```
-On the customized adapter, you must call `spinnerView.notifyItemSelected` method when your item is clicked or the spinner item should be changed.
+
+With the custom spinner adapter, you can use your own custom spinner item, which includes information of the spinner item.
+
+> Note: You shoud override the `spinnerView`, `onSpinnerItemSelectedListener` properties and `setItems`, `notifyItemSelected` methods.
+
+Next, you must call `spinnerView.notifyItemSelected` method when your item is clicked or the spinner item should be changed:
 
 ```kotlin
 override fun onBindViewHolder(holder: MySpinnerViewHolder, position: Int) {
@@ -241,7 +252,7 @@ override fun onBindViewHolder(holder: MySpinnerViewHolder, position: Int) {
   }
 }
 
-// we must call the spinnerView.notifyItemSelected method to let PowerSpinnerView know about changed information.
+// You must call the `spinnerView.notifyItemSelected` method to let `PowerSpinnerView` know the item is changed.
 override fun notifyItemSelected(index: Int) {
   if (index == NO_SELECTED_INDEX) return
   val oldIndex = this.index
@@ -256,7 +267,7 @@ override fun notifyItemSelected(index: Int) {
 }
 ```
 
-And we can listen to the selected item's information.
+Lastly, you can  
 
 ```kotlin
 spinnerView.setOnSpinnerItemSelectedListener<MySpinnerItem> { 
@@ -265,9 +276,9 @@ spinnerView.setOnSpinnerItemSelectedListener<MySpinnerItem> {
 ```
 
 ### PowerSpinnerPreference
-We can use PowerSpinner on the `PreferenceScreen` xml for implementing setting screens.
 
-And add a dependency code to your **module**'s `build.gradle` file.
+You can use `PowerSpinnerView` in your `PreferenceScreen` XML for building preferences screens. Add the dependency below to your **module**'s `build.gradle` file:
+
 ```gradle
 dependencies {
     implementation "androidx.preference:preference-ktx:1.1.1"
@@ -276,7 +287,7 @@ dependencies {
 
 <img src="https://user-images.githubusercontent.com/24237865/71613264-b8241180-2be8-11ea-8e0a-85b5b250cc75.gif" align="right" width="30%">
 
-And create your preference xml file like below.
+You can implement the spinner preference with the `PowerSpinnerPreference` in your XML file below:
 
 ```gradle
 <?xml version="1.0" encoding="utf-8"?>
@@ -300,6 +311,7 @@ And create your preference xml file like below.
     app:spinner_popup_background="@color/background900"
     app:spinner_popup_elevation="14dp" />
 ```
+
 You don't need to set `preferenceName` attribute, and `OnSpinnerItemSelectedListener` should be set on `PowerSpinnerPreference`. You can reference [this sample codes](https://github.com/skydoves/PowerSpinner/tree/master/app/src/main/java/com/skydoves/powerspinnerdemo/PreferenceFragment.kt).
 
 ```kotlin
@@ -310,16 +322,16 @@ countySpinnerPreference?.setOnSpinnerItemSelectedListener<IconSpinnerItem> { old
 ```
 
 ### Avoid Memory Leak
-Dialog, PopupWindow and etc.. have memory leak issue if not dismissed before activity or fragment are destroyed.<br>
-But Lifecycles are now integrated with the Support Library since Architecture Components 1.0 Stable released.<br>
-So we can solve the memory leak issue so easily.<br>
+Dialog, PopupWindow and etc.. have memory leak issue if not dismissed before activity or fragment are destroyed. But Lifecycles are now integrated with the Support Library since Architecture Components 1.0 Stable released. So you can solve the memory leak issue simply by setting the lifecycle owner with the method below:<br>
 
-Just use `setLifecycleOwner` method. Then `dismiss` method will be called automatically before activity or fragment would be destroyed.
-```java
+```kotlin
 .setLifecycleOwner(lifecycleOwner)
 ```
 
+By setting the lifecycle owner, the `dismiss()` method will be invoked automatically before destroying your activity or fragment.
+
 ## PowerSpinnerView Attributes
+
 Attributes | Type | Default | Description
 --- | --- | --- | ---
 spinner_arrow_drawable | Drawable | arrow | arrow drawable.
