@@ -25,20 +25,14 @@
 [![Maven Central](https://img.shields.io/maven-central/v/com.github.skydoves/powerspinner.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.skydoves%22%20AND%20a:%22powerspinner%22)
 
 ### Gradle
-Add below codes to your **root** `build.gradle` file (not your module build.gradle file).
-```gradle
-allprojects {
-    repositories {
-        mavenCentral()
-    }
-}
-```
-And add a dependency code to your **module**'s `build.gradle` file.
+Add the dependency below to your module's build.gradle file:
+
 ```gradle
 dependencies {
     implementation "com.github.skydoves:powerspinner:1.2.0"
 }
 ```
+
 ## SNAPSHOT 
 [![PowerSpinner](https://img.shields.io/static/v1?label=snapshot&message=powerspinner&logo=apache%20maven&color=C71A36)](https://oss.sonatype.org/content/repositories/snapshots/com/github/skydoves/powerspinner/) <br>
 Snapshots of the current development version of PowerSpinner are available, which track [the latest versions](https://oss.sonatype.org/content/repositories/snapshots/com/github/skydoves/powerspinner/).
