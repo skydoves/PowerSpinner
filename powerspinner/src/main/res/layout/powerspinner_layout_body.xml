@@ -15,6 +15,7 @@
     android:fadeScrollbars="false"
     android:orientation="vertical"
     android:overScrollMode="never"
+    android:scrollbarThumbVertical="@drawable/powerspinner_scrollbar"
     android:scrollbars="vertical"
     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
     tools:listitem="@layout/powerspinner_item_default_power" />
