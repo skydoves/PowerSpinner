@@ -223,6 +223,9 @@ public class PowerSpinnerView : AppCompatTextView, DefaultLifecycleObserver {
   /** A height size of the spinner popup. */
   public var spinnerPopupHeight: Int = NO_INT_VALUE
 
+  /** A max height size of the spinner popup. */
+  public var spinnerPopupMaxHeight: Int = NO_INT_VALUE
+
   /** A fixed item height size of the spinner popup. */
   public var spinnerItemHeight: Int = NO_INT_VALUE
 
@@ -419,6 +422,14 @@ public class PowerSpinnerView : AppCompatTextView, DefaultLifecycleObserver {
           getDimensionPixelSize(
             R.styleable.PowerSpinnerView_spinner_popup_height,
             spinnerPopupHeight
+          )
+      }
+
+      if (hasValue(R.styleable.PowerSpinnerView_spinner_popup_max_height)) {
+        spinnerPopupMaxHeight =
+          getDimensionPixelSize(
+            R.styleable.PowerSpinnerView_spinner_popup_max_height,
+            spinnerPopupMaxHeight
           )
       }
 
@@ -707,10 +718,15 @@ public class PowerSpinnerView : AppCompatTextView, DefaultLifecycleObserver {
   }
 
   private fun getSpinnerHeight(): Int {
-    return when {
+    val height = when {
       spinnerPopupHeight != NO_INT_VALUE -> spinnerPopupHeight
       spinnerItemHeight != NO_INT_VALUE -> calculateSpinnerHeight()
       else -> getSpinnerRecyclerView().height
+    }
+    return when {
+      spinnerPopupMaxHeight == NO_INT_VALUE -> height
+      spinnerPopupMaxHeight > height -> height
+      else -> spinnerPopupMaxHeight
     }
   }
 
