@@ -24,4 +24,5 @@
   <color name="md_blue_200">#0091EA</color>
   <color name="md_purple_100">#AA00FF</color>
   <color name="md_purple_200">#7200CA</color>
+  <color name="powerspinner_scrollbar">#0091EA</color>
 </resources>

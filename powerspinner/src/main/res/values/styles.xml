@@ -15,4 +15,11 @@
     <item name="android:windowEnterAnimation">@anim/powerspinner_fade_in</item>
     <item name="android:windowExitAnimation">@anim/powerspinner_fade_out</item>
   </style>
+
+  <style name="PowerSpinnerStyle">
+    <item name="android:scrollbarAlwaysDrawVerticalTrack">true</item>
+    <item name="android:scrollbars">vertical</item>
+    <item name="android:fadeScrollbars">true</item>
+    <item name="android:scrollbarThumbVertical">@drawable/powerspinner_scrollbar</item>
+  </style>
 </resources>
