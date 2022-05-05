@@ -940,6 +940,10 @@ public class PowerSpinnerView : AppCompatTextView, DefaultLifecycleObserver {
       this.powerSpinnerView.spinnerPopupHeight = value
     }
 
+    public fun setSpinnerPopupMaxHeight(@Px value: Int): Builder = apply {
+      this.powerSpinnerView.spinnerPopupMaxHeight = value
+    }
+
     public fun setSpinnerItemHeight(@Px value: Int): Builder = apply {
       this.powerSpinnerView.spinnerItemHeight = value
     }

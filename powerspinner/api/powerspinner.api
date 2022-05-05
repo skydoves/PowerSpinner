@@ -229,6 +229,7 @@ public final class com/skydoves/powerspinner/PowerSpinnerView$Builder {
 	public final fun setSpinnerPopupBackground (Landroid/graphics/drawable/Drawable;)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;
 	public final fun setSpinnerPopupBackgroundResource (I)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;
 	public final fun setSpinnerPopupHeight (I)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;
+	public final fun setSpinnerPopupMaxHeight (I)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;
 	public final fun setSpinnerPopupWidth (I)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;
 }
 
