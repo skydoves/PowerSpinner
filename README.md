@@ -94,6 +94,8 @@ val mySpinnerView = createPowerSpinnerView(this) {
 }
 ```
 
+> **Note**: It's highly recommended to set the height size of the item with the `spinner_item_height` attribute or the entire height size of the popup with the `spinner_popup_height` to implement the correct behaviors of your spinner.
+
 ### Show and Dismiss
 By default, the spinner popup will be displayed when you click the `PowerSpinnerView`, and it will be dismissed when you select an item. You can also show and dismiss manually with the methods below:
 
