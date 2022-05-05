@@ -16,6 +16,7 @@
   <public name="spinner_popup_animation_style" type="attr" tools:ignore="ResourceName" />
   <public name="spinner_popup_width" type="attr" tools:ignore="ResourceName" />
   <public name="spinner_popup_height" type="attr" tools:ignore="ResourceName" />
+  <public name="spinner_popup_max_height" type="attr" tools:ignore="ResourceName" />
   <public name="spinner_item_height" type="attr" tools:ignore="ResourceName" />
   <public name="spinner_popup_elevation" type="attr" tools:ignore="ResourceName" />
   <public name="spinner_item_array" type="attr" tools:ignore="ResourceName" />
