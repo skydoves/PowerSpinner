@@ -277,7 +277,7 @@ You can use `PowerSpinnerView` in your `PreferenceScreen` XML for building prefe
 
 ```gradle
 dependencies {
-    implementation "androidx.preference:preference-ktx:1.1.1"
+    implementation "androidx.preference:preference-ktx:1.2.0"
 }
 ```
 
