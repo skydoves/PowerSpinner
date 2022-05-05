@@ -149,6 +149,7 @@ public final class com/skydoves/powerspinner/PowerSpinnerView : androidx/appcomp
 	public final fun getSpinnerPopupBackground ()Landroid/graphics/drawable/Drawable;
 	public final fun getSpinnerPopupElevation ()I
 	public final fun getSpinnerPopupHeight ()I
+	public final fun getSpinnerPopupMaxHeight ()I
 	public final fun getSpinnerPopupWidth ()I
 	public final fun getSpinnerRecyclerView ()Landroidx/recyclerview/widget/RecyclerView;
 	public final fun isShowing ()Z
@@ -187,6 +188,7 @@ public final class com/skydoves/powerspinner/PowerSpinnerView : androidx/appcomp
 	public final fun setSpinnerPopupBackground (Landroid/graphics/drawable/Drawable;)V
 	public final fun setSpinnerPopupElevation (I)V
 	public final fun setSpinnerPopupHeight (I)V
+	public final fun setSpinnerPopupMaxHeight (I)V
 	public final fun setSpinnerPopupWidth (I)V
 	public final fun show ()V
 	public final fun show (I)V
