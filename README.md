@@ -29,13 +29,14 @@ Add the dependency below to your module's build.gradle file:
 
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:powerspinner:1.2.0"
+    implementation "com.github.skydoves:powerspinner:1.2.1"
 }
 ```
 
 ## SNAPSHOT 
 [![PowerSpinner](https://img.shields.io/static/v1?label=snapshot&message=powerspinner&logo=apache%20maven&color=C71A36)](https://oss.sonatype.org/content/repositories/snapshots/com/github/skydoves/powerspinner/) <br>
 Snapshots of the current development version of PowerSpinner are available, which track [the latest versions](https://oss.sonatype.org/content/repositories/snapshots/com/github/skydoves/powerspinner/).
+
 ```Gradle
 repositories {
    maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
