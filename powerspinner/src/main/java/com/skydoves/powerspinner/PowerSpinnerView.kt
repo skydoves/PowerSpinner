@@ -235,7 +235,9 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
    */
   var lifecycleOwner: LifecycleOwner? = null
     set(value) {
+      field?.lifecycle?.removeObserver(this@PowerSpinnerView)
       field = value
+      field?.lifecycle?.addObserver(this@PowerSpinnerView)
     }
 
   init {
@@ -764,6 +766,8 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
   fun onDestroy() {
     dismiss()
+    
+    field?.lifecycle?.removeObserver(this@PowerSpinnerView)
   }
 
   /** Builder class for creating [PowerSpinnerView]. */
