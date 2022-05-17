@@ -767,7 +767,7 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   fun onDestroy() {
     dismiss()
     
-    field?.lifecycle?.removeObserver(this@PowerSpinnerView)
+    lifecycleOwner?.lifecycle?.removeObserver(this@PowerSpinnerView)
   }
 
   /** Builder class for creating [PowerSpinnerView]. */
