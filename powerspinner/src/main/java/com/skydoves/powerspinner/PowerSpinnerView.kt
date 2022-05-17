@@ -236,7 +236,6 @@ class PowerSpinnerView : AppCompatTextView, LifecycleObserver {
   var lifecycleOwner: LifecycleOwner? = null
     set(value) {
       field = value
-      field?.lifecycle?.addObserver(this@PowerSpinnerView)
     }
 
   init {
