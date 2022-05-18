@@ -827,7 +827,7 @@ public class PowerSpinnerView : AppCompatTextView, DefaultLifecycleObserver {
     super.onDestroy(owner)
     dismiss()
     
-    lifecycleOwner?.lifecycle?.removeObserver(this)
+    lifecycleOwner?.lifecycle?.removeObserver(this@PowerSpinnerView)
   }
 
   /** Builder class for creating [PowerSpinnerView]. */
