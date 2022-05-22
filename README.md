@@ -15,9 +15,9 @@
 </p> <br>
 
 <p align="center">
-<img src="https://user-images.githubusercontent.com/24237865/71962685-534a6600-323d-11ea-9e1e-df1f68cb2181.gif" width="32%"/>
-<img src="https://user-images.githubusercontent.com/24237865/100536652-4f646f80-3265-11eb-9617-07911a8b2865.gif" width="30.4%"/>
-<img src="https://user-images.githubusercontent.com/24237865/71613264-b8241180-2be8-11ea-8e0a-85b5b250cc75.gif" width="32%"/>
+<img src="https://user-images.githubusercontent.com/24237865/71962685-534a6600-323d-11ea-9e1e-df1f68cb2181.gif" width="280"/>
+<img src="https://user-images.githubusercontent.com/24237865/100536652-4f646f80-3265-11eb-9617-07911a8b2865.gif" width="266"/>
+<img src="https://user-images.githubusercontent.com/24237865/71613264-b8241180-2be8-11ea-8e0a-85b5b250cc75.gif" width="280"/>
 </p>
 
 
@@ -282,7 +282,7 @@ dependencies {
 }
 ```
 
-<img src="https://user-images.githubusercontent.com/24237865/71613264-b8241180-2be8-11ea-8e0a-85b5b250cc75.gif" align="right" width="30%">
+<img src="https://user-images.githubusercontent.com/24237865/71613264-b8241180-2be8-11ea-8e0a-85b5b250cc75.gif" align="right" width="300">
 
 You can implement the spinner preference with the `PowerSpinnerPreference` in your XML file below:
 
