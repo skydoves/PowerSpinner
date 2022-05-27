@@ -19,7 +19,7 @@ spotless {
     target "**/*.kt"
     targetExclude "**/build/**/*.kt"
     ktlint().userData(['indent_size': '2', 'continuation_indent_size': '2'])
-    licenseHeaderFile "$rootDir/spotless.license.kt"
+    licenseHeaderFile "$rootDir/spotless/spotless.license.kt"
     trimTrailingWhitespace()
     endWithNewline()
   }
