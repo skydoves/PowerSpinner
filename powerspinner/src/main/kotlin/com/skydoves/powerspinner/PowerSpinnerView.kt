@@ -150,7 +150,7 @@ public class PowerSpinnerView : AppCompatTextView, DefaultLifecycleObserver {
     }
 
   @ColorInt
-  private var _arrowTint: Int = Color.WHITE
+  private var _arrowTint: Int = NO_INT_VALUE
 
   /** A tint color of the arrow. */
   public var arrowTint: Int
@@ -562,8 +562,10 @@ public class PowerSpinnerView : AppCompatTextView, DefaultLifecycleObserver {
     if (this.showArrow) {
       drawable?.let {
         val wrappedDrawable = DrawableCompat.wrap(it).mutate()
-        DrawableCompat.setTint(wrappedDrawable, this.arrowTint)
         wrappedDrawable.invalidateSelf()
+        if (arrowTint != NO_INT_VALUE) {
+          DrawableCompat.setTint(wrappedDrawable, arrowTint)
+        }
       }
       when (this.arrowGravity) {
         SpinnerGravity.START -> setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null)
