@@ -14,8 +14,8 @@
 
 import com.skydoves.powerspinner.Dependencies
 
-apply plugin: 'io.github.gradle-nexus.publish-plugin'
-apply plugin: 'org.jetbrains.dokka'
+apply plugin: "io.github.gradle-nexus.publish-plugin"
+apply plugin: "org.jetbrains.dokka"
 
 buildscript {
     repositories {

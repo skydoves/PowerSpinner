@@ -16,10 +16,10 @@ import com.skydoves.powerspinner.Configuration
 import com.skydoves.powerspinner.Dependencies
 
 plugins {
-    id 'com.android.library'
-    id 'org.jetbrains.kotlin.android'
-    id 'org.jetbrains.dokka'
-    id 'binary-compatibility-validator'
+    id "com.android.library"
+    id "org.jetbrains.kotlin.android"
+    id "org.jetbrains.dokka"
+    id "binary-compatibility-validator"
 }
 
 ext {
@@ -76,4 +76,4 @@ dependencies {
     implementation Dependencies.lifecycle
 }
 
-apply from: "$rootDir/spotless.gradle"
+apply from: "$rootDir/spotless/spotless.gradle"
