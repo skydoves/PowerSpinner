@@ -55,7 +55,17 @@ public class IconSpinnerAdapter(
       binding.root.setOnClickListener {
         val position = bindingAdapterPosition.takeIf { it != RecyclerView.NO_POSITION }
           ?: return@setOnClickListener
-        notifyItemSelected(position)
+        if (position == NO_SELECTED_INDEX) return@setOnClickListener
+        val oldIndex = index
+        val selected = onSpinnerItemSelectedListener?.onItemSelected(
+          oldIndex = oldIndex,
+          oldItem = oldIndex.takeIf { it != NO_SELECTED_INDEX }?.let { spinnerItems[oldIndex] },
+          newIndex = position,
+          newItem = spinnerItems[position]
+        )
+        if (true == selected) {
+          notifyItemSelected(position)
+        }
       }
     }
   }
@@ -72,7 +82,6 @@ public class IconSpinnerAdapter(
   }
 
   override fun notifyItemSelected(index: Int) {
-    if (index == NO_SELECTED_INDEX) return
     val item = spinnerItems[index]
     spinnerView.compoundDrawablePadding = item.iconPadding ?: spinnerView.compoundDrawablePadding
     val icon = item.iconRes?.let {
@@ -88,15 +97,7 @@ public class IconSpinnerAdapter(
       Gravity.BOTTOM ->
         spinnerView.setCompoundDrawablesWithIntrinsicBounds(null, null, null, icon)
     }
-    val oldIndex = this.index
-    this.index = index
     this.spinnerView.notifyItemSelected(index, item.text)
-    this.onSpinnerItemSelectedListener?.onItemSelected(
-      oldIndex = oldIndex,
-      oldItem = oldIndex.takeIf { it != NO_SELECTED_INDEX }?.let { spinnerItems[oldIndex] },
-      newIndex = index,
-      newItem = item
-    )
   }
 
   override fun getItemCount(): Int = this.spinnerItems.size

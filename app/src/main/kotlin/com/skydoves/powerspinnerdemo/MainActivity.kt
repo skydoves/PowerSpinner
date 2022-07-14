@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
 
     binding.spinnerView.setOnSpinnerItemSelectedListener<String> { _, _, _, text ->
       Toast.makeText(applicationContext, text, Toast.LENGTH_SHORT).show()
+      return@setOnSpinnerItemSelectedListener true
     }
     binding.spinnerView.setIsFocusable(true)
     binding.spinnerView.selectItemByIndex(3)
@@ -49,15 +50,25 @@ class MainActivity : AppCompatActivity() {
           4 -> setBackgroundColor(getContextColor(R.color.md_blue_200))
           5 -> setBackgroundColor(getContextColor(R.color.md_purple_200))
         }
+        return@setOnSpinnerItemSelectedListener true
       }
     }
 
     val adapter = IconSpinnerAdapter(binding.spinnerView2)
     binding.spinnerView2.setOnSpinnerItemSelectedListener(
-      OnSpinnerItemSelectedListener<IconSpinnerItem> { _, _, _, item ->
-        Toast.makeText(applicationContext, item.text, Toast.LENGTH_SHORT).show()
+      object : OnSpinnerItemSelectedListener<IconSpinnerItem> {
+        override fun onItemSelected(
+          oldIndex: Int,
+          oldItem: IconSpinnerItem?,
+          newIndex: Int,
+          newItem: IconSpinnerItem
+        ): Boolean {
+          Toast.makeText(applicationContext, newItem.text, Toast.LENGTH_SHORT).show()
+          return super.onItemSelected(oldIndex, oldItem, newIndex, newItem)
+        }
       }
     )
+
     adapter.setItems(
       arrayListOf(
         IconSpinnerItem(

@@ -582,7 +582,7 @@ public class PowerSpinnerView : AppCompatTextView, DefaultLifecycleObserver {
     if (adapter.getItemCount() > 0) {
       this.preferenceName.whatIfNotNullOrEmpty {
         if (PowerSpinnerPersistence.getInstance(context)
-          .getSelectedIndex(it) != NO_SELECTED_INDEX
+            .getSelectedIndex(it) != NO_SELECTED_INDEX
         ) {
           this.adapter.notifyItemSelected(
             PowerSpinnerPersistence.getInstance(context).getSelectedIndex(it)
@@ -668,12 +668,13 @@ public class PowerSpinnerView : AppCompatTextView, DefaultLifecycleObserver {
   /** sets a [OnSpinnerItemSelectedListener] to the popup using lambda. */
   @Suppress("UNCHECKED_CAST")
   @JvmSynthetic
-  public fun <T> setOnSpinnerItemSelectedListener(block: (oldIndex: Int, oldItem: T?, newIndex: Int, newItem: T) -> Unit) {
+  public fun <T> setOnSpinnerItemSelectedListener(block: (oldIndex: Int, oldItem: T?, newIndex: Int, newItem: T) -> Boolean) {
     val adapter = adapter as PowerSpinnerInterface<T>
-    adapter.onSpinnerItemSelectedListener =
-      OnSpinnerItemSelectedListener { oldIndex, oldItem, newIndex, newItem ->
-        block(oldIndex, oldItem, newIndex, newItem)
+    adapter.onSpinnerItemSelectedListener = object : OnSpinnerItemSelectedListener<T> {
+      override fun onItemSelected(oldIndex: Int, oldItem: T?, newIndex: Int, newItem: T): Boolean {
+        return block(oldIndex, oldItem, newIndex, newItem)
       }
+    }
   }
 
   /** sets a [OnSpinnerOutsideTouchListener] to the popup using lambda. */
@@ -891,14 +892,20 @@ public class PowerSpinnerView : AppCompatTextView, DefaultLifecycleObserver {
 
     @Suppress("UNCHECKED_CAST")
     @JvmSynthetic
-    public fun <T> setOnSpinnerItemSelectedListener(block: (oldIndex: Int, oldItem: T?, newIndex: Int, newItem: T) -> Unit): Builder =
+    public fun <T> setOnSpinnerItemSelectedListener(block: (oldIndex: Int, oldItem: T?, newIndex: Int, newItem: T) -> Boolean): Builder =
       apply {
         val adapter: PowerSpinnerInterface<T> =
           this.powerSpinnerView.adapter as PowerSpinnerInterface<T>
-        adapter.onSpinnerItemSelectedListener =
-          OnSpinnerItemSelectedListener { oldIndex, oldItem, newIndex, newItem ->
-            block(oldIndex, oldItem, newIndex, newItem)
+        adapter.onSpinnerItemSelectedListener = object : OnSpinnerItemSelectedListener<T> {
+          override fun onItemSelected(
+            oldIndex: Int,
+            oldItem: T?,
+            newIndex: Int,
+            newItem: T
+          ): Boolean {
+            return block(oldIndex, oldItem, newIndex, newItem)
           }
+        }
       }
 
     public fun setOnSpinnerOutsideTouchListener(value: OnSpinnerOutsideTouchListener): Builder =

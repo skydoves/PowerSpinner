@@ -17,7 +17,7 @@
 package com.skydoves.powerspinner
 
 /** Interface definition for a callback to be invoked when selected item on the spinner popup. */
-public fun interface OnSpinnerItemSelectedListener<T> {
+public interface OnSpinnerItemSelectedListener<T> {
 
-  public fun onItemSelected(oldIndex: Int, oldItem: T?, newIndex: Int, newItem: T)
+  public fun onItemSelected(oldIndex: Int, oldItem: T?, newIndex: Int, newItem: T): Boolean = true
 }

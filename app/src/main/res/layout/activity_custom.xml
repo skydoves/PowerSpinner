@@ -95,7 +95,6 @@
       app:spinner_popup_animation="normal"
       app:spinner_popup_background="@drawable/spinner_background"
       app:spinner_popup_elevation="14dp"
-      app:spinner_popup_max_height="92dp"
       tools:ignore="HardcodedText,UnusedAttribute" />
 
     <TextView

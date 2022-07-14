@@ -82,7 +82,11 @@ public abstract interface class com/skydoves/powerspinner/OnSpinnerDismissListen
 }
 
 public abstract interface class com/skydoves/powerspinner/OnSpinnerItemSelectedListener {
-	public abstract fun onItemSelected (ILjava/lang/Object;ILjava/lang/Object;)V
+	public abstract fun onItemSelected (ILjava/lang/Object;ILjava/lang/Object;)Z
+}
+
+public final class com/skydoves/powerspinner/OnSpinnerItemSelectedListener$DefaultImpls {
+	public static fun onItemSelected (Lcom/skydoves/powerspinner/OnSpinnerItemSelectedListener;ILjava/lang/Object;ILjava/lang/Object;)Z
 }
 
 public abstract interface class com/skydoves/powerspinner/OnSpinnerOutsideTouchListener {

@@ -46,7 +46,17 @@ public class DefaultSpinnerAdapter(
       binding.root.setOnClickListener {
         val position = bindingAdapterPosition.takeIf { it != RecyclerView.NO_POSITION }
           ?: return@setOnClickListener
-        notifyItemSelected(position)
+        if (position == NO_SELECTED_INDEX) return@setOnClickListener
+        val oldIndex = index
+        val selected = onSpinnerItemSelectedListener?.onItemSelected(
+          oldIndex = oldIndex,
+          oldItem = oldIndex.takeIf { it != NO_SELECTED_INDEX }?.let { spinnerItems[oldIndex] },
+          newIndex = position,
+          newItem = spinnerItems[position]
+        )
+        if (true == selected) {
+          notifyItemSelected(position)
+        }
       }
     }
   }
@@ -63,16 +73,8 @@ public class DefaultSpinnerAdapter(
   }
 
   override fun notifyItemSelected(index: Int) {
-    if (index == NO_SELECTED_INDEX) return
-    val oldIndex = this.index
     this.index = index
     this.spinnerView.notifyItemSelected(index, spinnerItems[index])
-    this.onSpinnerItemSelectedListener?.onItemSelected(
-      oldIndex = oldIndex,
-      oldItem = oldIndex.takeIf { it != NO_SELECTED_INDEX }?.let { spinnerItems[oldIndex] },
-      newIndex = index,
-      newItem = spinnerItems[index]
-    )
   }
 
   override fun getItemCount(): Int = spinnerItems.size

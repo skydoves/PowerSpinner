@@ -18,6 +18,7 @@ package com.skydoves.powerspinnerdemo
 
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatActivity
@@ -51,6 +52,7 @@ class CustomActivity : AppCompatActivity() {
       )
       setOnSpinnerItemSelectedListener<IconSpinnerItem> { _, _, _, item ->
         Toast.makeText(applicationContext, item.text, Toast.LENGTH_SHORT).show()
+        return@setOnSpinnerItemSelectedListener true
       }
       getSpinnerRecyclerView().layoutManager = GridLayoutManager(baseContext, 2)
       selectItemByIndex(4)
@@ -58,9 +60,19 @@ class CustomActivity : AppCompatActivity() {
     }
 
     binding.spinnerView1.apply {
-      setOnSpinnerItemSelectedListener<String> { _, _, _, item ->
-        binding.spinnerView2.hint = item
-        Toast.makeText(applicationContext, item, Toast.LENGTH_SHORT).show()
+      setOnSpinnerItemSelectedListener<String> { _, _, index, item ->
+        if (index == 4) {
+          binding.spinnerView2.hint = item
+          Toast.makeText(applicationContext, item, Toast.LENGTH_SHORT).show()
+          return@setOnSpinnerItemSelectedListener true
+        } else {
+          Toast.makeText(
+            applicationContext,
+            "Only the fifth item can be selected!",
+            Toast.LENGTH_SHORT
+          ).show()
+          return@setOnSpinnerItemSelectedListener false
+        }
       }
       preferenceName = "question1"
     }
@@ -76,5 +88,9 @@ class CustomActivity : AppCompatActivity() {
 
   private fun contextDrawable(@DrawableRes resource: Int): Drawable? {
     return ContextCompat.getDrawable(this@CustomActivity, resource)
+  }
+
+  override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    return super.onOptionsItemSelected(item)
   }
 }
