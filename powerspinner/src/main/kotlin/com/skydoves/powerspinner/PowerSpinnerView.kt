@@ -582,7 +582,7 @@ public class PowerSpinnerView : AppCompatTextView, DefaultLifecycleObserver {
     if (adapter.getItemCount() > 0) {
       this.preferenceName.whatIfNotNullOrEmpty {
         if (PowerSpinnerPersistence.getInstance(context)
-            .getSelectedIndex(it) != NO_SELECTED_INDEX
+          .getSelectedIndex(it) != NO_SELECTED_INDEX
         ) {
           this.adapter.notifyItemSelected(
             PowerSpinnerPersistence.getInstance(context).getSelectedIndex(it)
