@@ -17,7 +17,6 @@ import com.skydoves.powerspinner.Dependencies
 
 plugins {
     id "com.android.application"
-    id "org.jetbrains.kotlin.android"
 }
 
 android {
@@ -45,5 +44,3 @@ dependencies {
     implementation Dependencies.preference
     implementation project(":powerspinner")
 }
-
-apply from: "$rootDir/spotless/spotless.gradle"

@@ -16,64 +16,38 @@ import com.skydoves.powerspinner.Configuration
 import com.skydoves.powerspinner.Dependencies
 
 plugins {
-    id "com.android.library"
-    id "org.jetbrains.kotlin.android"
-    id "org.jetbrains.dokka"
-    id "binary-compatibility-validator"
-    id "maven-publish"
+  id 'com.android.library'
+  id 'org.jetbrains.kotlin.android'
 }
-
-ext {
-    PUBLISH_GROUP_ID = Configuration.artifactGroup
-    PUBLISH_ARTIFACT_ID = 'powerspinner'
-    PUBLISH_VERSION = rootVersionName
-}
-
-apply from: "${rootDir}/scripts/publish-module.gradle"
 
 android {
-    compileSdkVersion Configuration.compileSdk
-    defaultConfig {
-        minSdkVersion Configuration.minSdk
-        targetSdkVersion Configuration.targetSdk
-        versionCode Configuration.versionCode
-        versionName Configuration.versionName
-    }
+  compileSdkVersion Configuration.compileSdk
+  defaultConfig {
+    minSdkVersion Configuration.minSdk
+    targetSdkVersion Configuration.targetSdk
+    versionCode Configuration.versionCode
+    versionName Configuration.versionName
+  }
 
   resourcePrefix 'powerspinner'
 
-    buildFeatures {
-        viewBinding true
-    }
+  buildFeatures {
+    viewBinding true
+  }
 
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
 
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-}
-
-tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
-  kotlinOptions.freeCompilerArgs += ["-Xexplicit-api=strict"]
-}
-
-apiValidation {
-    ignoredPackages += [
-        "com/skydoves/powerspinner/databinding",
-    ]
-    nonPublicMarkers += [
-        "kotlin.PublishedApi",
-    ]
+  kotlinOptions {
+    jvmTarget = "1.8"
+  }
 }
 
 dependencies {
-    implementation Dependencies.appcompat
-    implementation Dependencies.recyclerView
-    implementation Dependencies.preference
-    implementation Dependencies.lifecycle
+  implementation Dependencies.appcompat
+  implementation Dependencies.recyclerView
+  implementation Dependencies.preference
+  implementation Dependencies.lifecycle
 }
-
-apply from: "$rootDir/spotless/spotless.gradle"
