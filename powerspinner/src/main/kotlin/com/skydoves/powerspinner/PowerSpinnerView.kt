@@ -568,13 +568,33 @@ public class PowerSpinnerView : AppCompatTextView, DefaultLifecycleObserver {
         }
       }
       when (this.arrowGravity) {
-        SpinnerGravity.START -> setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null)
-        SpinnerGravity.TOP -> setCompoundDrawablesWithIntrinsicBounds(null, drawable, null, null)
-        SpinnerGravity.END -> setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null)
-        SpinnerGravity.BOTTOM -> setCompoundDrawablesWithIntrinsicBounds(null, null, null, drawable)
+        SpinnerGravity.START -> setCompoundDrawablesRelativeWithIntrinsicBounds(
+          drawable,
+          null,
+          null,
+          null
+        )
+        SpinnerGravity.TOP -> setCompoundDrawablesRelativeWithIntrinsicBounds(
+          null,
+          drawable,
+          null,
+          null
+        )
+        SpinnerGravity.END -> setCompoundDrawablesRelativeWithIntrinsicBounds(
+          null,
+          null,
+          drawable,
+          null
+        )
+        SpinnerGravity.BOTTOM -> setCompoundDrawablesRelativeWithIntrinsicBounds(
+          null,
+          null,
+          null,
+          drawable
+        )
       }
     } else {
-      setCompoundDrawablesWithIntrinsicBounds(null, null, null, null)
+      setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, null, null)
     }
   }
 
