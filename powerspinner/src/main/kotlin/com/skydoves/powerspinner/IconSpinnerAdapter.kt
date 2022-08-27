@@ -49,7 +49,8 @@ public class IconSpinnerAdapter(
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IconSpinnerViewHolder {
     val binding =
       PowerspinnerItemDefaultPowerBinding.inflate(
-        LayoutInflater.from(parent.context), parent,
+        LayoutInflater.from(parent.context),
+        parent,
         false
       )
     return IconSpinnerViewHolder(binding).apply {

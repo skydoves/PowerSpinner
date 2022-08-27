@@ -27,7 +27,8 @@ internal class PowerSpinnerPersistence private constructor() {
 
   /** gets selected index from the preference. */
   fun getSelectedIndex(name: String): Int = sharedPreferenceManager.getInt(
-    INDEX + name, NO_SELECTED_INDEX
+    INDEX + name,
+    NO_SELECTED_INDEX
   )
 
   /** puts selected index from the preference. */

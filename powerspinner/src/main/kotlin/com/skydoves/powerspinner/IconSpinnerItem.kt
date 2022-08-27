@@ -46,5 +46,5 @@ public data class IconSpinnerItem @JvmOverloads constructor(
   val textTypeface: Typeface? = null,
   val gravity: Int? = null,
   val textSize: Float? = null,
-  @ColorInt val textColor: Int? = null,
+  @ColorInt val textColor: Int? = null
 )

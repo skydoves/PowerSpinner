@@ -39,7 +39,8 @@ public class DefaultSpinnerAdapter(
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DefaultSpinnerViewHolder {
     val binding =
       PowerspinnerItemDefaultPowerBinding.inflate(
-        LayoutInflater.from(parent.context), parent,
+        LayoutInflater.from(parent.context),
+        parent,
         false
       )
     return DefaultSpinnerViewHolder(binding).apply {
