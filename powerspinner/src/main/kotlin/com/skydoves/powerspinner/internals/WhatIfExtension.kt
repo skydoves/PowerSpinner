@@ -28,7 +28,6 @@ package com.skydoves.powerspinner.internals
 internal inline fun String?.whatIfNotNullOrEmpty(
   whatIf: (String) -> Unit
 ) {
-
   this.whatIfNotNullOrEmpty(
     whatIf = whatIf,
     whatIfNot = { }
@@ -44,7 +43,6 @@ internal inline fun String?.whatIfNotNullOrEmpty(
   whatIf: (String) -> Unit,
   whatIfNot: () -> Unit
 ) {
-
   if (!this.isNullOrEmpty()) {
     whatIf(this)
   } else {
