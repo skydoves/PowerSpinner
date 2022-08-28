@@ -309,7 +309,7 @@ You can implement the spinner preference with the `PowerSpinnerPreference` in yo
     app:spinner_popup_elevation="14dp" />
 ```
 
-You don't need to set `preferenceName` attribute, and `OnSpinnerItemSelectedListener` should be set on `PowerSpinnerPreference`. You can reference [this sample codes](https://github.com/skydoves/PowerSpinner/tree/master/app/src/main/java/com/skydoves/powerspinnerdemo/PreferenceFragment.kt).
+You don't need to set `preferenceName` attribute, and `OnSpinnerItemSelectedListener` should be set on `PowerSpinnerPreference`. You can reference [this sample codes](https://github.com/skydoves/PowerSpinner/tree/master/app/src/main/kotlin/com/skydoves/powerspinnerdemo/PreferenceFragment.kt).
 
 ```kotlin
 val countySpinnerPreference = findPreference<PowerSpinnerPreference>("country")
