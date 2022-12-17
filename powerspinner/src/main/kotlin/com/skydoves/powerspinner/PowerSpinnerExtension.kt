@@ -19,6 +19,8 @@
 package com.skydoves.powerspinner
 
 import android.content.Context
+import android.view.View
+import android.view.ViewGroup
 import com.skydoves.powerspinner.internals.PowerSpinnerDsl
 
 /** creates an instance of [PowerSpinnerView] by [PowerSpinnerView.Builder] using kotlin dsl. */
@@ -29,3 +31,37 @@ public inline fun createPowerSpinnerView(
   builder: PowerSpinnerView.Builder.() -> Unit
 ): PowerSpinnerView =
   PowerSpinnerView.Builder(context).apply(builder).build()
+
+/**
+ * Extension function from [View] class (@NULLABLE).
+ * Should be used in cases when the [PowerSpinnerView.dismiss] does not seem to work as expected.
+ *
+ * Iterates all the Parent view's children, If a power spinner can be found
+ * Then dismiss it.
+ *
+ * Usage -> parentView?.dismissPowerSpinner()
+ */
+public fun View?.dismissPowerSpinner() {
+  this?.getAllChildren()?.forEach {
+    if (it is PowerSpinnerView) {
+      it.dismiss()
+      return
+    }
+  }
+}
+
+// Returns all the View's children view
+private fun View.getAllChildren(): List<View> {
+  val viewList = ArrayList<View>()
+  if (this !is ViewGroup) {
+    // Has no children
+    viewList.add(this)
+  } else {
+    // Iterate all the view children, with recursion
+    for (index in 0 until this.childCount) {
+      val child = this.getChildAt(index)
+      viewList.addAll(child.getAllChildren())
+    }
+  }
+  return viewList
+}
