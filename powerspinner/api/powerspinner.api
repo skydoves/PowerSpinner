@@ -91,6 +91,7 @@ public abstract interface class com/skydoves/powerspinner/OnSpinnerOutsideTouchL
 
 public final class com/skydoves/powerspinner/PowerSpinnerExtensionKt {
 	public static final synthetic fun createPowerSpinnerView (Landroid/content/Context;Lkotlin/jvm/functions/Function1;)Lcom/skydoves/powerspinner/PowerSpinnerView;
+	public static final fun dismissPowerSpinner (Landroid/view/View;)V
 }
 
 public abstract interface class com/skydoves/powerspinner/PowerSpinnerInterface {
