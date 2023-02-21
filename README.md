@@ -272,7 +272,7 @@ spinnerView.setOnSpinnerItemSelectedListener<MySpinnerItem> {
 }
 ```
 
-### Custom ScrollBar
+### Custom Scrollbar
 
 You can customize attributes of the scrollbar by defining your own style in your `styles.xml` file like the below:
 
