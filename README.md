@@ -264,13 +264,40 @@ override fun notifyItemSelected(index: Int) {
 }
 ```
 
-Lastly, you can  
+Lastly, you can add the item selected listener like the below:
 
 ```kotlin
 spinnerView.setOnSpinnerItemSelectedListener<MySpinnerItem> { 
   oldIndex, oldItem, newIndex, newItem -> toast(newItem.text) 
 }
 ```
+
+### Custom Scrollbar
+
+You can customize attributes of the scrollbar by defining your own style in your `styles.xml` file like the below:
+
+```xml
+<style name="PowerSpinnerStyle">
+  <item name="android:scrollbarAlwaysDrawVerticalTrack">true</item>
+  <item name="android:scrollbars">vertical</item>
+  <item name="android:fadeScrollbars">false</item>
+  <item name="android:scrollbarSize">2dp</item>
+  <item name="android:scrollbarThumbVertical">@drawable/powerspinner_scrollbar</item>
+</style>
+```
+
+You can also customize the drawable of the scrollbar by creating `powerspinner_scrollbar.xml` file like the below:
+
+```xml
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+  <solid android:color="@color/colorPrimaryDark" />
+  <corners android:radius="6dp" />
+</shape>
+```
+
+Then the library will use the overwritten customized styles.
+
+> **Note**: Please keep in mind you should use the exactly same name for `PowerSpinnerStyle` and `powerspinner_scrollbar.xml` to apply your custom styles.
 
 ### PowerSpinnerPreference
 
