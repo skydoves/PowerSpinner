@@ -63,7 +63,7 @@ public class PowerSpinnerView : AppCompatTextView, DefaultLifecycleObserver {
     PowerspinnerLayoutBodyBinding.inflate(LayoutInflater.from(context), null, false)
 
   /** PopupWindow for creating the spinner. */
-  private val spinnerWindow: PopupWindow
+  public val spinnerWindow: PopupWindow
 
   /** Spinner is showing or not. */
   public var isShowing: Boolean = false
@@ -75,6 +75,9 @@ public class PowerSpinnerView : AppCompatTextView, DefaultLifecycleObserver {
 
   /** An adapter for composing items of the spinner. */
   private var adapter: PowerSpinnerInterface<*> = DefaultSpinnerAdapter(this)
+
+  /** A padding values for the content of the spinner. */
+  private val padding: PowerSpinnerPaddings = PowerSpinnerPaddings()
 
   /** The arrow will  be animated or not when show and dismiss the spinner. */
   public var arrowAnimate: Boolean = true
@@ -342,6 +345,36 @@ public class PowerSpinnerView : AppCompatTextView, DefaultLifecycleObserver {
         }
       }
 
+      if (hasValue(R.styleable.PowerSpinnerView_spinner_popup_top_padding)) {
+        padding.top =
+          getDimensionPixelSize(R.styleable.PowerSpinnerView_spinner_popup_top_padding, 0)
+      }
+
+      if (hasValue(R.styleable.PowerSpinnerView_spinner_popup_end_padding)) {
+        padding.end =
+          getDimensionPixelSize(R.styleable.PowerSpinnerView_spinner_popup_end_padding, 0)
+      }
+
+      if (hasValue(R.styleable.PowerSpinnerView_spinner_popup_bottom_padding)) {
+        padding.bottom =
+          getDimensionPixelSize(R.styleable.PowerSpinnerView_spinner_popup_bottom_padding, 0)
+      }
+
+      if (hasValue(R.styleable.PowerSpinnerView_spinner_popup_start_padding)) {
+        padding.start =
+          getDimensionPixelSize(R.styleable.PowerSpinnerView_spinner_popup_start_padding, 0)
+      }
+
+      if (hasValue(R.styleable.PowerSpinnerView_spinner_popup_padding)) {
+        val value = getDimensionPixelSize(R.styleable.PowerSpinnerView_spinner_popup_padding, 0)
+        padding.apply {
+          top = value
+          end = value
+          bottom = value
+          start = value
+        }
+      }
+
       if (hasValue(R.styleable.PowerSpinnerView_spinner_arrow_padding)) {
         _arrowPadding =
           getDimensionPixelSize(R.styleable.PowerSpinnerView_spinner_arrow_padding, _arrowPadding)
@@ -516,17 +549,12 @@ public class PowerSpinnerView : AppCompatTextView, DefaultLifecycleObserver {
         }
       }
       binding.body.apply {
-        if (this@PowerSpinnerView.spinnerPopupBackground == null) {
-          background = this@PowerSpinnerView.background
+        background = if (this@PowerSpinnerView.spinnerPopupBackground == null) {
+          this@PowerSpinnerView.background
         } else {
-          background = this@PowerSpinnerView.spinnerPopupBackground
+          this@PowerSpinnerView.spinnerPopupBackground
         }
-        setPadding(
-          this.paddingLeft,
-          this.paddingTop,
-          this.paddingRight,
-          this.paddingBottom
-        )
+        setPaddingRelative(padding.start, padding.top, padding.end, padding.bottom)
         if (this@PowerSpinnerView.showDivider) {
           val decoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
           val shape = GradientDrawable().apply {
