@@ -768,7 +768,8 @@ public class PowerSpinnerView : AppCompatTextView, DefaultLifecycleObserver {
     }
   }
 
-  private fun getSpinnerHeight(): Int {
+  /** Returns the window height size of the spinner. */
+  public fun getSpinnerHeight(): Int {
     val height = when {
       spinnerPopupHeight != NO_INT_VALUE -> spinnerPopupHeight
       spinnerItemHeight != NO_INT_VALUE -> calculateSpinnerHeight()

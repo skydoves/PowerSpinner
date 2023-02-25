@@ -143,6 +143,7 @@ public final class com/skydoves/powerspinner/PowerSpinnerView : androidx/appcomp
 	public final fun getShowDivider ()Z
 	public final fun getSpinnerAdapter ()Lcom/skydoves/powerspinner/PowerSpinnerInterface;
 	public final fun getSpinnerBodyView ()Landroid/widget/FrameLayout;
+	public final fun getSpinnerHeight ()I
 	public final fun getSpinnerItemHeight ()I
 	public final fun getSpinnerOutsideTouchListener ()Lcom/skydoves/powerspinner/OnSpinnerOutsideTouchListener;
 	public final fun getSpinnerPopupAnimation ()Lcom/skydoves/powerspinner/SpinnerAnimation;
