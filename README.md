@@ -29,7 +29,7 @@ Add the dependency below to your module's build.gradle file:
 
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:powerspinner:1.2.4"
+    implementation "com.github.skydoves:powerspinner:1.2.5"
 }
 ```
 
@@ -44,7 +44,7 @@ repositories {
 ```
 
 ## Usage
-Add following XML namespace inside your XML layout file.
+Add the XML namespace below inside your XML layout file:
 
 ```gradle
 xmlns:app="http://schemas.android.com/apk/res-auto"
