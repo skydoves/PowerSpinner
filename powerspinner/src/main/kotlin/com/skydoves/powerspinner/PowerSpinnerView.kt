@@ -549,17 +549,12 @@ public class PowerSpinnerView : AppCompatTextView, DefaultLifecycleObserver {
         }
       }
       binding.body.apply {
-        if (this@PowerSpinnerView.spinnerPopupBackground == null) {
-          background = this@PowerSpinnerView.background
+        background = if (this@PowerSpinnerView.spinnerPopupBackground == null) {
+          this@PowerSpinnerView.background
         } else {
-          background = this@PowerSpinnerView.spinnerPopupBackground
+          this@PowerSpinnerView.spinnerPopupBackground
         }
-        setPadding(
-          this.paddingLeft,
-          this.paddingTop,
-          this.paddingRight,
-          this.paddingBottom
-        )
+        setPaddingRelative(padding.start, padding.top, padding.end, padding.bottom)
         if (this@PowerSpinnerView.showDivider) {
           val decoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
           val shape = GradientDrawable().apply {
