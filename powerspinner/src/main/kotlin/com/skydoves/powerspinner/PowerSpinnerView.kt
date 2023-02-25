@@ -76,6 +76,9 @@ public class PowerSpinnerView : AppCompatTextView, DefaultLifecycleObserver {
   /** An adapter for composing items of the spinner. */
   private var adapter: PowerSpinnerInterface<*> = DefaultSpinnerAdapter(this)
 
+  /** A padding values for the content of the spinner. */
+  private val padding: PowerSpinnerPaddings = PowerSpinnerPaddings()
+
   /** The arrow will  be animated or not when show and dismiss the spinner. */
   public var arrowAnimate: Boolean = true
 
@@ -339,6 +342,36 @@ public class PowerSpinnerView : AppCompatTextView, DefaultLifecycleObserver {
           SpinnerGravity.END.value -> SpinnerGravity.END
           SpinnerGravity.BOTTOM.value -> SpinnerGravity.BOTTOM
           else -> throw IllegalArgumentException("unknown argument: spinner_arrow_gravity")
+        }
+      }
+
+      if (hasValue(R.styleable.PowerSpinnerView_spinner_popup_top_padding)) {
+        padding.top =
+          getDimensionPixelSize(R.styleable.PowerSpinnerView_spinner_popup_top_padding, 0)
+      }
+
+      if (hasValue(R.styleable.PowerSpinnerView_spinner_popup_end_padding)) {
+        padding.end =
+          getDimensionPixelSize(R.styleable.PowerSpinnerView_spinner_popup_end_padding, 0)
+      }
+
+      if (hasValue(R.styleable.PowerSpinnerView_spinner_popup_bottom_padding)) {
+        padding.bottom =
+          getDimensionPixelSize(R.styleable.PowerSpinnerView_spinner_popup_bottom_padding, 0)
+      }
+
+      if (hasValue(R.styleable.PowerSpinnerView_spinner_popup_start_padding)) {
+        padding.start =
+          getDimensionPixelSize(R.styleable.PowerSpinnerView_spinner_popup_start_padding, 0)
+      }
+
+      if (hasValue(R.styleable.PowerSpinnerView_spinner_popup_padding)) {
+        val value = getDimensionPixelSize(R.styleable.PowerSpinnerView_spinner_popup_padding, 0)
+        padding.apply {
+          top = value
+          end = value
+          bottom = value
+          start = value
         }
       }
 

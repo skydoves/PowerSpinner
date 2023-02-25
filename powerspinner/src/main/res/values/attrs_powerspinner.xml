@@ -58,6 +58,16 @@
     <attr name="spinner_popup_height" format="dimension" />
     <!-- Sets the max height of the popup. -->
     <attr name="spinner_popup_max_height" format="dimension" />
+    <!-- Sets the top padding of the popup. -->
+    <attr name="spinner_popup_top_padding" format="dimension" />
+    <!-- Sets the end padding of the popup. -->
+    <attr name="spinner_popup_end_padding" format="dimension" />
+    <!-- Sets the bottom padding of the popup. -->
+    <attr name="spinner_popup_bottom_padding" format="dimension" />
+    <!-- Sets the left padding of the popup. -->
+    <attr name="spinner_popup_start_padding" format="dimension" />
+    <!-- Sets the paddings of the popup. -->
+    <attr name="spinner_popup_padding" format="dimension" />
     <!-- Sets a fixed item height of the popup. -->
     <attr name="spinner_item_height" format="dimension" />
     <!-- Sets the elevation size of the popup. -->
