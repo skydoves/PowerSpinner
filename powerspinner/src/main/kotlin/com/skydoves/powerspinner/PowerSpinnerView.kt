@@ -63,7 +63,7 @@ public class PowerSpinnerView : AppCompatTextView, DefaultLifecycleObserver {
     PowerspinnerLayoutBodyBinding.inflate(LayoutInflater.from(context), null, false)
 
   /** PopupWindow for creating the spinner. */
-  private val spinnerWindow: PopupWindow
+  public val spinnerWindow: PopupWindow
 
   /** Spinner is showing or not. */
   public var isShowing: Boolean = false

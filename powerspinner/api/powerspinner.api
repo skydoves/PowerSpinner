@@ -153,6 +153,7 @@ public final class com/skydoves/powerspinner/PowerSpinnerView : androidx/appcomp
 	public final fun getSpinnerPopupMaxHeight ()I
 	public final fun getSpinnerPopupWidth ()I
 	public final fun getSpinnerRecyclerView ()Landroidx/recyclerview/widget/RecyclerView;
+	public final fun getSpinnerWindow ()Landroid/widget/PopupWindow;
 	public final fun isShowing ()Z
 	public final fun notifyItemSelected (ILjava/lang/CharSequence;)V
 	public fun onDestroy (Landroidx/lifecycle/LifecycleOwner;)V
