@@ -44,5 +44,6 @@
   <public name="spinner_debounce_duration" type="attr" tools:ignore="ResourceName" />
   <public name="spinner_preference_name" type="attr" tools:ignore="ResourceName" />
   <public name="spinner_popup_focusable" type="attr" tools:ignore="ResourceName" />
+  <public name="PowerSpinnerStyle" type="style" tools:ignore="ResourceName" />
 
 </resources>
