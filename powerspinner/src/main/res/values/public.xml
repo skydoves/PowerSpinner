@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
     Designed and developed by 2019 skydoves (Jaewoong Eum)
 
     Licensed under the Stream License;
@@ -44,5 +43,6 @@
   <public name="spinner_debounce_duration" type="attr" tools:ignore="ResourceName" />
   <public name="spinner_preference_name" type="attr" tools:ignore="ResourceName" />
   <public name="spinner_popup_focusable" type="attr" tools:ignore="ResourceName" />
+  <public name="PowerSpinnerStyle" type="style" tools:ignore="ResourceName" />
 
 </resources>
