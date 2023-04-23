@@ -154,6 +154,7 @@ public final class com/skydoves/powerspinner/PowerSpinnerView : androidx/appcomp
 	public final fun getSpinnerPopupMaxHeight ()I
 	public final fun getSpinnerPopupWidth ()I
 	public final fun getSpinnerRecyclerView ()Landroidx/recyclerview/widget/RecyclerView;
+	public final fun getSpinnerSelectedItemBackground ()Landroid/graphics/drawable/Drawable;
 	public final fun getSpinnerWindow ()Landroid/widget/PopupWindow;
 	public final fun isShowing ()Z
 	public final fun notifyItemSelected (ILjava/lang/CharSequence;)V
@@ -193,6 +194,7 @@ public final class com/skydoves/powerspinner/PowerSpinnerView : androidx/appcomp
 	public final fun setSpinnerPopupHeight (I)V
 	public final fun setSpinnerPopupMaxHeight (I)V
 	public final fun setSpinnerPopupWidth (I)V
+	public final fun setSpinnerSelectedItemBackground (Landroid/graphics/drawable/Drawable;)V
 	public final fun show ()V
 	public final fun show (I)V
 	public final fun show (II)V
@@ -234,6 +236,7 @@ public final class com/skydoves/powerspinner/PowerSpinnerView$Builder {
 	public final fun setSpinnerPopupHeight (I)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;
 	public final fun setSpinnerPopupMaxHeight (I)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;
 	public final fun setSpinnerPopupWidth (I)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;
+	public final fun setSpinnerSelectedItemBackground (Landroid/graphics/drawable/Drawable;)Lcom/skydoves/powerspinner/PowerSpinnerView$Builder;
 }
 
 public final class com/skydoves/powerspinner/SpinnerAnimation : java/lang/Enum {
