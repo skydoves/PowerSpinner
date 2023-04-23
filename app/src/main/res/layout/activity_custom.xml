@@ -87,15 +87,13 @@
       android:textSize="14.5sp"
       app:spinner_arrow_gravity="end"
       app:spinner_arrow_padding="8dp"
-      app:spinner_divider_color="@color/white_70"
-      app:spinner_divider_show="true"
-      app:spinner_divider_size="0.4dp"
+      app:spinner_divider_show="false"
       app:spinner_item_array="@array/questions1"
       app:spinner_item_height="46dp"
       app:spinner_popup_animation="normal"
       app:spinner_popup_background="@drawable/spinner_background"
       app:spinner_popup_elevation="14dp"
-      app:spinner_popup_max_height="92dp"
+      app:spinner_selected_item_background="@drawable/selected_item_background"
       tools:ignore="HardcodedText,UnusedAttribute" />
 
     <TextView

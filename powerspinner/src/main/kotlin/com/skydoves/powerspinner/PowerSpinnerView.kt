@@ -232,6 +232,9 @@ public class PowerSpinnerView : AppCompatTextView, DefaultLifecycleObserver {
   /** A fixed item height size of the spinner popup. */
   public var spinnerItemHeight: Int = NO_INT_VALUE
 
+  /** A background of the selected item. */
+  public var spinnerSelectedItemBackground: Drawable? = null
+
   /** The spinner popup will be dismissed when got notified an item is selected. */
   public var dismissWhenNotifiedItemSelected: Boolean = true
 
@@ -473,6 +476,10 @@ public class PowerSpinnerView : AppCompatTextView, DefaultLifecycleObserver {
             R.styleable.PowerSpinnerView_spinner_item_height,
             spinnerItemHeight
           )
+      }
+
+      if (hasValue(R.styleable.PowerSpinnerView_spinner_selected_item_background)) {
+        spinnerSelectedItemBackground = getDrawable(R.styleable.PowerSpinnerView_spinner_selected_item_background)
       }
 
       if (hasValue(R.styleable.PowerSpinnerView_spinner_popup_elevation)) {
@@ -999,6 +1006,10 @@ public class PowerSpinnerView : AppCompatTextView, DefaultLifecycleObserver {
 
     public fun setSpinnerItemHeight(@Px value: Int): Builder = apply {
       this.powerSpinnerView.spinnerItemHeight = value
+    }
+
+    public fun setSpinnerSelectedItemBackground(value: Drawable): Builder = apply {
+      this.powerSpinnerView.spinnerSelectedItemBackground = value
     }
 
     public fun setPreferenceName(value: String): Builder = apply {

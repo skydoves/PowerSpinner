@@ -53,7 +53,7 @@ public class DefaultSpinnerAdapter(
   }
 
   override fun onBindViewHolder(holder: DefaultSpinnerViewHolder, position: Int) {
-    holder.bind(spinnerItems[position], spinnerView)
+    holder.bind(spinnerView, spinnerItems[position], index == position)
   }
 
   override fun setItems(itemList: List<CharSequence>) {
@@ -68,6 +68,7 @@ public class DefaultSpinnerAdapter(
     val oldIndex = this.index
     this.index = index
     this.spinnerView.notifyItemSelected(index, spinnerItems[index])
+    notifyDataSetChanged()
     this.onSpinnerItemSelectedListener?.onItemSelected(
       oldIndex = oldIndex,
       oldItem = oldIndex.takeIf { it != NO_SELECTED_INDEX }?.let { spinnerItems[oldIndex] },
@@ -81,7 +82,7 @@ public class DefaultSpinnerAdapter(
   public class DefaultSpinnerViewHolder(private val binding: PowerspinnerItemDefaultPowerBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    internal fun bind(item: CharSequence, spinnerView: PowerSpinnerView) {
+    internal fun bind(spinnerView: PowerSpinnerView, item: CharSequence, isSelectedItem: Boolean) {
       binding.itemDefaultText.apply {
         text = item
         typeface = spinnerView.typeface
@@ -97,6 +98,11 @@ public class DefaultSpinnerAdapter(
       )
       if (spinnerView.spinnerItemHeight != NO_INT_VALUE) {
         binding.root.height = spinnerView.spinnerItemHeight
+      }
+      if (spinnerView.spinnerSelectedItemBackground != null && isSelectedItem) {
+        binding.root.background = spinnerView.spinnerSelectedItemBackground
+      } else {
+        binding.root.background = null
       }
     }
   }

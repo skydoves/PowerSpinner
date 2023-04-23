@@ -70,6 +70,8 @@
     <attr name="spinner_popup_padding" format="dimension" />
     <!-- Sets a fixed item height of the popup. -->
     <attr name="spinner_item_height" format="dimension" />
+    <!-- Sets the background of the popup selected item -->
+    <attr name="spinner_selected_item_background" format="color|reference" />
     <!-- Sets the elevation size of the popup. -->
     <attr name="spinner_popup_elevation" format="dimension" />
     <!-- 	Sets the items of the popup. -->
