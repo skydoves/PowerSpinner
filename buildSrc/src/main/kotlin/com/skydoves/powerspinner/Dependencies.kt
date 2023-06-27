@@ -4,13 +4,13 @@ object Versions {
     internal const val ANDROID_GRADLE_PLUGIN = "7.4.1"
     internal const val ANDROID_GRADLE_SPOTLESS = "6.7.0"
     internal const val GRADLE_NEXUS_PUBLISH_PLUGIN = "1.3.0"
-    internal const val KOTLIN = "1.8.10"
-    internal const val KOTLIN_GRADLE_DOKKA = "1.8.10"
-    internal const val KOTLIN_BINARY_VALIDATOR = "0.13.0"
+    internal const val KOTLIN = "1.8.20"
+    internal const val KOTLIN_GRADLE_DOKKA = "1.8.20"
+    internal const val KOTLIN_BINARY_VALIDATOR = "0.13.2"
 
-    internal const val APPCOMPAT = "1.6.1"
+    internal const val APPCOMPAT = "1.7.0-alpha02"
     internal const val MATERIAL = "1.8.0"
-    internal const val LIFECYCLE = "2.6.0"
+    internal const val LIFECYCLE = "2.6.1"
     internal const val RECYCLERVIEW = "1.2.1"
     internal const val PREFERENCE = "1.2.0"
 }
