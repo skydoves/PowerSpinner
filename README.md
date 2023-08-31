@@ -165,8 +165,7 @@ app:spinner_preference_name="country"
 You can remove or clear the stored position data with the methods below:
 
 ```kotlin
-spinnerView.removePersistedData("country")
-spinnerView.clearAllPersistedData()
+powerSpinnerView.clearSelectedItem()
 ```
 
 ### SpinnerAnimation
